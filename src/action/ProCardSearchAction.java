@@ -1,17 +1,17 @@
 package action;
 
+import form.ProductCardForm;
 import logic.LogicDTO;
 import logic.ProCardSearchLogic;
 import util.CommonUtil;
 import util.Contants;
-import form.CardForm;
 
 public class ProCardSearchAction extends MySuperAction {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 378340882595762250L;
-	private CardForm card;
+	private ProductCardForm card;
 	private ProCardSearchLogic logic;
 	private String pageString;
 
@@ -30,52 +30,47 @@ public class ProCardSearchAction extends MySuperAction {
 		}
 		LogicDTO dto = logic.doLogic(card);
 		if (dto.isResult()) {
-			card.initView(true);
+			card.setResultFlag(true);
+//			card.initView(true);
 			return SUCCESS;
 		} else {
 			this.addFieldError("field", getText(dto.getErrorCode()));
-			card.initView(false);
+//			card.initView(false);
 			return INPUT;
 		}
 	}
 
 	public void validate() {
 		super.validate();
-		if (!CommonUtil.isEmpty(card.getChargedate1())
-				&& !CommonUtil.isyyyyMMdd(card.getChargedate1())) {
-			this.addFieldError("field", getText(Contants.E022));
-		}
-		if (!CommonUtil.isEmpty(card.getChargedate2())
-				&& !CommonUtil.isyyyyMMdd(card.getChargedate2())) {
-			this.addFieldError("field", getText(Contants.E022));
-		}
-		if (!CommonUtil.isEmpty(card.getEnddate1())
-				&& !CommonUtil.isyyyyMMdd(card.getEnddate1())) {
-			this.addFieldError("field", getText(Contants.E021));
-		}
-		if (!CommonUtil.isEmpty(card.getEnddate2())
-				&& !CommonUtil.isyyyyMMdd(card.getEnddate2())) {
-			this.addFieldError("field", getText(Contants.E021));
-		}
-		if (super.getFieldErrors().size() != 0) {
-			card.initView(false);
-		} else {
-			card.initView(true);
-		}
+//		if (!CommonUtil.isEmpty(card.getChargedate1())
+//				&& !CommonUtil.isyyyyMMdd(card.getChargedate1())) {
+//			this.addFieldError("field", getText(Contants.E022));
+//		}
+//		if (!CommonUtil.isEmpty(card.getChargedate2())
+//				&& !CommonUtil.isyyyyMMdd(card.getChargedate2())) {
+//			this.addFieldError("field", getText(Contants.E022));
+//		}
+//		if (!CommonUtil.isEmpty(card.getEnddate1())
+//				&& !CommonUtil.isyyyyMMdd(card.getEnddate1())) {
+//			this.addFieldError("field", getText(Contants.E021));
+//		}
+//		if (!CommonUtil.isEmpty(card.getEnddate2())
+//				&& !CommonUtil.isyyyyMMdd(card.getEnddate2())) {
+//			this.addFieldError("field", getText(Contants.E021));
+//		}
+//		if (super.getFieldErrors().size() != 0) {
+//			card.initView(false);
+//		} else {
+//			card.initView(true);
+//		}
 	}
 
-	/**
-	 * @return the card
-	 */
-	public CardForm getCard() {
+	
+	public ProductCardForm getCard() {
 		return card;
 	}
 
-	/**
-	 * @param card
-	 *            the card to set
-	 */
-	public void setCard(CardForm card) {
+	public void setCard(ProductCardForm card) {
 		this.card = card;
 	}
 

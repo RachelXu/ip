@@ -69,32 +69,27 @@ return true;
                     	<table border="1">	
 							<tr>
 							  <td>充值卡ID</td>
-							  <td><s2:textfield name="card.id" size="10" maxlength="5"/></td>
+							  <td><s2:textfield name="card.productCard.cardNumber" size="10" maxlength="5"/></td>
 							  <td>用户姓名</td>
-							  <td><s2:textfield name="card.userName" size="10" maxlength="10"/></td>
+							  <td></td>
 							</tr>
 							<tr>
 							  <td>充值卡状态</td>
 							  <td>
-								<s2:select list="card.stateList" name="card.state" listKey="value" listValue="label" headerKey="" headerValue="-"></s2:select>
 							  </td>
 							  <td>充值时长</td>
 							  <td>
-								<s2:textfield name="card.day1" size="10" maxlength="10"/>&nbsp;&nbsp;—&nbsp;&nbsp;<s2:textfield name="card.day2" size="10" maxlength="10" />
 							  </td>
 							</tr>
 							<tr>
 							  <td>充值日期</td>
-							  <td><s2:textfield name="card.chargedate1" size="10" maxlength="8" onclick="JTC.setday({format: 'yyyyMMdd'})"/>&nbsp;&nbsp;—&nbsp;&nbsp;<s2:textfield name="card.chargedate2" size="10" maxlength="8" onclick="JTC.setday({format: 'yyyyMMdd'})"/></td>
+							  <td>
+							  </td>
 							  <td>截止日期</td>
-							  <td><s2:textfield name="card.enddate1" size="10" maxlength="8" onclick="JTC.setday({format: 'yyyyMMdd'})"/>&nbsp;&nbsp;—&nbsp;&nbsp;<s2:textfield name="card.enddate2" size="10" maxlength="8" onclick="JTC.setday({format: 'yyyyMMdd'})"/></td>
+							  <td>
+							  </td>
 							</tr>
-							<tr>
-							  <td>批次</td>
-							  <td><s2:textfield name="card.batchNum" size="10" maxlength="5" /></td>
-							  <td></td>
-							  <td></td>
-							</tr>
+
 							<tr align="center">
 								<td colspan="4" >
 									<s2:submit value="查询" onclick="resetPage()"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="重置" onclick="window.location.href='precardsearch.action'" />
@@ -106,19 +101,21 @@ return true;
 						<table>
 							<tr>
 						 	  <td >充值卡id</td>
+						 	  <td >充值卡id</td>
 						      <td >充值卡状态</td>
 						 	  <td >充值时长</td>
 							  <td >截止日期</td>
 							  <td >充值时期 </td>
 							  <td>操作</td>
 	    					</tr>
-	    				  <s2:iterator value="card.resultList" var="detil">
+	    				  <s2:iterator value="card.productCardSet" var="detil">
 						  <tr>    
-							  <td><s2:property value="id"/> </td>       
-						 	  <td><s2:property value="state"/></td>    
-						      <td><s2:property value="day"/></td>    
-						      <td><s2:property value="enddate"/></td>
-						      <td><s2:property value="chargedate"/></td>
+							  <td><s2:property value="cardNumber"/> </td>       
+						 	  <td><s2:property value="cardValue"/></td>    
+						      <td><s2:property value="productID"/></td>    
+						      <td><s2:property value="cardState"/></td>    
+						      <td><s2:property value="useDate"/></td>
+						      <td><s2:property value="accountID"/></td>
 						      <td>
 					          <s2:submit action="precardedit" value="修改" onclick="edit(%{id})"> </s2:submit>
 					          <s2:submit action="precarddelete" value="删除" onclick="del(%{id})">  </s2:submit> </td> 

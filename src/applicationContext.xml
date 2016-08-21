@@ -77,6 +77,13 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	<bean id="ProductCardDAO" class="dao.ProductCardDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	
 	<bean id="ServiecTypeDAO" class="dao.ServiecTypeDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -240,7 +247,7 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 		abstract="false" lazy-init="default" autowire="default"
 		dependency-check="default">
 		<property name="dao">
-			<ref local="CardDAO" />
+			<ref local="ProductCardDAO" />
 		</property>
 	</bean>
 	<bean id="PreCardEditLogic" class="logic.PreCardEditLogic"
