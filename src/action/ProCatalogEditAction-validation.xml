@@ -1,0 +1,20 @@
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+<validators>
+    <field name="catalogEdit.catalogZhName">
+        <field-validator type="requiredstring">
+            <message>请输入栏目中文名称</message>
+        </field-validator>
+    </field>
+    <field name="catalogEdit.catalogEnName">
+        <field-validator type="requiredstring">
+            <message>请输入栏目英文名称</message>
+        </field-validator>
+    </field>
+    <field name="catalogEdit.order">
+        <field-validator type="required">
+            <message>请输入显示顺序</message>
+        </field-validator>
+    </field>
+</validators>

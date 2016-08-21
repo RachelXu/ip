@@ -1,0 +1,936 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation=" 
+       http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd 
+       http://www.springframework.org/schema/tx 
+http://www.springframework.org/schema/tx/spring-tx-2.0.xsd 
+       http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation"
+			value="classpath:hibernate.cfg.xml">
+		</property>
+	</bean>
+	<!-- 声明一个 Hibernate 3 的 事务管理器供代理类自动管理事务用 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<!-- ================================================== -->
+	<bean id="AreaDAO" class="dao.AreaDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="MediaCatalogDAO" class="dao.MediaCatalogDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="MediaDescDAO" class="dao.MediaDescDAOplus">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="LanguageDAO" class="dao.LanguageDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="SubMediaSourceDAO" class="dao.SubMediaSourceDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CatalogDAO" class="dao.CatalogDAOplus">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- DAO 类 -->
+	<bean id="AdminDAO" class="dao.AdminDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CardDAO" class="dao.CardDAOplus">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="UserDAO" class="dao.UserDAOplus">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="AccountDAO" class="dao.AccountDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ServiecTypeDAO" class="dao.ServiecTypeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="BatchDAO" class="dao.BatchDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- ================================================== -->
+	<!-- Logic 类 -->
+	<!-- 用户登录主逻辑处理类 -->
+	<bean id="ProLoginLogic" class="logic.ProLoginLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="AdminDAO" />
+		</property>
+	</bean>
+	<!-- 帐户检索主逻辑处理类 -->
+	<bean id="ProUserSearchLogic" class="logic.ProUserSearchLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="UserDAO" />
+		</property>
+		<property name="accountDao">
+			<ref local="AccountDAO" />
+		</property>
+	</bean>
+	<bean id="ProAdminInsertLogic" class="logic.ProAdminInsertLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="AdminDAO" />
+		</property>
+	</bean>
+	<bean id="ProAdminPasswordLogic" class="logic.ProAdminPasswordLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="AdminDAO" />
+		</property>
+	</bean>
+	<!-- 帐号/节目业务逻辑 -->
+	<bean id="productLogic" class="logic.ProductLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="accountDao">
+			<ref local="AccountDAO" />
+		</property>
+	</bean>
+	<!-- ================================================== -->
+	<!-- Struts Action 类 -->
+	<!-- 用户登录处理Ation -->
+	<bean id="prelogin" class="action.PreLoginAction"
+		scope="prototype">
+	</bean>
+	<bean id="prologin" class="action.ProLoginAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProLoginLogic" />
+		</property>
+	</bean>
+	<!-- 帐户检索处理Ation -->
+	<bean id="preusersearch" class="action.PreUserSearchAction"
+		scope="prototype">
+	</bean>
+	<bean id="prousersearch" class="action.ProUserSearchAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProUserSearchLogic" />
+		</property>
+	</bean>
+	<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+	<bean id="IptvsoftwareDAO" class="dao.IptvsoftwareDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ProUserUploadLogic" class="logic.ProUserUploadLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="UserDAO" />
+		</property>
+	</bean>
+	<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+	<bean id="PreUserEditLogic" class="logic.PreUserEditLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="UserDAO" />
+		</property>
+	</bean>
+	<bean id="ProUserEditLogic" class="logic.ProUserEditLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="UserDAO" />
+		</property>
+	</bean>
+	<bean id="PreUserDeleteLogic" class="logic.PreUserDeleteLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="UserDAO" />
+		</property>
+	</bean>
+	<bean id="ProUserDeleteLogic" class="logic.ProUserDeleteLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="UserDAO" />
+		</property>
+	</bean>
+	<bean id="ProUserBatchEditLogic" class="logic.ProUserBatchEditLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="UserDAO" />
+		</property>
+	</bean>
+	<bean id="ProUserBatchEditExecLogic"
+		class="logic.ProUserBatchEditExecLogic" abstract="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="dao">
+			<ref local="UserDAO" />
+		</property>
+	</bean>
+	<bean id="ProUserBatchDeleteExecLogic"
+		class="logic.ProUserBatchDeleteExecLogic" abstract="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="dao">
+			<ref local="UserDAO" />
+		</property>
+	</bean>
+	<bean id="ProIptvUploadLogic" class="logic.ProIptvUploadLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="IptvsoftwareDAO" />
+		</property>
+	</bean>
+	<bean id="PreIptvHistoryLogic" class="logic.PreIptvHistoryLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="IptvsoftwareDAO" />
+		</property>
+	</bean>
+	<bean id="ProIptvDownLoadLogic" class="logic.ProIptvDownLoadLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="IptvsoftwareDAO" />
+		</property>
+	</bean>
+	<bean id="ProCardSearchLogic" class="logic.ProCardSearchLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="CardDAO" />
+		</property>
+	</bean>
+	<bean id="PreCardEditLogic" class="logic.PreCardEditLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="CardDAO" />
+		</property>
+	</bean>
+	<bean id="ProCardEditLogic" class="logic.ProCardEditLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="CardDAO" />
+		</property>
+	</bean>
+	<bean id="PreCardDeleteLogic" class="logic.PreCardDeleteLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="CardDAO" />
+		</property>
+	</bean>
+	<bean id="ProCardDeleteLogic" class="logic.ProCardDeleteLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="CardDAO" />
+		</property>
+	</bean>
+	<bean id="ProCardUploadLogic" class="logic.ProCardUploadLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="CardDAO" />
+		</property>
+	</bean>
+	<bean id="ProCardBatchEditLogic" class="logic.ProCardBatchEditLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="CardDAO" />
+		</property>
+	</bean>
+	<bean id="ProCardBatchDeleteExecLogic"
+		class="logic.ProCardBatchDeleteExecLogic" abstract="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="dao">
+			<ref local="CardDAO" />
+		</property>
+	</bean>
+	<bean id="ProCardBatchEditExecLogic"
+		class="logic.ProCardBatchEditExecLogic" abstract="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="dao">
+			<ref local="CardDAO" />
+		</property>
+	</bean>
+	<bean id="PreCatalogManLogic" class="logic.PreCatalogManLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="CatalogDAO" />
+		</property>
+	</bean>
+	<bean id="ProCatalogManLogic" class="logic.ProCatalogManLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="CatalogDAO" />
+		</property>
+	</bean>
+	<bean id="PreCatalogEditLogic" class="logic.PreCatalogEditLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="CatalogDAO" />
+		</property>
+	</bean>
+	<bean id="ProCatalogEditLogic" class="logic.ProCatalogEditLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="CatalogDAO" />
+		</property>
+	</bean>
+	<bean id="ProCtatlogDeleteLogic" class="logic.ProCtatlogDeleteLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="CatalogDAO" />
+		</property>
+	</bean>
+	<bean id="PreMediaSearchLogic" class="logic.PreMediaSearchLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao1">
+			<ref local="CatalogDAO" />
+		</property>
+		<property name="dao2">
+			<ref local="LanguageDAO" />
+		</property>
+		<property name="dao3">
+			<ref local="AreaDAO" />
+		</property>
+	</bean>
+	<bean id="ProMediaSearchLogic" class="logic.ProMediaSearchLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="MediaDescDAO" />
+		</property>
+	</bean>
+	<bean id="PreMediaDeleteLogic" class="logic.PreMediaDeleteLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="MediaDescDAO" />
+		</property>
+	</bean>
+	<bean id="ProMediaDeleteLogic" class="logic.ProMediaDeleteLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="MediaDescDAO" />
+		</property>
+	</bean>
+	<bean id="ProMediaInsertLogic" class="logic.ProMediaInsertLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao1">
+			<ref local="MediaDescDAO" />
+		</property>
+		<property name="dao2">
+			<ref local="CatalogDAO" />
+		</property>
+		<property name="dao3">
+			<ref local="LanguageDAO" />
+		</property>
+		<property name="dao4">
+			<ref local="AreaDAO" />
+		</property>
+		<property name="dao5">
+			<ref local="SubMediaSourceDAO" />
+		</property>
+	</bean>
+	<bean id="ProMediaEditLogic" class="logic.ProMediaEditLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao1">
+			<ref local="MediaDescDAO" />
+		</property>
+		<property name="dao4">
+			<ref local="CatalogDAO" />
+		</property>
+		<property name="dao2">
+			<ref local="LanguageDAO" />
+		</property>
+		<property name="dao3">
+			<ref local="AreaDAO" />
+		</property>
+	</bean>
+	<bean id="ProMediaBatchUploadLogic"
+		class="logic.ProMediaBatchUploadLogic" abstract="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="dao">
+			<ref local="MediaDescDAO" />
+		</property>
+	</bean>
+	<bean id="PreMediaApproveLogic" class="logic.PreMediaApproveLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="MediaDescDAO" />
+		</property>
+	</bean>
+	<bean id="ProMediaApproveLogic" class="logic.ProMediaApproveLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="dao">
+			<ref local="MediaDescDAO" />
+		</property>
+	</bean>
+	<bean id="ProMediaDisApproveLogic"
+		class="logic.ProMediaDisApproveLogic" abstract="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="dao">
+			<ref local="MediaDescDAO" />
+		</property>
+	</bean>
+	<bean id="ProServiceInsertLogic"
+		class="logic.ProServiceInsertLogic" abstract="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="dao">
+			<ref local="ServiecTypeDAO" />
+		</property>
+	</bean>
+	<bean id="ProServiceSearchLogic"
+		class="logic.ProServiceSearchLogic" abstract="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="dao">
+			<ref local="ServiecTypeDAO" />
+		</property>
+	</bean>
+	<bean id="PreCardBatchInsertLogic"
+		class="logic.PreCardBatchInsertLogic" abstract="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="dao">
+			<ref local="ServiecTypeDAO" />
+		</property>
+	</bean>
+	<bean id="ProCardBatchInsertLogic"
+		class="logic.ProCardBatchInsertLogic" abstract="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="dao1">
+			<ref local="CardDAO" />
+		</property>
+			<property name="dao2">
+			<ref local="ServiecTypeDAO" />
+		</property>
+	</bean>
+	<bean id="ProCardDownloadLogic"
+		class="logic.ProCardDownloadLogic" abstract="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="dao">
+			<ref local="CardDAO" />
+		</property>
+	</bean>
+	<bean id="PreServiceEditLogic"
+		class="logic.PreServiceEditLogic" abstract="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="dao">
+			<ref local="ServiecTypeDAO" />
+		</property>
+	</bean>
+	<bean id="ProServiceEditLogic"
+		class="logic.ProServiceEditLogic" abstract="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="dao">
+			<ref local="ServiecTypeDAO" />
+		</property>
+	</bean>
+	<bean id="ProServiceDeleteLogic"
+		class="logic.ProServiceDeleteLogic" abstract="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="dao">
+			<ref local="ServiecTypeDAO" />
+		</property>
+	</bean>
+	<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+	<bean id="preuserupload" class="action.PreUserUploadAction"
+		scope="prototype">
+	</bean>
+	<bean id="prouserupload" class="action.ProUserUploadAction"
+		scope="prototype">
+	</bean>
+	<bean id="prouseruploadconfirm"
+		class="action.ProUserUploadConfirmAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProUserUploadLogic" />
+		</property>
+	</bean>
+	<bean id="preuseredit" class="action.PreUserEditAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="PreUserEditLogic" />
+		</property>
+	</bean>
+	<bean id="prouseredit" class="action.ProUserEditAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProUserEditLogic" />
+		</property>
+	</bean>
+	<bean id="preuserdelete" class="action.PreUserDeleteAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="PreUserDeleteLogic" />
+		</property>
+	</bean>
+	<bean id="prouserdelete" class="action.ProUserDeleteAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProUserDeleteLogic" />
+		</property>
+	</bean>
+	<bean id="prologout" class="action.ProLogoutAction"
+		scope="prototype">
+	</bean>
+	<bean id="preuserbatchedit" class="action.PreUserBatchEditAction"
+		scope="prototype">
+	</bean>
+	<bean id="prouserbatchedit" class="action.ProUserBatchEditAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProUserBatchEditLogic" />
+		</property>
+	</bean>
+	<bean id="prouserbatcheditexec"
+		class="action.ProUserBatchEditExecAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProUserBatchEditExecLogic" />
+		</property>
+	</bean>
+	<bean id="preuserbatchdelete"
+		class="action.PreUserBatchDeleteAction" scope="prototype">
+	</bean>
+	<bean id="prouserbatchdelete"
+		class="action.ProUserBatchDeleteAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProUserBatchEditLogic" />
+		</property>
+	</bean>
+	<bean id="prouserbatchdeleteexec"
+		class="action.ProUserBatchDeleteExecAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProUserBatchDeleteExecLogic" />
+		</property>
+	</bean>
+	<bean id="preiptvupload" class="action.PreIptvUploadAction"
+		scope="prototype">
+	</bean>
+	<bean id="proiptvupload" class="action.ProIptvUploadAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProIptvUploadLogic" />
+		</property>
+	</bean>
+	<bean id="preiptvhistoryaction" class="action.PreIptvHistoryAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="PreIptvHistoryLogic" />
+		</property>
+	</bean>
+	<bean id="proiptvdownloadaction"
+		class="action.ProIptvDownLoadAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProIptvDownLoadLogic" />
+		</property>
+	</bean>
+	<bean id="precardsearch" class="action.PreCardSearchAction"
+		scope="prototype">
+	</bean>
+	<bean id="procardsearch" class="action.ProCardSearchAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProCardSearchLogic" />
+		</property>
+	</bean>
+	<bean id="precardedit" class="action.PreCardEditAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="PreCardEditLogic" />
+		</property>
+	</bean>
+	<bean id="procardedit" class="action.ProCardEditAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProCardEditLogic" />
+		</property>
+	</bean>
+	<bean id="precarddelete" class="action.PreCardDeleteAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="PreCardDeleteLogic" />
+		</property>
+	</bean>
+	<bean id="procarddelete" class="action.ProCardDeleteAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProCardDeleteLogic" />
+		</property>
+	</bean>
+	<bean id="precardupload" class="action.PreCardUploadAction"
+		scope="prototype">
+	</bean>
+	<bean id="procardupload" class="action.ProCardUploadAction"
+		scope="prototype">
+		<property name="dao">
+			<ref local="UserDAO" />
+		</property>
+	</bean>
+	<bean id="procarduploadconfirm"
+		class="action.ProCardUploadConfirmAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProCardUploadLogic" />
+		</property>
+	</bean>
+	<bean id="precardbatchdelete"
+		class="action.PreCardBatchDeleteAction" scope="prototype">
+	</bean>
+	<bean id="procardbatchdelete"
+		class="action.ProCardBatchDeleteAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProCardBatchEditLogic" />
+		</property>
+	</bean>
+	<bean id="procardbatchdeleteexec"
+		class="action.ProCardBatchDeleteExecAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProCardBatchDeleteExecLogic" />
+		</property>
+	</bean>
+	<bean id="precardbatchedit" class="action.PreCardBatchEditAction"
+		scope="prototype">
+	</bean>
+	<bean id="procardbatchedit" class="action.ProCardBatchEditAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProCardBatchEditLogic" />
+		</property>
+	</bean>
+	<bean id="procardbatcheditexec"
+		class="action.ProCardBatchEditExecAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProCardBatchEditExecLogic" />
+		</property>
+	</bean>
+	<bean id="precatalogman" class="action.PreCatalogManAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="PreCatalogManLogic" />
+		</property>
+	</bean>
+	<bean id="procatalogman" class="action.ProCatalogManAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProCatalogManLogic" />
+		</property>
+	</bean>
+	<bean id="precatalogedit" class="action.PreCatalogEditAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="PreCatalogEditLogic" />
+		</property>
+	</bean>
+	<bean id="procatalogedit" class="action.ProCatalogEditAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProCatalogEditLogic" />
+		</property>
+	</bean>
+	<bean id="precatalogdelete" class="action.PreCatalogDeleteAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="PreCatalogEditLogic" />
+		</property>
+	</bean>
+	<bean id="procatalogdelete" class="action.ProCatalogDeleteAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProCtatlogDeleteLogic" />
+		</property>
+	</bean>
+	<bean id="premediasearch" class="action.PreMediaSearchAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="PreMediaSearchLogic" />
+		</property>
+	</bean>
+	<bean id="promediasearch" class="action.ProMediaSearchAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProMediaSearchLogic" />
+		</property>
+	</bean>
+	<bean id="premediainsert" class="action.PreMediaInsertAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="PreMediaSearchLogic" />
+		</property>
+	</bean>
+	<bean id="promediainsert" class="action.ProMediaInsertAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProMediaInsertLogic" />
+		</property>
+	</bean>
+	<bean id="premediadelete" class="action.PreMediaDeleteAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="PreMediaDeleteLogic" />
+		</property>
+	</bean>
+	<bean id="promediadelete" class="action.ProMediaDeleteAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProMediaDeleteLogic" />
+		</property>
+	</bean>
+	<bean id="premediaedit" class="action.PreMediaEditAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="PreMediaDeleteLogic" />
+		</property>
+	</bean>
+	<bean id="promediaedit" class="action.ProMediaEditAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProMediaEditLogic" />
+		</property>
+	</bean>
+	<bean id="premediabatchupload"
+		class="action.PreMediaBatchUploadAction" scope="prototype">
+	</bean>
+	<bean id="promediabatchupload"
+		class="action.ProMediaBatchUploadAction" scope="prototype">
+		<property name="dao1">
+			<ref local="CatalogDAO" />
+		</property>
+		<property name="dao2">
+			<ref local="LanguageDAO" />
+		</property>
+		<property name="dao3">
+			<ref local="AreaDAO" />
+		</property>
+	</bean>
+	<bean id="promediabatchuploadconfirm"
+		class="action.ProMediaBatchUploadConfirmAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProMediaBatchUploadLogic" />
+		</property>
+	</bean>
+	<bean id="preepgman" class="action.PreEpgManAction"
+		scope="prototype">
+	</bean>
+	<bean id="proepgstart" class="action.ProEpgStartAction"
+		scope="prototype">
+	</bean>
+	<bean id="proepgstop" class="action.ProEpgStoptAction"
+		scope="prototype">
+	</bean>
+	<bean id="premediaapprove" class="action.PreMediaApproveAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="PreMediaApproveLogic" />
+		</property>
+	</bean>
+	<bean id="promediaapprove" class="action.ProMediaApproveAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProMediaApproveLogic" />
+		</property>
+		<property name="sublogic">
+			<ref local="PreMediaApproveLogic" />
+		</property>
+	</bean>
+	<bean id="premediadisapprove"
+		class="action.PreMediaDisApproveAction" scope="prototype">
+		<property name="logic">
+			<ref local="PreMediaApproveLogic" />
+		</property>
+	</bean>
+	<bean id="promediadisapprove"
+		class="action.ProMediaDisApproveAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProMediaDisApproveLogic" />
+		</property>
+		<property name="sublogic">
+			<ref local="PreMediaApproveLogic" />
+		</property>
+	</bean>
+	<bean id="preadmininsert" class="action.PreAdminInsertAction" scope="prototype">
+	</bean>
+	<bean id="proadmininsert" class="action.ProAdminInsertAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProAdminInsertLogic" />
+		</property>
+	</bean>
+	<bean id="preadminpassword" class="action.PreAdminPasswordAction" scope="prototype">
+	</bean>
+	<bean id="proadminpassword" class="action.ProAdminPasswordAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProAdminPasswordLogic" />
+		</property>
+	</bean>
+	<bean id="preserviceinsert" class="action.PreServiceInsertAction" scope="prototype">
+	</bean>
+	<bean id="proserviceinsert" class="action.ProServiceInsertAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProServiceInsertLogic" />
+		</property>
+	</bean>
+	<bean id="preservicesearch" class="action.PreServiceSearchAction" scope="prototype">
+	</bean>
+	<bean id="proservicesearch" class="action.ProServiceSearchAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProServiceSearchLogic" />
+		</property>
+	</bean>
+	<bean id="precardbatchinsert" class="action.PreCardBatchInsertAction" scope="prototype">
+		<property name="logic">
+			<ref local="PreCardBatchInsertLogic" />
+		</property>
+	</bean>
+	<bean id="procardbatchinsert" class="action.ProCardBatchInsertAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProCardBatchInsertLogic" />
+		</property>
+	</bean>
+	<bean id="precarddownload" class="action.PreCardDownloadAction" scope="prototype">
+	</bean>
+	<bean id="procarddownload" class="action.ProCardDownloadAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProCardDownloadLogic" />
+		</property>
+	</bean>
+	<bean id="preserviceedit" class="action.PreServiceEditAction" scope="prototype">
+		<property name="logic">
+			<ref local="PreServiceEditLogic" />
+		</property>
+	</bean>
+	<bean id="proserviceedit" class="action.ProServiceEditAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProServiceEditLogic" />
+		</property>
+	</bean>
+	<bean id="preservicedelete" class="action.PreServiceDeleteAction" scope="prototype">
+		<property name="logic">
+			<ref local="PreServiceEditLogic" />
+		</property>
+	</bean>
+	<bean id="proservicedelete" class="action.ProServiceDeleteAction" scope="prototype">
+		<property name="logic">
+			<ref local="ProServiceDeleteLogic" />
+		</property>
+	</bean>
+	<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+	<bean id="mediajob" class="batch.MediaBatch">
+		<property name="dao">
+			<ref local="MediaDescDAO" />
+		</property>
+	</bean>
+	<bean id="mediaJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="mediajob" />
+		<property name="targetMethod" value="doBatch" />
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="mediaJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="mediaJobDetail" />
+		<property name="cronExpression">
+			<value>0 5 0 * * ?</value>
+		</property>
+	</bean>
+	<bean id="userchargingjob" class="batch.UserChargingBatch">
+		<property name="dao">
+			<ref local="UserDAO" />
+		</property>
+	</bean>
+	<bean id="userChargingJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="userchargingjob" />
+		<property name="targetMethod" value="doBatch" />
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="userChargingJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="userChargingJobDetail" />
+		<property name="cronExpression">
+			<value>0 10 0 * * ?</value>
+		</property>
+	</bean>
+		<bean id="cardinvalidjob" class="batch.CardInvalidBatch">
+		<property name="dao">
+			<ref local="CardDAO" />
+		</property>
+	</bean>
+	<bean id="cardInvalidJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="cardinvalidjob" />
+		<property name="targetMethod" value="doBatch" />
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="cardInvalidJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="cardInvalidJobDetail" />
+		<property name="cronExpression">
+			<value>0 15 0 * * ?</value>
+		</property>
+	</bean>
+	<bean id="schedulerFactory"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="mediaJobTrigger" />
+				<ref bean="userChargingJobTrigger" />
+				<ref bean="cardInvalidJobTrigger" />
+			</list>
+		</property>
+	</bean>
+</beans>

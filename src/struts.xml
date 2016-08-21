@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="prelogin" class="prelogin">
+			<result name="success">/login.jsp</result>
+		</action>
+		<action name="prologin" class="prologin">
+			<result name="success">/preusersearch.action</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="preusersearch" class="preusersearch">
+			<result name="success">/usersearch.jsp</result>
+		</action>
+		<action name="prousersearch" class="prousersearch">
+			<result name="input">/usersearch.jsp</result>
+			<result name="success">/usersearch.jsp</result>
+		</action>
+		<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+		<action name="preuserupload" class="preuserupload">
+			<result name="success">/userupload.jsp</result>
+		</action>
+		<action name="prouserupload" class="prouserupload">
+			<result name="input">/userupload.jsp</result>
+			<result name="success">/userupload.jsp</result>
+		</action>
+		<action name="prouseruploadconfirm" class="prouseruploadconfirm">
+			<result name="success">/useruploadsuccess.jsp</result>
+		</action>
+		<action name="preuseredit" class="preuseredit">
+		    <result name="input">/useredit.jsp</result>
+			<result name="success">/useredit.jsp</result>
+		</action>
+		<action name="prouseredit" class="prouseredit">
+			<result name="input">/useredit.jsp</result>
+			<result name="success">/usereditsuccess.jsp</result>
+		</action>
+		<action name="preuserdelete" class="preuserdelete">
+		    <result name="input">/userdelete.jsp</result>
+			<result name="success">/userdelete.jsp</result>
+		</action>
+		<action name="prouserdelete" class="prouserdelete">
+		    <result name="input">/userdelete.jsp</result>
+			<result name="success">/userdeletesuccess.jsp</result>
+		</action>
+		<action name="prologout" class="prologout">
+			<result name="success">/prelogin.action</result>
+		</action>
+		<action name="preuserbatchedit" class="preuserbatchedit">
+			<result name="success">/userbatchedit.jsp</result>
+		</action>
+		<action name="prouserbatchedit" class="prouserbatchedit">
+		    <result name="input">/userbatchedit.jsp</result>
+			<result name="success">/userbatchedit.jsp</result>
+		</action>
+		<action name="prouserbatcheditexec" class="prouserbatcheditexec">
+			<result name="input">/userbatchedit.jsp</result>
+			<result name="success">/userbatcheditsuccess.jsp</result>
+		</action>
+		<action name="preuserbatchdelete" class="preuserbatchdelete">
+			<result name="success">/userbatchdelete.jsp</result>
+		</action>
+		<action name="prouserbatchdelete" class="prouserbatchdelete">
+		    <result name="input">/userbatchdelete.jsp</result>
+			<result name="success">/userbatchdelete.jsp</result>
+		</action>
+		<action name="prouserbatchdeleteexec" class="prouserbatchdeleteexec">
+			<result name="input">/userbatchdelete.jsp</result>
+			<result name="success">/userbatchdeletesuccess.jsp</result>
+		</action>
+		<action name="preiptvupload" class="preiptvupload">
+			<result name="success">/iptvupload.jsp</result>
+		</action>
+		<action name="proiptvupload" class="proiptvupload">
+		    <result name="input">/iptvupload.jsp</result>
+			<result name="success">/iptvuploadsuccess.jsp</result>
+		</action>
+		<action name="preiptvhistoryaction" class="preiptvhistoryaction">
+			<result name="success">/iptvhistory.jsp</result>
+		</action>
+		<action name="proiptvdownloadaction" class="proiptvdownloadaction">
+			<result name="success" type="stream">  
+               <param name="contentType">application/zip</param>  
+               <param name="contentDisposition">attachment;fileName="${downloadFileName}"</param>  
+               <param name="inputName">downloadFile</param>  
+               <param name="bufferSize">2048</param>
+			</result> 
+		</action>
+		<action name="precardsearch" class="precardsearch">
+			<result name="success">/cardsearch.jsp</result>
+		</action>
+		<action name="procardsearch" class="procardsearch">
+			<result name="input">/cardsearch.jsp</result>
+			<result name="success">/cardsearch.jsp</result>
+		</action>
+		<action name="precardedit" class="precardedit">
+		    <result name="input">/cardedit.jsp</result>
+			<result name="success">/cardedit.jsp</result>
+		</action>
+		<action name="procardedit" class="procardedit">
+		    <result name="input">/cardedit.jsp</result>
+			<result name="success">/cardeditsuccess.jsp</result>
+		</action>
+		<action name="precarddelete" class="precarddelete">
+		    <result name="input">/carddelete.jsp</result>
+			<result name="success">/carddelete.jsp</result>
+		</action>
+		<action name="procarddelete" class="procarddelete">
+		    <result name="input">/carddelete.jsp</result>
+			<result name="success">/carddeletesuccess.jsp</result>
+		</action>
+		<action name="precardupload" class="precardupload">
+			<result name="success">/cardupload.jsp</result>
+		</action>
+		<action name="procardupload" class="procardupload">
+			<result name="input">/cardupload.jsp</result>
+			<result name="success">/cardupload.jsp</result>
+		</action>
+		<action name="procarduploadconfirm" class="procarduploadconfirm">
+			<result name="success">/carduploadsuccess.jsp</result>
+		</action>
+		<action name="precardbatchdelete" class="precardbatchdelete">
+			<result name="success">/cardbatchdelete.jsp</result>
+		</action>
+		<action name="procardbatchdelete" class="procardbatchdelete">
+		    <result name="input">/cardbatchdelete.jsp</result>
+			<result name="success">/cardbatchdelete.jsp</result>
+		</action>
+		<action name="procardbatchdeleteexec" class="procardbatchdeleteexec">
+			<result name="input">/cardbatchdelete.jsp</result>
+			<result name="success">/cardbatchdeletesuccess.jsp</result>
+		</action>
+		<action name="precardbatchedit" class="precardbatchedit">
+			<result name="success">/cardbatchedit.jsp</result>
+		</action>
+		<action name="procardbatchedit" class="procardbatchedit">
+		    <result name="input">/cardbatchedit.jsp</result>
+			<result name="success">/cardbatchedit.jsp</result>
+		</action>
+		<action name="procardbatcheditexec" class="procardbatcheditexec">
+			<result name="input">/cardbatchedit.jsp</result>
+			<result name="success">/cardbatcheditsuccess.jsp</result>
+		</action>
+		<action name="precatalogman" class="precatalogman">
+			<result name="input">/catalogman.jsp</result>
+			<result name="success">/catalogman.jsp</result>
+		</action>
+		<action name="procatalogman" class="procatalogman">
+			<result name="input">/catalogman.jsp</result>
+			<result name="success">/catalogman.jsp</result>
+		</action>
+		<action name="precatalogedit" class="precatalogedit">
+			<result name="input">/cataloedit.jsp</result>
+			<result name="success">/cataloedit.jsp</result>
+		</action>
+		<action name="procatalogedit" class="procatalogedit">
+			<result name="input">/cataloedit.jsp</result>
+			<result name="success">/cataloeditsuccess.jsp</result>
+		</action>
+		<action name="precatalogdelete" class="precatalogdelete">
+			<result name="input">/catalodelete.jsp</result>
+			<result name="success">/catalodelete.jsp</result>
+		</action>
+		<action name="procatalogdelete" class="procatalogdelete">
+			<result name="input">/catalodelete.jsp</result>
+			<result name="success">/catalodeletesuccess.jsp</result>
+		</action>
+		<action name="premediasearch" class="premediasearch">
+			<result name="input">/mediasearch.jsp</result>
+			<result name="success">/mediasearch.jsp</result>
+		</action>
+		<action name="promediasearch" class="promediasearch">
+			<result name="input">/mediasearch.jsp</result>
+			<result name="success">/mediasearch.jsp</result>
+		</action>
+		<action name="premediainsert" class="premediainsert">
+			<result name="success">/mediainsert.jsp</result>
+		</action>
+		<action name="promediainsert" class="promediainsert">
+			<result name="input">/mediainsert.jsp</result>
+			<result name="success">/mediainsert.jsp</result>
+		</action>
+		<action name="premediadelete" class="premediadelete">
+			<result name="input">/mediadelete.jsp</result>
+			<result name="success">/mediadelete.jsp</result>
+		</action>
+		<action name="promediadelete" class="promediadelete">
+			<result name="success">/mediadeletesuccess.jsp</result>
+		</action>
+		<action name="premediabatchupload" class="premediabatchupload">
+			<result name="success">/mediabatchupload.jsp</result>
+		</action>
+		<action name="premediaedit" class="premediaedit">
+			<result name="input">/mediaedit.jsp</result>
+			<result name="success">/mediaedit.jsp</result>
+		</action>
+		<action name="promediaedit" class="promediaedit">
+			<result name="input">/mediaedit.jsp</result>
+			<result name="success">/mediaeditsuccess.jsp</result>
+		</action>
+		<action name="promediabatchupload" class="promediabatchupload">
+			<result name="input">/mediabatchupload.jsp</result>
+			<result name="success">/mediabatchupload.jsp</result>
+		</action>
+		<action name="promediabatchuploadconfirm" class="promediabatchuploadconfirm">
+			<result name="success">/mediabatchuploadsuccess.jsp</result>
+		</action>
+		<action name="premediaapprove" class="premediaapprove">
+		    <result name="input">/mediaapprove.jsp</result>
+			<result name="success">/mediaapprove.jsp</result>
+		</action>
+		<action name="promediaapprove" class="promediaapprove">
+		    <result name="input">/mediaapprove.jsp</result>
+			<result name="success">/mediaapprovesuccess.jsp</result>
+		</action>
+		<action name="premediadisapprove" class="premediadisapprove">
+		    <result name="input">/mediadisapprove.jsp</result>
+			<result name="success">/mediadisapprove.jsp</result>
+		</action>
+		<action name="promediadisapprove" class="promediadisapprove">
+		    <result name="input">/mediadisapprove.jsp</result>
+			<result name="success">/mediadisapprovesuccess.jsp</result>
+		</action>
+		<action name="preepgman" class="preepgman">
+			<result name="success">/epgman.jsp</result>
+		</action>
+		<action name="proepgstart" class="proepgstart">
+			<result name="success">/epgman.jsp</result>
+		</action>
+		<action name="proepgstop" class="proepgstop">
+			<result name="success">/epgman.jsp</result>
+		</action>
+		<action name="preadmininsert" class="preadmininsert">
+			<result name="success">/admininsert.jsp</result>
+		</action>
+		<action name="proadmininsert" class="proadmininsert">
+			<result name="input">/admininsert.jsp</result>
+			<result name="success">/admininsert.jsp</result>
+		</action>
+		<action name="preadminpassword" class="preadminpassword">
+			<result name="success">/adminpassword.jsp</result>
+		</action>
+		<action name="proadminpassword" class="proadminpassword">
+			<result name="input">/adminpassword.jsp</result>
+			<result name="success">/adminpassword.jsp</result>
+		</action>
+		<action name="preserviceinsert" class="preserviceinsert">
+			<result name="success">/serviceinsert.jsp</result>
+		</action>
+		<action name="proserviceinsert" class="proserviceinsert">
+			<result name="input">/serviceinsert.jsp</result>
+			<result name="success">/serviceinsertsuccess.jsp</result>
+		</action>
+		<action name="preservicesearch" class="preservicesearch">
+			<result name="success">/servicesearch.jsp</result>
+		</action>
+		<action name="proservicesearch" class="proservicesearch">
+			<result name="input">/servicesearch.jsp</result>
+			<result name="success">/servicesearch.jsp</result>
+		</action>
+		<action name="precardbatchinsert" class="precardbatchinsert">
+			<result name="success">/cardbatchinsert.jsp</result>
+		</action>
+		<action name="procardbatchinsert" class="procardbatchinsert">
+			<result name="input">/cardbatchinsert.jsp</result>
+			<result name="success">/cardbatchinsertsuccess.jsp</result>
+		</action>
+		<action name="precarddownload" class="precarddownload">
+			<result name="success">/carddownload.jsp</result>
+		</action>
+		<action name="procarddownload" class="procarddownload">
+			<result name="input">/carddownload.jsp</result>
+			<result name="success" type="stream">  
+               <param name="contentType">application/csv</param>  
+               <param name="contentDisposition">attachment;fileName="${downloadFileName}"</param>  
+               <param name="inputName">downloadFile</param>  
+               <param name="bufferSize">2048</param>
+			</result> 
+		</action>
+		<action name="preserviceedit" class="preserviceedit">
+			<result name="input">/serviceedit.jsp</result>
+			<result name="success">/serviceedit.jsp</result>
+		</action>
+		<action name="proserviceedit" class="proserviceedit">
+			<result name="input">/serviceedit.jsp</result>
+			<result name="success">/serviceeditsuccess.jsp</result>
+		</action>
+		<action name="preservicedelete" class="preservicedelete">
+			<result name="input">/servicedelete.jsp</result>
+			<result name="success">/servicedelete.jsp</result>
+		</action>
+		<action name="proservicedelete" class="proservicedelete">
+			<result name="success">/servicedeletesuccess.jsp</result>
+		</action>
+	</package>
+
+</struts>

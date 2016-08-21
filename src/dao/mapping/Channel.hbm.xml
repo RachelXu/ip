@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="dao.model.Channel" table="channelset" catalog="iptvm" lazy="false">
+    	<id name="channelId" column="ChannelID" type="string">
+		 	<generator class="assigned" />
+		</id>    	
+        <property name="channelName" column="ChannelName" type="string"/>
+        <property name="channelIP" column="ChannelIP" type="string"/>
+        <property name="channelPic" column="ChannelPic" type="string"/>
+        <property name="channelUrl" column="ChannelUrl" type="string"/>
+        <property name="urlType" column="UrlType" type="string"/>
+        <property name="channelType" column="ChannelType" type="string"/>
+        <property name="languageID" column="LanguageID" type="string"/>
+        <many-to-one name="productSet" class="dao.model.ProductSet" fetch="select">
+            <column name="ProductID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

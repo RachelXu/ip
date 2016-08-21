@@ -1,0 +1,30 @@
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+<validators>
+    <field name="version">
+        <field-validator type="requiredstring">
+            <message>请输入版本号</message>
+        </field-validator>
+    </field>
+    <field name="update">
+        <field-validator type="requiredstring">
+            <message>请输入更新日期</message>
+        </field-validator>
+    </field>
+    <field name="usedate">
+        <field-validator type="requiredstring">
+            <message>请输入预计使用时间</message>
+        </field-validator>
+    </field>
+    <field name="upload">
+        <field-validator type="required">
+            <message>请选择要上传的文件</message>
+        </field-validator>
+    </field>
+    <field name="content">
+        <field-validator type="requiredstring">
+            <message>请输入更新内容</message>
+        </field-validator>
+    </field>
+</validators>

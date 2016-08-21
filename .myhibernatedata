@@ -1,0 +1,22 @@
+#
+#Mon Sep 08 14:50:55 CST 2014
+genBasicCompId=false
+sessionFactoryName=dao.HibernateSessionFactory
+profile=
+daoSFId=sessionFactory
+version=3.1
+jndiPath=
+detectM2M=true
+reStrategyClass=
+springDaoFile=src/applicationContext.xml
+useJavaTypes=true
+keyGenerator=
+libInstallFolder=//WebRoot/WEB-INF/lib
+addLibs2Project=true
+genVersionTag=false
+sessionFactoryId=
+basePersistenceClass=
+reSettingsFile=/IPTVM/hibernate.reveng.xml
+configFile=/IPTVM/src/hibernate.cfg.xml
+createConfigFile=false
+addLibs2Classpath=true

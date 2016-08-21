@@ -1,0 +1,27 @@
+DROP TABLE IF EXISTS `test`.`account`;
+CREATE TABLE  `test`.`account` (
+  `id` int(11) NOT NULL,
+  `AccountID` varchar(20) NOT NULL,
+  `State` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `AccountID` (`AccountID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `test`.`t2`;
+CREATE TABLE  `test`.`t2` (
+  `accountid` int(10) unsigned NOT NULL,
+  `id` int(11) NOT NULL,
+  PRIMARY KEY (`accountid`),
+  KEY `FK_t2_1` (`id`),
+  CONSTRAINT `FK_t2_1` FOREIGN KEY (`id`) REFERENCES `account` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `iptvm`.`acc_pro`;
+CREATE TABLE  `iptvm`.`acc_pro` (
+  `accountid` varchar(50) NOT NULL,
+  `produtid` varchar(45) NOT NULL,
+  PRIMARY KEY (`accountid`,`produtid`),
+  KEY `FK_acc_pro_2` (`produtid`),
+  CONSTRAINT `FK_acc_pro_1` FOREIGN KEY (`accountid`) REFERENCES `account` (`AccountID`),
+  CONSTRAINT `FK_acc_pro_2` FOREIGN KEY (`produtid`) REFERENCES `productset` (`ProductID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

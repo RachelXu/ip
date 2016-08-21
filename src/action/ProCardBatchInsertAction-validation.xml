@@ -1,0 +1,16 @@
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+<validators>
+
+    <field name="card.enddate">
+        <field-validator type="required">
+            <message>有效日期是必须输入的项目</message>
+        </field-validator>
+    </field>
+    <field name="card.productNum">
+        <field-validator type="required">
+            <message>生成充值卡数量是必须输入的项目</message>
+        </field-validator>
+    </field>
+</validators>
