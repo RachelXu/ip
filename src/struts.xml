@@ -19,6 +19,16 @@
 			<result name="input">/usersearch.jsp</result>
 			<result name="success">/usersearch.jsp</result>
 		</action>
+
+		<action name="preproductsearch" class="preproductsearch">
+			<result name="success">/productsearch.jsp</result>
+		</action>
+		<action name="proproductsearch" class="proproductsearch">
+			<result name="input">/productsearch.jsp</result>
+			<result name="success">/productsearch.jsp</result>
+		</action>
+
+
 		<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 		<action name="preuserupload" class="preuserupload">
 			<result name="success">/userupload.jsp</result>

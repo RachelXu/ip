@@ -82,6 +82,16 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	<bean id="ProductDAO" class="dao.ProductDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ChannelDAO" class="dao.ChannelDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 	
 	
 	<bean id="ServiecTypeDAO" class="dao.ServiecTypeDAO">
@@ -159,6 +169,14 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 			<ref local="ProUserSearchLogic" />
 		</property>
 	</bean>
+
+	<bean id="preproductsearch" class="action.PreProductSearchAction"
+		scope="prototype">
+	</bean>
+	<bean id="proproductsearch" class="action.ProProductSearchAction"
+		scope="prototype">
+	</bean>
+	
 	<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 	<bean id="IptvsoftwareDAO" class="dao.IptvsoftwareDAO">
 		<property name="sessionFactory">

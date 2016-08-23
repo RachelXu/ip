@@ -32,6 +32,7 @@
 	<mapping resource="dao/mapping/Batch.hbm.xml" />
 	<mapping resource="dao/mapping/ServiecType.hbm.xml" />
 	<mapping resource="dao/mapping/ProductCard.hbm.xml" />
+	<mapping resource="dao/mapping/Product.hbm.xml" />
 </session-factory>
 
 </hibernate-configuration>
