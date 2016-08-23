@@ -19,6 +19,12 @@ function resetPage(){
 document.getElementsByName("pageString")[0].value="";
 document.getElementsByName("product.currentPage")[0].value="";
 document.getElementsByName("product.pageCount")[0].value="";
+return true;
+}
+function resetCondition(){
+document.getElementsByName("product.product.productId")[0].value="";
+document.getElementsByName("product.product.productName")[0].value="";
+return true;
 }
 function edit(parm){
 document.getElementsByName("editId")[0].value=parm;
@@ -66,27 +72,27 @@ return true;
                 <s2:hidden name="product.pageCount"/>
                 <s2:hidden name="deleteId"/>
                 <s2:hidden name="editId"/>
-					<h3>查询条件</h3>
+					<h3>Search</h3>
                     	<table border="1">	
 							<tr>
-							  <td>节目ID</td>
+							  <td>ProductID</td>
 							  <td><s2:textfield name="product.product.productId" size="10" maxlength="50"/></td>
-							  <td>节目名称</td>
+							  <td>ProductName</td>
 							  <td><s2:textfield name="product.product.productName" size="10" maxlength="50"/></td>
 							</tr>
 							<tr align="center">
 								<td colspan="4" >
-									<s2:submit value="查询" onclick="resetPage()"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="重置" onclick="window.location.href='premediasearch.action'" />
+									<s2:submit value="Search" onclick="resetPage()"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Reset" onclick="resetCondition()" />
 								</td>
 							</tr>
                         </table>
                         <s2:if test="product.resultFlag">
-                        <h3>Products:</h3>
+                        <h3>Result:</h3>
 						<table>
 							<tr>
-						 	  <td >ID</td>
-						      <td >Name</td>
-							  <td >操作</td>
+						 	  <td >ProductID</td>
+						      <td >ProductName</td>
+							  <td >Operations</td>
 	    					</tr>
 	    				  <s2:iterator value="product.products" var="detil">
 						  <tr>    
