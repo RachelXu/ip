@@ -41,7 +41,40 @@ public class ProProductSearchAction extends MySuperAction {
 		}
 		
 	}
+	
+	public String del() throws Exception {
+		if (CommonUtil.isEmpty(product.getCurrentPage())
+				|| product.getCurrentPage() < 1) {
+			product.setCurrentPage(1);
+		}
+		if (!CommonUtil.isEmpty(pageString)) {
+			if (Contants.PRIV.equals(pageString)) {
+				product.setCurrentPage(product.getCurrentPage() - 1);
+			}
+			if (Contants.NEXT.equals(pageString)) {
+				product.setCurrentPage(product.getCurrentPage() + 1);
+			}
+		}
+		
+		logic.delete(itemId);
+		LogicDTO dto = logic.search(product);
+		if (dto.isResult()) {
+			product.initView(true);
+			return SUCCESS;
+		} else {
+			this.addFieldError("field", getText(dto.getErrorCode()));
+			product.initView(false);
+			return INPUT;
+		}
+		
+	}
 
+	public String update() {
+		System.out.println("update :" + itemId);
+		
+		return SUCCESS;
+	}
+	
 	public ProductForm getProduct() {
 		return product;
 	}
@@ -73,6 +106,7 @@ public class ProProductSearchAction extends MySuperAction {
 	public void setItemId(String itemId) {
 		this.itemId = itemId;
 	}
+
 
 
 

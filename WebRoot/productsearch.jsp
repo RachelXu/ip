@@ -7,32 +7,35 @@
 <title>¿íºêIPTV²¥¿ØÆ½Ì¨</title>
 <link href="style/css/transdmin.css" rel="stylesheet" type="text/css" media="screen" />
 <!-- JavaScripts-->
-<script type="text/javascript" src="style/js/Calendar.js" ></script>
-<script language="javascript" type="text/javascript">
+<script language='javascript'>
 function priv(){
-document.getElementsByName("pageString")[0].value="priv";
+	document.getElementsByName("pageString")[0].value="priv";
 }
 function next(){
-document.getElementsByName("pageString")[0].value="next";
+	document.getElementsByName("pageString")[0].value="next";
 }
 function resetPage(){
-document.getElementsByName("pageString")[0].value="";
-document.getElementsByName("product.currentPage")[0].value="";
-document.getElementsByName("product.pageCount")[0].value="";
-return true;
+	document.getElementsByName("pageString")[0].value="";
+	document.getElementsByName("product.currentPage")[0].value="";
+	document.getElementsByName("product.pageCount")[0].value="";
+	return true;
 }
 function resetCondition(){
-document.getElementsByName("product.product.productId")[0].value="";
-document.getElementsByName("product.product.productName")[0].value="";
-return true;
+	document.getElementsByName("product.product.productId")[0].value="";
+	document.getElementsByName("product.product.productName")[0].value="";
+	return true;
 }
 function edit(parm){
-document.getElementsByName("editId")[0].value=parm;
-return true;
+	document.getElementsByName("itemId")[0].value=parm;
+	return true;
 }
-function del(parm){
-document.getElementsByName("deleteId")[0].value=parm;
-return true;
+function del(parm){	
+	document.getElementsByName("itemId")[0].value=parm;
+	return true;
+}
+function add(){
+	window.open("./preproductsearch.action","Add ProductSet.","height=300,width=800,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no");
+	return true;
 }
 </script>
 </head>
@@ -71,7 +74,7 @@ return true;
                 <s2:hidden name="product.currentPage"/>
                 <s2:hidden name="product.pageCount"/>
                 <s2:hidden name="deleteId"/>
-                <s2:hidden name="editId"/>
+                <s2:hidden name="itemId"/>
 					<h3>Search</h3>
                     	<table border="1">	
 							<tr>
@@ -82,7 +85,9 @@ return true;
 							</tr>
 							<tr align="center">
 								<td colspan="4" >
-									<s2:submit value="Search" onclick="resetPage()"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Reset" onclick="resetCondition()" />
+									<input type="button" value="Add" onclick="add()" />
+									&nbsp;&nbsp;&nbsp;&nbsp;<s2:submit value="Search" onclick="resetPage()"/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Reset" onclick="resetCondition()" />
 								</td>
 							</tr>
                         </table>
@@ -99,8 +104,8 @@ return true;
 						 	  <td ><s2:property value="productId"/></td>
 						      <td ><s2:property value="productName"/></td>
 						      <td>
-					          <s2:submit action="premediaedit" value="Modify" onclick="edit(%{mediaId})"> </s2:submit>
-					          <s2:submit action="premediadelete" value="Remove" onclick="del(%{mediaId})">  </s2:submit> </td> 
+					          <s2:submit action="updateProductSet_productsearch" value="Modify" onclick="edit('%{productId}')"> </s2:submit>
+					          <s2:submit action="delProductSet_productsearch" value="Remove" onclick="del('%{productId}')"/></td> 
 					      </tr>
 					      </s2:iterator>
 					      <tr>

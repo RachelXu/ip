@@ -34,6 +34,16 @@ public class ProductSetLogic {
 		}
 		return dto;
 	}
+	
+	public boolean delete(String productId) {
+		Object o = productSetDao.findById(ProductSet.class, productId);
+		if (o != null) {
+			productSetDao.delete(o);
+		}
+		
+		return true;
+	}
+	
 
 
 	public ProductSetDAO getProductSetDao() {
