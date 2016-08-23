@@ -3,15 +3,15 @@ package form;
 import java.io.Serializable;
 import java.util.List;
 
-import dao.model.Product;
+import dao.model.ProductSet;
 
 public class ProductForm implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7775954600654251028L;
-	private List<Product> products;
-	private Product product;
+	private List<ProductSet> products;
+	private ProductSet product;
 	private boolean resultFlag;
 	private Integer currentPage;
 	private Integer pageCount;
@@ -21,13 +21,6 @@ public class ProductForm implements Serializable {
 		this.resultFlag = resultFlag;
 	}
 
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
 
 	public Integer getCurrentPage() {
 		return currentPage;
@@ -61,11 +54,23 @@ public class ProductForm implements Serializable {
 		this.resultFlag = resultFlag;
 	}
 
-	public Product getProduct() {
+
+	public List<ProductSet> getProducts() {
+		return products;
+	}
+
+
+	public void setProducts(List<ProductSet> products) {
+		this.products = products;
+	}
+
+
+	public ProductSet getProduct() {
 		return product;
 	}
 
-	public void setProduct(Product product) {
+
+	public void setProduct(ProductSet product) {
 		this.product = product;
 	}
 

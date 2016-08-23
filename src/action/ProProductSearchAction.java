@@ -1,6 +1,8 @@
 package action;
 
 import form.ProductForm;
+import logic.LogicDTO;
+import logic.ProductSetLogic;
 import util.CommonUtil;
 import util.Contants;
 
@@ -10,8 +12,9 @@ public class ProProductSearchAction extends MySuperAction {
 	 */
 	private static final long serialVersionUID = 378340882595762250L;
 	private ProductForm product;
-//	private ProProductSearchLogic logic;
+	private ProductSetLogic logic;
 	private String pageString;
+	private String itemId;
 
 	public String execute() throws Exception {
 		if (CommonUtil.isEmpty(product.getCurrentPage())
@@ -26,18 +29,17 @@ public class ProProductSearchAction extends MySuperAction {
 				product.setCurrentPage(product.getCurrentPage() + 1);
 			}
 		}
-		product.initView(true);
-		return SUCCESS;
 		
-//		LogicDTO dto = logic.doLogic(media);
-//		if (dto.isResult()) {
-//			media.initView(true);
-//			return SUCCESS;
-//		} else {
-//			this.addFieldError("field", getText(dto.getErrorCode()));
-//			media.initView(false);
-//			return INPUT;
-//		}
+		LogicDTO dto = logic.search(product);
+		if (dto.isResult()) {
+			product.initView(true);
+			return SUCCESS;
+		} else {
+			this.addFieldError("field", getText(dto.getErrorCode()));
+			product.initView(false);
+			return INPUT;
+		}
+		
 	}
 
 	public ProductForm getProduct() {
@@ -48,6 +50,14 @@ public class ProProductSearchAction extends MySuperAction {
 		this.product = product;
 	}
 
+	public ProductSetLogic getLogic() {
+		return logic;
+	}
+
+	public void setLogic(ProductSetLogic logic) {
+		this.logic = logic;
+	}
+
 	public String getPageString() {
 		return pageString;
 	}
@@ -55,6 +65,16 @@ public class ProProductSearchAction extends MySuperAction {
 	public void setPageString(String pageString) {
 		this.pageString = pageString;
 	}
+
+	public String getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
+	}
+
+
 
 
 //	public void validate() {

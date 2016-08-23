@@ -92,6 +92,11 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	<bean id="ProductSetDAO" class="dao.ProductSetDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 	
 	
 	<bean id="ServiecTypeDAO" class="dao.ServiecTypeDAO">
@@ -123,6 +128,14 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 		</property>
 		<property name="accountDao">
 			<ref local="AccountDAO" />
+		</property>
+	</bean>
+	<!-- productSet logic -->
+	<bean id="ProductSetLogic" class="logic.ProductSetLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="productSetDao">
+			<ref local="ProductSetDAO" />
 		</property>
 	</bean>
 	<bean id="ProAdminInsertLogic" class="logic.ProAdminInsertLogic"
@@ -175,6 +188,9 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 	</bean>
 	<bean id="proproductsearch" class="action.ProProductSearchAction"
 		scope="prototype">
+		<property name="logic">
+			<ref local="ProductSetLogic" />
+		</property>
 	</bean>
 	
 	<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
