@@ -11,18 +11,14 @@ public class ProductForm implements Serializable {
 	 */
 	private static final long serialVersionUID = -7775954600654251028L;
 	private List<Product> products;
-	
+	private Product product;
+	private boolean resultFlag;
 	private Integer currentPage;
 	private Integer pageCount;
 	private Integer resultCount;
 
 	public void initView(boolean resultFlag) {
-	}
-
-	public void copy(ProductForm productForm) {
-//		this.areaList.addAll(meidiaForm.getAreaList());
-//		this.languageList.addAll(meidiaForm.getLanguageList());
-//		this.catalogList.addAll(meidiaForm.getCatalogList());
+		this.resultFlag = resultFlag;
 	}
 
 	public List<Product> getProducts() {
@@ -55,6 +51,22 @@ public class ProductForm implements Serializable {
 
 	public void setResultCount(Integer resultCount) {
 		this.resultCount = resultCount;
+	}
+
+	public boolean isResultFlag() {
+		return resultFlag;
+	}
+
+	public void setResultFlag(boolean resultFlag) {
+		this.resultFlag = resultFlag;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 

@@ -26,9 +26,6 @@ public class ProProductSearchAction extends MySuperAction {
 				product.setCurrentPage(product.getCurrentPage() + 1);
 			}
 		}
-		ProductForm tempForm = (ProductForm) this.request.getSession()
-				.getAttribute("productform");
-		product.copy(tempForm);
 		product.initView(true);
 		return SUCCESS;
 		
@@ -43,12 +40,12 @@ public class ProProductSearchAction extends MySuperAction {
 //		}
 	}
 
-	public ProductForm getMedia() {
+	public ProductForm getProduct() {
 		return product;
 	}
 
-	public void setMedia(ProductForm media) {
-		this.product = media;
+	public void setProduct(ProductForm product) {
+		this.product = product;
 	}
 
 	public String getPageString() {
@@ -58,6 +55,7 @@ public class ProProductSearchAction extends MySuperAction {
 	public void setPageString(String pageString) {
 		this.pageString = pageString;
 	}
+
 
 //	public void validate() {
 //		super.validate();

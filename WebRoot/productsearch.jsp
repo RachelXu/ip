@@ -70,9 +70,9 @@ return true;
                     	<table border="1">	
 							<tr>
 							  <td>节目ID</td>
-							  <td><input type="text"/></td>
+							  <td><s2:textfield name="product.product.productId" size="10" maxlength="50"/></td>
 							  <td>节目名称</td>
-							  <td><input type="text"/></td>
+							  <td><s2:textfield name="product.product.productName" size="10" maxlength="50"/></td>
 							</tr>
 							<tr align="center">
 								<td colspan="4" >
@@ -80,7 +80,7 @@ return true;
 								</td>
 							</tr>
                         </table>
-                        <s2:if test="media.resultFlag">
+                        <s2:if test="product.resultFlag">
                         <h3>Products:</h3>
 						<table>
 							<tr>
@@ -88,7 +88,7 @@ return true;
 						      <td >Name</td>
 							  <td >操作</td>
 	    					</tr>
-	    				  <s2:iterator value="product.resultList" var="detil">
+	    				  <s2:iterator value="product.products" var="detil">
 						  <tr>    
 						 	  <td ><s2:property value="productId"/></td>
 						      <td ><s2:property value="productName"/></td>
