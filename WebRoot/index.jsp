@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title>¹ÜÀíÔ±µÇÂ¼</title>
+    <title>DAQI IPTV Managament System</title>
 </head>
 <body bgcolor="#E7ECEF">
    <jsp:forward page="prelogin.action"></jsp:forward>

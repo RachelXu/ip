@@ -1,38 +1,37 @@
 package action;
 
+import form.ChannelForm;
 import logic.PreMediaSearchLogic;
-import form.MediaForm;
 
 public class PreMediaSearchAction extends MySuperAction {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1334398827287165610L;
-	private MediaForm media;
+	private ChannelForm media;
 	private PreMediaSearchLogic logic;
 
 	public String execute() throws Exception {
-		media = new MediaForm();
+		media = new ChannelForm();
 		media.initView(false);
-		this.request.getSession().setAttribute("mediaform", media);
-		logic.doLogic(media);
+//		this.request.getSession().setAttribute("mediaform", media);
+//		logic.doLogic(media);
 		return SUCCESS;
 	}
 
-	/**
-	 * @return the media
-	 */
-	public MediaForm getMedia() {
+
+
+	public ChannelForm getMedia() {
 		return media;
 	}
 
-	/**
-	 * @param media
-	 *            the media to set
-	 */
-	public void setMedia(MediaForm media) {
+
+
+	public void setMedia(ChannelForm media) {
 		this.media = media;
 	}
+
+
 
 	/**
 	 * @return the logic
