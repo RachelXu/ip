@@ -81,12 +81,7 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
-	</bean>
-	<bean id="ProductDAO" class="dao.ProductDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean>
+	</bean>	
 	<bean id="ChannelDAO" class="dao.ChannelDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -165,9 +160,6 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 	<bean id="ProProductInsertLogic" class="logic.ProProductInsertLogic"
 		abstract="false" lazy-init="default" autowire="default"
 		dependency-check="default">
-		<property name="daoProduct">
-			<ref local="ProductDAO" />
-		</property>
 	</bean>
 	
 	<!-- ================================================== -->

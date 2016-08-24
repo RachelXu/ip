@@ -31,12 +31,14 @@
 		<action name="preproductinsert" class="preproductinsert">
 			<result name="success">/productinsert.jsp</result>
 		</action>
+		
 		<action name="proproductinsert" class="proproductinsert">
 			<result name="input">/productinsert.jsp</result>
 			<result name="success">/productinsert.jsp</result>
 		</action>
 		
-		<action name="*ProductSet_*" class="proproductsearch" method="{1}" >            
+		<action name="*ProductSet_*" class="proproductsearch" method="{1}" >
+		    <result name="input">/{2}.jsp</result>            
 			<result name="success">/{2}.jsp</result>  
 			<result name="error">/error.jsp</result>  
 		</action> 

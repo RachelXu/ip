@@ -13,7 +13,6 @@ public class PreProductInsertAction extends MySuperAction {
 	public String execute() throws Exception {
 		product = new ProductForm();
 		product.setResultFlag(false);
-		this.request.getSession().setAttribute("productform", product);
 //		logic.doLogic(product);
 		return SUCCESS;
 	}

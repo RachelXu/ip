@@ -30,7 +30,7 @@ public class ProductSetLogic {
 			form.setPageCount(CommonUtil.getTotalPage(Contants.PAGE_SIZE,
 					resultCount));
 			form.setResultCount(resultCount);
-//			form.setProducts(productSetList);
+			form.setProducts(productSetList);
 		}
 		return dto;
 	}
@@ -44,6 +44,10 @@ public class ProductSetLogic {
 		return true;
 	}
 	
+	public boolean create(ProductForm form) {
+		productSetDao.create(form);
+		return true;
+	}
 
 
 	public ProductSetDAO getProductSetDao() {

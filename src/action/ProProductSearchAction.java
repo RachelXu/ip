@@ -75,6 +75,18 @@ public class ProProductSearchAction extends MySuperAction {
 		return SUCCESS;
 	}
 	
+	public String add() {
+		if (CommonUtil.isEmpty(product.getProduct().getProductId()) || CommonUtil.isEmpty(product.getProduct().getProductName())) {
+			this.addFieldError("field", getText(Contants.E001));
+			
+			return INPUT;
+		}
+		logic.create(product);
+		this.addActionMessage("Success");
+		
+		return SUCCESS;
+	}
+	
 	public ProductForm getProduct() {
 		return product;
 	}
