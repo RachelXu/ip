@@ -27,6 +27,15 @@
 			<result name="input">/productsearch.jsp</result>
 			<result name="success">/productsearch.jsp</result>
 		</action>
+		
+		<action name="preproductinsert" class="preproductinsert">
+			<result name="success">/productinsert.jsp</result>
+		</action>
+		<action name="proproductinsert" class="proproductinsert">
+			<result name="input">/productinsert.jsp</result>
+			<result name="success">/productinsert.jsp</result>
+		</action>
+		
 		<action name="*ProductSet_*" class="proproductsearch" method="{1}" >            
 			<result name="success">/{2}.jsp</result>  
 			<result name="error">/error.jsp</result>  

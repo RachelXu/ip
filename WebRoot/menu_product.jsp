@@ -50,11 +50,9 @@ function switchSysBar(){
 
 
 
-					<ul class="sideNav">
-                    	<li><a href="preusersearch.action" class="active" >STB Management</a></li>
-                    	<li><a href="preuserupload.action" >账户批量导入</a></li>
-                    	<li><a href="preuserbatchedit.action">账户批量修改</a></li>
-                    	<li><a href="preuserbatchdelete.action">账户批量删除</a></li>
+                	<ul class="sideNav">
+                    	<li><a href="preproductsearch.action"  class="active">Product Management</a></li>
+                    	<li><a href="preproductinsert.action">New a Product</a></li>
                     </ul>
                     
                     

@@ -152,7 +152,7 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 			<ref local="AdminDAO" />
 		</property>
 	</bean>
-	<!-- 帐号/节目业务逻辑 -->
+	<!-- 帐号/节目业务逻辑
 	<bean id="productLogic" class="logic.ProductLogic"
 		abstract="false" lazy-init="default" autowire="default"
 		dependency-check="default">
@@ -160,6 +160,16 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 			<ref local="AccountDAO" />
 		</property>
 	</bean>
+	 -->
+	
+	<bean id="ProProductInsertLogic" class="logic.ProProductInsertLogic"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="daoProduct">
+			<ref local="ProductDAO" />
+		</property>
+	</bean>
+	
 	<!-- ================================================== -->
 	<!-- Struts Action 类 -->
 	<!-- 用户登录处理Ation -->
@@ -192,7 +202,17 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 			<ref local="ProductSetLogic" />
 		</property>
 	</bean>
-	
+
+	<bean id="preproductinsert" class="action.PreProductInsertAction"
+		scope="prototype">
+	</bean>
+	<bean id="proproductinsert" class="action.ProProductInsertAction"
+		scope="prototype">
+		<property name="logic">
+			<ref local="ProMediaInsertLogic" />
+		</property>
+	</bean>
+
 	<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 	<bean id="IptvsoftwareDAO" class="dao.IptvsoftwareDAO">
 		<property name="sessionFactory">

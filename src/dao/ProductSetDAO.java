@@ -31,23 +31,24 @@ public class ProductSetDAO extends BaseDAO<ProductSet> {
 
 	public int getCount(ProductForm form) {
 		try {
-			StringBuilder sqlbuffer = new StringBuilder();
-			List<Object> paramList = new LinkedList<Object>();
-			sqlbuffer.append("select count(*) from ProductSet where 1=1");
-			if (!CommonUtil.isEmpty(form.getProduct().getProductId())) {
-				sqlbuffer.append("and productId=?");
-				paramList.add(form.getProduct().getProductId());
-			}
-			if (!CommonUtil.isEmpty(form.getProduct().getProductName())) {
-				sqlbuffer.append("and productName=?");
-				paramList.add(form.getProduct().getProductName());
-			}
-			String sqlstring = sqlbuffer.toString();
-			Query queryObject = getSession().createQuery(sqlstring);
-			for (int i = 0; i < paramList.size(); i++) {
-				queryObject.setParameter(i, paramList.get(i));
-			}
-			return (Integer) queryObject.uniqueResult();
+//			StringBuilder sqlbuffer = new StringBuilder();
+//			List<Object> paramList = new LinkedList<Object>();
+//			sqlbuffer.append("select count(*) from ProductSet where 1=1");
+//			if (!CommonUtil.isEmpty(form.getProduct().getProductId())) {
+//				sqlbuffer.append("and productId=?");
+//				paramList.add(form.getProduct().getProductId());
+//			}
+//			if (!CommonUtil.isEmpty(form.getProduct().getProductName())) {
+//				sqlbuffer.append("and productName=?");
+//				paramList.add(form.getProduct().getProductName());
+//			}
+//			String sqlstring = sqlbuffer.toString();
+//			Query queryObject = getSession().createQuery(sqlstring);
+//			for (int i = 0; i < paramList.size(); i++) {
+//				queryObject.setParameter(i, paramList.get(i));
+//			}
+//			return (Integer) queryObject.uniqueResult();
+			return 0;
 		} catch (RuntimeException re) {
 			log.error("failed to getCount.");
 			throw re;
@@ -56,27 +57,28 @@ public class ProductSetDAO extends BaseDAO<ProductSet> {
 	
 	public List<ProductSet> getList(ProductForm form) {
 		try {
-			StringBuilder sqlbuffer = new StringBuilder();
-			List<Object> paramList = new LinkedList<Object>();
-			sqlbuffer.append("from ProductSet where 1=1");
-			if (!CommonUtil.isEmpty(form.getProduct().getProductId())) {
-				sqlbuffer.append("and productId=?");
-				paramList.add(form.getProduct().getProductId());
-			}
-			if (!CommonUtil.isEmpty(form.getProduct().getProductName())) {
-				sqlbuffer.append("and productName=?");
-				paramList.add(form.getProduct().getProductName());
-			}
-			sqlbuffer.append("order by productId");
-			String sqlstring = sqlbuffer.toString();
-			Query queryObject = getSession().createQuery(sqlstring);
-			for (int i = 0; i < paramList.size(); i++) {
-				queryObject.setParameter(i, paramList.get(i));
-			}
-			queryObject.setFirstResult((form.getCurrentPage() - 1)
-					* Contants.PAGE_SIZE);
-			queryObject.setMaxResults(Contants.PAGE_SIZE);
-			return queryObject.list();
+//			StringBuilder sqlbuffer = new StringBuilder();
+//			List<Object> paramList = new LinkedList<Object>();
+//			sqlbuffer.append("from ProductSet where 1=1");
+//			if (!CommonUtil.isEmpty(form.getProduct().getProductId())) {
+//				sqlbuffer.append("and productId=?");
+//				paramList.add(form.getProduct().getProductId());
+//			}
+//			if (!CommonUtil.isEmpty(form.getProduct().getProductName())) {
+//				sqlbuffer.append("and productName=?");
+//				paramList.add(form.getProduct().getProductName());
+//			}
+//			sqlbuffer.append("order by productId");
+//			String sqlstring = sqlbuffer.toString();
+//			Query queryObject = getSession().createQuery(sqlstring);
+//			for (int i = 0; i < paramList.size(); i++) {
+//				queryObject.setParameter(i, paramList.get(i));
+//			}
+//			queryObject.setFirstResult((form.getCurrentPage() - 1)
+//					* Contants.PAGE_SIZE);
+//			queryObject.setMaxResults(Contants.PAGE_SIZE);
+//			return queryObject.list();
+			return null;
 		} catch (RuntimeException re) {
 			log.error("failed to getAccount.");
 			throw re;

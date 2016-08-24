@@ -40,7 +40,7 @@ return true;
 			<div id="container">
 			<!-- // #start sidebar -->
         		<div id="sidebar">
-        			<%@include file="menu.jsp" %>                	
+        			<%@include file="menu_stb.jsp" %>                	
                 </div>    
                 <!-- // #end sidebar -->
                 

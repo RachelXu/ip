@@ -3,20 +3,25 @@ package form;
 import java.io.Serializable;
 import java.util.List;
 
-import dao.model.ProductSet;
+import dao.model.Product;
 
 public class ProductForm implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7775954600654251028L;
-	private List<ProductSet> products;
-	private ProductSet product;
+	private List<Product> products;
+	private Product product;
 	private boolean resultFlag;
 	private Integer currentPage;
 	private Integer pageCount;
 	private Integer resultCount;
-
+	
+	public void copy(ProductForm meidiaForm) {
+//		this.areaList.addAll(meidiaForm.getAreaList());
+//		this.languageList.addAll(meidiaForm.getLanguageList());
+//		this.catalogList.addAll(meidiaForm.getCatalogList());
+	}
 	public void initView(boolean resultFlag) {
 		this.resultFlag = resultFlag;
 	}
@@ -53,26 +58,16 @@ public class ProductForm implements Serializable {
 	public void setResultFlag(boolean resultFlag) {
 		this.resultFlag = resultFlag;
 	}
-
-
-	public List<ProductSet> getProducts() {
+	public List<Product> getProducts() {
 		return products;
 	}
-
-
-	public void setProducts(List<ProductSet> products) {
+	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
-
-
-	public ProductSet getProduct() {
+	public Product getProduct() {
 		return product;
 	}
-
-
-	public void setProduct(ProductSet product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
-
-
 }
