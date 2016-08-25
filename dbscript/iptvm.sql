@@ -85,9 +85,9 @@ CREATE TABLE `account_product` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `acc_prod` (`AccountID`,`ProductID`),
   KEY `FK_acc_pro_1` (`AccountID`),
-  CONSTRAINT `FK_acc_pro_1` FOREIGN KEY (`AccountID`) REFERENCES `account` (`AccountID`),
+  CONSTRAINT `FK_acc_pro_1` FOREIGN KEY (`AccountID`) REFERENCES `account` (`AccountID`) ON DELETE CASCADE ON UPDATE CASCADE,
   KEY `FK_acc_pro_2` (`ProductID`),
-  CONSTRAINT `FK_acc_pro_2` FOREIGN KEY (`ProductID`) REFERENCES `productset` (`ProductID`)
+  CONSTRAINT `FK_acc_pro_2` FOREIGN KEY (`ProductID`) REFERENCES `productset` (`ProductID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
@@ -143,7 +143,7 @@ CREATE TABLE `channelset` (
   PRIMARY KEY (`ChannelID`),
   UNIQUE KEY `ChannelName` (`ChannelName`),
   KEY `FK_channelset_1` (`ProductID`),
-  CONSTRAINT `FK_channelset_1` FOREIGN KEY (`ProductID`) REFERENCES `productset` (`ProductID`),  
+  CONSTRAINT `FK_channelset_1` FOREIGN KEY (`ProductID`) REFERENCES `productset` (`ProductID`)  ON DELETE SET NULL ON UPDATE SET NULL,  
   KEY `FK_Relationship_3` (`LanguageID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

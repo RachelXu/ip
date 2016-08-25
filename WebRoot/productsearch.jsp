@@ -50,7 +50,10 @@ function add(){
 			<div id="container">
 			<!-- // #start sidebar -->
         		<div id="sidebar">
-        				<%@include file="menu_product.jsp" %>
+        			<ul class="sideNav">
+                    	<li><a href="preproductsearch.action"  class="active">Product Management</a></li>
+                    	<li><a href="preproductinsert.action">New Product</a></li>
+                    </ul>
                 </div>    
                 <!-- // #end sidebar -->
                 
