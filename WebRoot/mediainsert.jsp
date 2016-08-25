@@ -22,18 +22,7 @@
 			<div id="container">
 			<!-- // #start sidebar -->
         		<div id="sidebar">
-                	<ul class="sideNav">
-                    	<li><a href="precatalogman.action" >目录管理</a></li>
-                    	<li><a href="premediasearch.action"  >节目内容管理</a></li>
-                    	<li><a href="premediainsert.action" class="active">节目内容添加</a></li>
-                    	<li><a href="premediabatchupload.action">节目内容批量上传</a></li>
-                    	<s2:if test='#session.admin.level.equals("1") || #session.admin.level.equals("2")'>
-                    	<li><a href="premediaapprove.action">确认节目审核通过</a></li>
-                    	</s2:if>
-                    	<s2:if test='#session.admin.level.equals("1") '>
-                    	<li><a href="premediadisapprove.action" >确认节目发布</a></li>
-                    	</s2:if>
-                    </ul>
+					<%@include file="menu_media.jsp" %>
                 </div>    
                 <!-- // #end sidebar -->
                 

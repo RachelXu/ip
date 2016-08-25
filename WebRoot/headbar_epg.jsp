@@ -4,7 +4,7 @@
 
         <ul id="mainNav">
         	<li><a href="preusersearch.action">STB</a></li>
-			<li><a href="precatalogman.action">Media</a></li>
+			<li><a href="premediasearch.action">Media</a></li>
 			<li><a href="precardbatchinsert.action">Prepay Card</a></li>
 			<li><a href="preproductsearch.action">Product</a></li>
 			<li><a href="preiptvupload.action">»ú¶¥ºĞ¹ÜÀí</a></li>

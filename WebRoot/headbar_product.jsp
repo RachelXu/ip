@@ -4,9 +4,9 @@
 
         <ul id="mainNav">
         	<li><a href="preusersearch.action" >STB</a></li>
-			<li><a href="premediasearch.action">Media</a></li>
-        	<li><a href="precardbatchinsert.action" class="active">Prepay Card</a></li>
-			<li><a href="preproductsearch.action">Product</a></li>
+			<li><a href=premediasearch.action>Media</a></li>
+        	<li><a href="precardbatchinsert.action">Prepay Card</a></li>
+			<li><a href="preproductsearch.action" class="active">Product</a></li>
 			<li><a href="preiptvupload.action">机顶盒管理</a></li>
 			<li><a href="preadminpassword.action">运维管理</a></li>
         	<li class="logout"><a href="prologout.action">Logout</a></li>

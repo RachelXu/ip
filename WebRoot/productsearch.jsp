@@ -44,7 +44,7 @@ function add(){
     	<!-- h1 tag stays for the logo, you can use the a tag for linking the index page -->
     	<h1><a href="#"><span>管理系统</span></a></h1>
     	<!-- // #start mainNav -->
-		<%@include file="headbar_media.jsp" %>
+		<%@include file="headbar_product.jsp" %>
         <!-- // #end mainNav -->
         <div id="containerHolder">
 			<div id="container">
