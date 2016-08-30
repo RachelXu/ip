@@ -23,6 +23,17 @@ public class BaseDAO<T> extends HibernateDaoSupport {
 		}
 	}
 
+	public void update(Object transientInstance) {
+		log.debug("update instance");
+		try {
+			getHibernateTemplate().update(transientInstance);
+			log.debug("update successful");
+		} catch (RuntimeException re) {
+			log.error("update failed", re);
+			throw re;
+		}
+	}
+	
 	public void delete(Object persistentInstance) {
 		log.debug("deleting instance");
 		try {

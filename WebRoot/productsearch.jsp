@@ -25,16 +25,8 @@ function resetCondition(){
 	document.getElementsByName("product.product.productName")[0].value="";
 	return true;
 }
-function edit(parm){
+function ops(parm){	
 	document.getElementsByName("itemId")[0].value=parm;
-	return true;
-}
-function del(parm){	
-	document.getElementsByName("itemId")[0].value=parm;
-	return true;
-}
-function add(){
-	window.open("./preproductsearch.action","Add ProductSet.","height=300,width=800,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no");
 	return true;
 }
 </script>
@@ -51,8 +43,8 @@ function add(){
 			<!-- // #start sidebar -->
         		<div id="sidebar">
         			<ul class="sideNav">
-                    	<li><a href="preproductsearch.action"  class="active">Product Management</a></li>
-                    	<li><a href="preproductinsert.action">New Product</a></li>
+                    	<li><a href="preSearch_product_productsearch.action"  class="active">Product Management</a></li>
+                    	<li><a href="preAdd_product_productinsert.action">New Product</a></li>
                     </ul>
                 </div>    
                 <!-- // #end sidebar -->
@@ -60,14 +52,17 @@ function add(){
                 <!-- main page -->
                 <h2><a href="#">Product Management</a> &raquo; <a href="#" class="active">Product Management</a></h2>
                 <div id="main1" class="main">
-                <p align="left"><s2:fielderror cssStyle="font-size:15px; color:red; font-weight:bold "/></p>
-                <s2:form action="proproductsearch" theme="simple">
-                <s2:hidden name="pageString"/>
-                <s2:hidden name="product.currentPage"/>
-                <s2:hidden name="product.pageCount"/>
-                <s2:hidden name="deleteId"/>
-                <s2:hidden name="itemId"/>
-					<h3>Search</h3>
+                <p align="left"><s2:fielderror cssStyle="font-size:15px; color:red; font-weight:bold "/><s2:actionmessage cssStyle="font-size:15px; font-weight:bold "/></p>
+                <s2:form action="search_product_productsearch" theme="simple" method="post">
+                	<s2:hidden name="pageString" value=""/>
+                	<s2:hidden name="opType"/>
+                	<s2:hidden name="product.currentPage"/>
+                	<s2:hidden name="product.pageCount"/>
+                	<s2:hidden name="deleteId"/>
+                	<s2:hidden name="itemId"/>
+                	
+                	<s2:if test="opType=='search'">
+						<h3>Search</h3>
                     	<table border="1">	
 							<tr>
 							  <td>ProductID</td>
@@ -76,10 +71,9 @@ function add(){
 							  <td><s2:textfield name="product.product.productName" size="10" maxlength="50"/></td>
 							</tr>
 							<tr align="center">
-								<td colspan="4" >
-									<input type="button" value="Add" onclick="add()" />
-									&nbsp;&nbsp;&nbsp;&nbsp;<s2:submit value="Search" onclick="resetPage()"/>
-									&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Reset" onclick="resetCondition()" />
+								<td colspan="4" >									
+									<s2:submit value="Search" onclick="resetPage()"/>&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="button" value="Reset" onclick="resetCondition()" />
 								</td>
 							</tr>
                         </table>
@@ -92,28 +86,51 @@ function add(){
 							  <td >Operations</td>
 	    					</tr>
 	    				  <s2:iterator value="product.products" var="detil">
-						  <tr>    
+						  	<tr>    
 						 	  <td ><s2:property value="productId"/></td>
 						      <td ><s2:property value="productName"/></td>
 						      <td>
-					          <s2:submit action="updateProductSet_productsearch" value="Modify" onclick="edit('%{productId}')"> </s2:submit>
-					          <s2:submit action="delProductSet_productsearch" value="Remove" onclick="del('%{productId}')"/></td> 
-					      </tr>
+					          <s2:submit action="preUpdate_product_productsearch" value="Update" onclick="ops('%{productId}')"> </s2:submit>
+					          <s2:submit action="del_product_productsearch" value="Delete" onclick="ops('%{productId}')"/></td> 
+					      	</tr>
 					      </s2:iterator>
-					      <tr>
-					      	<td colspan="9" align="right">
-					      	共<s2:property value="product.resultCount"/>条结果，当前第<s2:property value="product.currentPage"/>/<s2:property value="media.pageCount"/>页
-					        <s2:if test="product.currentPage!=1">
-					        <s2:submit action="proproductsearch" value="上一页" onclick="priv()"/>
-					        </s2:if>
-					        <s2:if test="product.currentPage<product.pageCount">
-					        <s2:submit action="proproductsearch" value="下一页" onclick="next()"/>
-					        </s2:if>
-					        </td>
-					      </tr>
+					      	<tr>
+					      		<td colspan="9" align="right">
+					      		Total <s2:property value="product.resultCount"/> items. Current Page<s2:property value="product.currentPage"/>/<s2:property value="product.pageCount"/>
+					        	<s2:if test="product.currentPage!=1">
+					        	<s2:submit action="search_product_productsearch" value="Pre" onclick="priv()"/>
+					        	</s2:if>
+					        	<s2:if test="product.currentPage<product.pageCount">
+					        	<s2:submit action="search_product_productsearch" value="Next" onclick="next()"/>
+					        	</s2:if>
+					        	</td>
+					      	</tr>
 						</table>
-						</s2:if>
-                   </s2:form>
+						</s2:if>						
+					</s2:if>	
+					
+					<!-- update -->						
+					<s2:if test="opType=='update'">
+						<h3>Update Product Info:</h3>
+                    	<table border="1">	
+							<tr>
+						  		<td>ProductID</td>
+						  		<td><s2:textfield name="product.product.productId" size="10" maxlength="50" readonly="true"/></td>
+					  		</tr>
+					  		<tr>
+						  		<td>ProductName</td>
+						  		<td><s2:textfield name="product.product.productName" size="10" maxlength="50"/></td>
+							</tr>
+							<tr align="center">
+								<td colspan="4" >
+									<s2:submit action="update_product_productsearch" value="Update" />										
+									&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Reset" onclick="resetCondition()" />
+								</td>
+							</tr>
+                       	</table>
+					</s2:if>
+						
+                </s2:form>                
                 </div>
               
 				<div class="clear"></div>

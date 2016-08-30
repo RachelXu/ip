@@ -20,30 +20,13 @@
 			<result name="success">/usersearch.jsp</result>
 		</action>
 
-		<action name="preproductsearch" class="preproductsearch">
-			<result name="success">/productsearch.jsp</result>
-		</action>
-		<action name="proproductsearch" class="proproductsearch">
-			<result name="input">/productsearch.jsp</result>
-			<result name="success">/productsearch.jsp</result>
-		</action>
-		
-		<action name="preproductinsert" class="preproductinsert">
-			<result name="success">/productinsert.jsp</result>
-		</action>
-		
-		<action name="proproductinsert" class="proproductinsert">
-			<result name="input">/productinsert.jsp</result>
-			<result name="success">/productinsert.jsp</result>
-		</action>
-		
-		<action name="*ProductSet_*" class="proproductsearch" method="{1}" >
+<!-- Product start-->
+		<action name="*_product_*" class="productAction" method="{1}" >
 		    <result name="input">/{2}.jsp</result>            
 			<result name="success">/{2}.jsp</result>  
 			<result name="error">/error.jsp</result>  
 		</action> 
-		
-
+<!-- Product end-->
 
 		<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 		<action name="preuserupload" class="preuserupload">

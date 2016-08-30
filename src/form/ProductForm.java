@@ -18,9 +18,6 @@ public class ProductForm implements Serializable {
 	private Integer resultCount;
 	
 	public void copy(ProductForm meidiaForm) {
-//		this.areaList.addAll(meidiaForm.getAreaList());
-//		this.languageList.addAll(meidiaForm.getLanguageList());
-//		this.catalogList.addAll(meidiaForm.getCatalogList());
 	}
 	public void initView(boolean resultFlag) {
 		this.resultFlag = resultFlag;

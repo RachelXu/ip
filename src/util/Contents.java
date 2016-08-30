@@ -44,5 +44,9 @@ public class Contents {
 
 	/** 一次性创建的新数据库连接数 */
 	public static int ACQUIRE_INCREMENT = 3;
+	
+	public static String OP_TYPE_SEARCH = "search";
+	public static String OP_TYPE_ADD = "add";
+	public static String OP_TYPE_UPDATE = "update";
 
 }

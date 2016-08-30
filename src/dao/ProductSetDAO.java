@@ -87,4 +87,9 @@ public class ProductSetDAO extends BaseDAO<ProductSet> {
 		ProductSet product = new ProductSet(form.getProduct().getProductId(), form.getProduct().getProductName());
 		this.saveOrUpdate(product);
 	}
+	
+	public void update(ProductForm form) {
+		ProductSet product = new ProductSet(form.getProduct().getProductId(), form.getProduct().getProductName());
+		this.update(product);
+	}
 }

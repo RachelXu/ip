@@ -126,7 +126,7 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 		</property>
 	</bean>
 	<!-- productSet logic -->
-	<bean id="ProductSetLogic" class="logic.ProductSetLogic"
+	<bean id="ProductLogic" class="logic.ProductLogic"
 		abstract="false" lazy-init="default" autowire="default"
 		dependency-check="default">
 		<property name="productSetDao">
@@ -147,15 +147,7 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 			<ref local="AdminDAO" />
 		</property>
 	</bean>
-	<!-- 帐号/节目业务逻辑
-	<bean id="productLogic" class="logic.ProductLogic"
-		abstract="false" lazy-init="default" autowire="default"
-		dependency-check="default">
-		<property name="accountDao">
-			<ref local="AccountDAO" />
-		</property>
-	</bean>
-	 -->
+	
 	
 	<bean id="ProProductInsertLogic" class="logic.ProProductInsertLogic"
 		abstract="false" lazy-init="default" autowire="default"
@@ -185,25 +177,13 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 		</property>
 	</bean>
 
-	<bean id="preproductsearch" class="action.PreProductSearchAction"
-		scope="prototype">
-	</bean>
-	<bean id="proproductsearch" class="action.ProProductSearchAction"
-		scope="prototype">
+	<!-- productAction begin--> 
+	<bean id="productAction" class="action.ProductAction" scope="prototype">
 		<property name="logic">
-			<ref local="ProductSetLogic" />
+			<ref local="ProductLogic" />
 		</property>
 	</bean>
-
-	<bean id="preproductinsert" class="action.PreProductInsertAction"
-		scope="prototype">
-	</bean>
-	<bean id="proproductinsert" class="action.ProProductInsertAction"
-		scope="prototype">
-		<property name="logic">
-			<ref local="ProMediaInsertLogic" />
-		</property>
-	</bean>
+	<!-- productAction end-->
 
 	<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 	<bean id="IptvsoftwareDAO" class="dao.IptvsoftwareDAO">

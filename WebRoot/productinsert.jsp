@@ -21,15 +21,15 @@ function resetCondition(){
     	<!-- h1 tag stays for the logo, you can use the a tag for linking the index page -->
     	<h1><a href="#"><span>管理系统</span></a></h1>
     	<!-- // #start mainNav -->
-		<%@include file="headbar_media.jsp" %>
+		<%@include file="headbar_product.jsp" %>
         <!-- // #end mainNav -->
         <div id="containerHolder">
 			<div id="container">
 			<!-- // #start sidebar -->
         		<div id="sidebar">
         		    <ul class="sideNav">
-                    	<li><a href="preproductsearch.action">Product Management</a></li>
-                    	<li><a href="preproductinsert.action" class="active">New Product</a></li>
+                    	<li><a href="preSearch_product_productsearch.action">Product Management</a></li>
+                    	<li><a href="preAdd_product_productinsert.action"  class="active">New Product</a></li>
                     </ul>
                 </div>    
                 <!-- // #end sidebar -->
@@ -37,8 +37,8 @@ function resetCondition(){
                 <!-- main page -->
                 <h2><a href="#">节目信息管理</a> &raquo; <a href="#" class="active">节目内容添加</a></h2>
                 <div id="main1" class="main">
-                <p align="left"><s2:fielderror cssStyle="font-size:15px; color:red; font-weight:bold "/><s2:actionmessage/></p>
-                <s2:form action="addProductSet_productinsert" theme="simple" method="post">
+                <p align="left"><s2:fielderror cssStyle="font-size:15px; color:red; font-weight:bold "/><s2:actionmessage cssStyle="font-size:15px; font-weight:bold "/></p>
+                <s2:form action="add_product_productinsert" theme="simple" method="post">
                 <s2:hidden name="pageString"/>
                 <s2:hidden name="product.currentPage"/>
                 <s2:hidden name="product.pageCount"/>
@@ -56,7 +56,7 @@ function resetCondition(){
 							</tr>
 							<tr align="center">
 								<td colspan="4" >
-									&nbsp;&nbsp;&nbsp;&nbsp;<s2:submit value="Search" />
+									&nbsp;&nbsp;&nbsp;&nbsp;<s2:submit value="Submit" />
 									&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Reset" onclick="resetCondition()" />
 								</td>
 							</tr>

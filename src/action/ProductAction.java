@@ -1,22 +1,32 @@
 package action;
 
+import dao.model.ProductSet;
 import form.ProductForm;
 import logic.LogicDTO;
-import logic.ProductSetLogic;
+import logic.ProductLogic;
 import util.CommonUtil;
 import util.Contants;
+import util.Contents;
 
-public class ProProductSearchAction extends MySuperAction {
+public class ProductAction extends MySuperAction {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 378340882595762250L;
 	private ProductForm product;
-	private ProductSetLogic logic;
+	private ProductLogic logic;
 	private String pageString;
 	private String itemId;
+	private String opType;
 
-	public String execute() throws Exception {
+	public String preSearch() throws Exception {
+		product = new ProductForm();
+		product.initView(false);
+		opType = Contents.OP_TYPE_SEARCH;
+		return SUCCESS;
+	}
+	
+	public String search() throws Exception {
 		if (CommonUtil.isEmpty(product.getCurrentPage())
 				|| product.getCurrentPage() < 1) {
 			product.setCurrentPage(1);
@@ -69,9 +79,11 @@ public class ProProductSearchAction extends MySuperAction {
 		
 	}
 
-	public String update() {
-		System.out.println("update :" + itemId);
-		
+	
+	public String preAdd() throws Exception {
+		product = new ProductForm();
+		product.setResultFlag(false);
+		opType = Contents.OP_TYPE_ADD;
 		return SUCCESS;
 	}
 	
@@ -82,9 +94,34 @@ public class ProProductSearchAction extends MySuperAction {
 			return INPUT;
 		}
 		logic.create(product);
-		this.addActionMessage("Success");
+		this.addActionMessage("Add Success");
 		
 		return SUCCESS;
+	}
+
+	public String preUpdate() {
+		
+		ProductSet productItem = logic.getProductSetById(itemId);
+		if (productItem != null) {
+			product.setProduct(productItem);
+			opType = Contents.OP_TYPE_UPDATE;
+			return SUCCESS;
+		} else {
+			return INPUT;
+		}
+	}
+	
+	public String update() {
+		if (CommonUtil.isEmpty(product.getProduct().getProductName())) {
+			this.addFieldError("field", getText(Contants.E001));
+			
+			return INPUT;
+		}
+		logic.update(product);
+		this.addActionMessage("Update Success");
+		
+		return SUCCESS;
+		
 	}
 	
 	public ProductForm getProduct() {
@@ -95,11 +132,11 @@ public class ProProductSearchAction extends MySuperAction {
 		this.product = product;
 	}
 
-	public ProductSetLogic getLogic() {
+	public ProductLogic getLogic() {
 		return logic;
 	}
 
-	public void setLogic(ProductSetLogic logic) {
+	public void setLogic(ProductLogic logic) {
 		this.logic = logic;
 	}
 
@@ -119,7 +156,15 @@ public class ProProductSearchAction extends MySuperAction {
 		this.itemId = itemId;
 	}
 
+	public String getOpType() {
+		return opType;
+	}
 
+	public void setOpType(String opType) {
+		this.opType = opType;
+	}
+
+	
 
 
 
