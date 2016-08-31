@@ -29,6 +29,14 @@ function ops(parm){
 	document.getElementsByName("itemId")[0].value=parm;
 	return true;
 }
+function del(parm){	
+    if (confirm("Will you delete product: " + parm + "?")) {
+        document.getElementsByName("itemId")[0].value=parm;
+        return true;
+    } else {
+		return false;
+    }	
+}
 </script>
 </head>
 <body>
@@ -91,7 +99,7 @@ function ops(parm){
 						      <td ><s2:property value="productName"/></td>
 						      <td>
 					          <s2:submit action="preUpdate_product_productsearch" value="Update" onclick="ops('%{productId}')"> </s2:submit>
-					          <s2:submit action="del_product_productsearch" value="Delete" onclick="ops('%{productId}')"/></td> 
+					          <s2:submit action="del_product_productsearch" value="Delete" onclick="del('%{productId}')"/></td> 
 					      	</tr>
 					      </s2:iterator>
 					      	<tr>
