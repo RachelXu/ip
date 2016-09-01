@@ -13,6 +13,7 @@
         <property name="urlType" column="UrlType" type="string"/>
         <property name="channelType" column="ChannelType" type="string"/>
         <property name="languageID" column="LanguageID" type="string"/>
+        
         <many-to-one name="productSet" class="dao.model.ProductSet" fetch="select">
             <column name="ProductID" />
         </many-to-one>

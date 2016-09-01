@@ -59,19 +59,20 @@ return true;
                     	<table border="1">	
 							<tr>
 							  <td>节目ID</td>
-							  <td><s2:textfield name="media.mediaId1" size="10" maxlength="5"/>&nbsp;&nbsp;—&nbsp;&nbsp;<s2:textfield name="media.mediaId2" size="10" maxlength="5"/></td>
+							  <td><s2:textfield name="media.channel.channelId" size="10" maxlength="5"/></td>
 							  <td>节目名称</td>
-							  <td><s2:textfield name="media.mediaName" size="10" maxlength="10"/></td>
+							  <td><s2:textfield name="media.channel.mediaName" size="10" maxlength="10"/></td>
 							</tr>
 							<tr>
 							  <td>语言</td>
 							  <td>
-								<s2:select list="media.languageList"  name="media.languageId" listKey="value" listValue="label" headerKey="" headerValue="-"  ></s2:select>
+								<s2:select list="media.languageMap"  name="media.channel.languageID"  headerKey="" headerValue="-"  ></s2:select>
 							  </td>
+							  
 							  <td>地区</td>
 							  <td>
-								<s2:select list="media.areaList" name="media.areaId" listKey="value" listValue="label" headerKey="" headerValue="-"></s2:select>
-							  </td>
+							  	<s2:select list="media.areaMap"  name="a"  headerKey="" headerValue="-"  ></s2:select>
+							  </td>							  
 							</tr>
 							<tr>
 							  <td>年代</td>
@@ -88,7 +89,7 @@ return true;
 							<tr>
 							  <td>所在目录</td>
 							  <td>
-							  <s2:select list="media.catalogList" name="media.mediaCatalogId" listKey="value" listValue="label" headerKey="" headerValue="-" multiple="true" size="5"></s2:select>
+							  	<s2:select list="media.catalogMap"  name="b"  headerKey="" headerValue="-"  ></s2:select>
 							  </td>
 							  <td>审核状态</td>
 							  <td>
