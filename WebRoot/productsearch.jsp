@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>¿íºêIPTV²¥¿ØÆ½Ì¨</title>
+<title>IPTV</title>
 <link href="style/css/transdmin.css" rel="stylesheet" type="text/css" media="screen" />
 <!-- JavaScripts-->
 <script language='javascript'>
@@ -25,7 +25,7 @@ function resetCondition(){
 	document.getElementsByName("product.product.productName")[0].value="";
 	return true;
 }
-function ops(parm){	
+function update(parm){	
 	document.getElementsByName("itemId")[0].value=parm;
 	return true;
 }
@@ -37,6 +37,11 @@ function del(parm){
 		return false;
     }	
 }
+function channel(parm){	
+	document.getElementsByName("itemId")[0].value=parm;
+	return true;
+}
+
 </script>
 </head>
 <body>
@@ -98,8 +103,9 @@ function del(parm){
 						 	  <td ><s2:property value="productId"/></td>
 						      <td ><s2:property value="productName"/></td>
 						      <td>
-					          <s2:submit action="preUpdate_product_productsearch" value="Update" onclick="ops('%{productId}')"> </s2:submit>
-					          <s2:submit action="del_product_productsearch" value="Delete" onclick="del('%{productId}')"/></td> 
+					          <s2:submit action="preUpdate_product_productsearch" value="Update" onclick="update('%{productId}')"/>&nbsp;
+					          <s2:submit action="del_product_productsearch" value="Delete" onclick="del('%{productId}')"/>&nbsp;
+					          <s2:submit action="preAssignChannel_product_productchannel" value="Channel" onclick="channel('%{productId}')"/></td>&nbsp; 
 					      	</tr>
 					      </s2:iterator>
 					      	<tr>

@@ -132,6 +132,10 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 		<property name="productSetDao">
 			<ref local="ProductSetDAO" />
 		</property>
+		<property name="channelDao">
+			<ref local="ChannelDAO" />
+		</property>
+		
 	</bean>
 	<bean id="ProAdminInsertLogic" class="logic.ProAdminInsertLogic"
 		abstract="false" lazy-init="default" autowire="default"

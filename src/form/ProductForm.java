@@ -3,6 +3,7 @@ package form;
 import java.io.Serializable;
 import java.util.List;
 
+import dao.model.Channel;
 import dao.model.ProductSet;
 
 public class ProductForm implements Serializable {
@@ -16,6 +17,7 @@ public class ProductForm implements Serializable {
 	private Integer currentPage;
 	private Integer pageCount;
 	private Integer resultCount;
+	private List<Channel> channels;
 	
 	public void copy(ProductForm meidiaForm) {
 	}
@@ -57,6 +59,12 @@ public class ProductForm implements Serializable {
 	}
 	public void setResultCount(Integer resultCount) {
 		this.resultCount = resultCount;
+	}
+	public List<Channel> getChannels() {
+		return channels;
+	}
+	public void setChannels(List<Channel> channels) {
+		this.channels = channels;
 	}
 
 

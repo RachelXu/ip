@@ -1,5 +1,8 @@
 package action;
 
+import java.util.Set;
+
+import dao.model.Channel;
 import dao.model.ProductSet;
 import form.ProductForm;
 import logic.LogicDTO;
@@ -122,6 +125,11 @@ public class ProductAction extends MySuperAction {
 		
 		return SUCCESS;
 		
+	}
+	
+	public String preAssignChannel() {
+		logic.initProductChannelForm(product, itemId);
+		return SUCCESS;
 	}
 	
 	public ProductForm getProduct() {

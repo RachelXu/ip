@@ -3,8 +3,13 @@
 package logic;
 
 import java.util.List;
+import java.util.Set;
 
+import org.springframework.transaction.annotation.Transactional;
+
+import dao.ChannelDAO;
 import dao.ProductSetDAO;
+import dao.model.Channel;
 import dao.model.ProductSet;
 import form.ProductForm;
 import util.CommonUtil;
@@ -12,9 +17,11 @@ import util.Contants;
 
 /**
  */
+@Transactional
 public class ProductLogic {
 
 	private ProductSetDAO productSetDao;
+	private ChannelDAO channelDao;
 
 	
 	public LogicDTO search(ProductForm form) throws Exception {
@@ -48,6 +55,7 @@ public class ProductLogic {
 		return (ProductSet) productSetDao.findById(ProductSet.class, productId);
 	}
 	
+	
 	public boolean create(ProductForm form) {
 		productSetDao.create(form);
 		return true;
@@ -58,6 +66,12 @@ public class ProductLogic {
 		return true;
 	}
 
+	public void initProductChannelForm(ProductForm form, String productId) {
+		form.setChannels(channelDao.getAvailableChannels());
+		ProductSet product = (ProductSet) productSetDao.findById(ProductSet.class, productId);
+		form.setProduct(product);		
+	}
+	
 
 	public ProductSetDAO getProductSetDao() {
 		return productSetDao;
@@ -66,6 +80,14 @@ public class ProductLogic {
 
 	public void setProductSetDao(ProductSetDAO productSetDao) {
 		this.productSetDao = productSetDao;
+	}
+
+	public ChannelDAO getChannelDao() {
+		return channelDao;
+	}
+
+	public void setChannelDao(ChannelDAO channelDao) {
+		this.channelDao = channelDao;
 	}
 
 

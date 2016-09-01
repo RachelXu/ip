@@ -12,6 +12,12 @@
 		</param-value>
 	</context-param>
 
+
+    <filter>
+		<filter-name>opensession</filter-name>   
+	    <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+    </filter>
+    
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>
@@ -19,6 +25,11 @@
 		</filter-class>
 	</filter>
 
+    <filter-mapping>   
+		<filter-name>opensession</filter-name>   
+	    <url-pattern>/*</url-pattern> 
+	</filter-mapping>
+	  
 	<filter-mapping>
 		<filter-name>struts2</filter-name>
 		<url-pattern>/*</url-pattern>

@@ -13,6 +13,10 @@
         	<key column="ProductID" />
         	<one-to-many class="dao.model.AccountProductSet" />
         </set>
+        <set name="channels" inverse="true">
+        	<key column="ProductID" />
+        	<one-to-many class="dao.model.Channel" />
+        </set>
     </class>
 </hibernate-mapping>
 

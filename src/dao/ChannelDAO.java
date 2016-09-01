@@ -85,4 +85,15 @@ public class ChannelDAO extends BaseDAO<Channel> {
 			throw re;
 		}
 	}
+	
+	public List<Channel> getAvailableChannels() {
+		try {
+			String sqlstring = "from Channel where productSet=null order by channelID";
+			Query queryObject = createQuery(sqlstring);
+			return (List<Channel>)queryObject.list();
+		} catch (RuntimeException re) {
+			log.error("failed to getAvailableChannels as: " + re.getMessage());
+			throw re;
+		}
+	}
 }
