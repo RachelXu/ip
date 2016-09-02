@@ -40,12 +40,16 @@ return true;
 			<div id="container">
 			<!-- // #start sidebar -->
         		<div id="sidebar">
-        			<%@include file="menu_stb.jsp" %>                	
+					<ul class="sideNav">
+                    	<li><a href="preusersearch.action" class="active" >STB Management</a></li>
+                    	<li><a href="preuserupload.action" >Import STBs</a></li>
+                    	<li><a href="userinsert.jsp">New a STB</a></li>
+                    </ul>
                 </div>    
                 <!-- // #end sidebar -->
                 
                 <!-- main page -->
-                <h2><a href="#">STB Management</a> &raquo; <a href="#" class="active">Query</a></h2>
+                <h2><a href="#">STB</a> &raquo; <a href="#" class="active"> Management</a></h2>
                 <div id="main1" class="main">
                 <p align="left"><s2:fielderror cssStyle="font-size:15px; color:red; font-weight:bold "/></p>
                 <s2:form action="prousersearch" theme="simple">
@@ -74,14 +78,14 @@ return true;
 							</tr>
 							<tr align="center">
 								<td colspan="2" >
-									<s2:submit value="查询" onclick="resetPage()"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="重置" onclick="window.location.href='preusersearch.action'" />
+									<s2:submit value="Search" onclick="resetPage()"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Reset" onclick="window.location.href='preusersearch.action'" />
 								</td>
 							</tr>
                         </table>
                         <s2:if test="user.resultFlag">
                         <h3>Result</h3>
 						<table>
-							<tr>
+							<tr >
 						 	  <td >STB ID</td>
 						 	  <td >State</td>
 							  <td>Operation</td>
@@ -97,13 +101,13 @@ return true;
 					      </s2:iterator>
 					      <tr>
 					      	<td colspan="7" align="right">
-					      	共<s2:property value="user.resultCount"/>条结果，当前第<s2:property value="user.currentPage"/>/<s2:property value="user.pageCount"/>页
-					        <s2:if test="user.currentPage!=1">
-					        <s2:submit action="prousersearch" value="上一页" onclick="priv()"/>
-					        </s2:if>
-					        <s2:if test="user.currentPage<user.pageCount">
-					        <s2:submit action="prousersearch" value="下一页" onclick="next()"/>
-					        </s2:if>
+						      	<s2:property value="user.resultCount"/>records, <s2:property value="user.currentPage"/>/<s2:property value="user.pageCount"/>
+						        <s2:if test="user.currentPage!=1">
+						        <s2:submit action="prousersearch" value="上一页" onclick="priv()"/>
+						        </s2:if>
+						        <s2:if test="user.currentPage<user.pageCount">
+						        <s2:submit action="prousersearch" value="下一页" onclick="next()"/>
+						        </s2:if>
 					        </td>
 					      </tr>
 						</table>

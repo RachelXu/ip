@@ -23,27 +23,25 @@
 			<!-- // #start sidebar -->
         		<div id="sidebar">
                 	<ul class="sideNav">
-                    	<li><a href="preusersearch.action">账户查询</a></li>
-                    	<li><a href="preuserupload.action" class="active" >账户批量导入</a></li>
-                    	<li><a href="preuserbatchedit.action">账户批量修改</a></li>
-                    	<li><a href="preuserbatchdelete.action">账户批量删除</a></li>
+                    	<li><a href="preusersearch.action">STB Management</a></li>
+                    	<li><a href="preuserupload.action" class="active" >Import STBs</a></li>
+                    	<li><a href="userinsert.jsp">New a STB</a></li>
                     </ul>
                 </div>    
                 <!-- // #end sidebar -->
                 
                 <!-- main page -->
-                <h2><a href="#">账户管理</a> &raquo; <a href="#" class="active">账户批量导入</a></h2>
+                <h2><a href="#">STB</a> &raquo; <a href="#" class="active"> Import STBs</a></h2>
                 <div id="main1" class="main">
                 <p align="left"><s2:fielderror cssStyle="font-size:15px; color:red; font-weight:bold "/></p>
                 <s2:form action="prouserupload" theme="simple" method="post" enctype="multipart/form-data">
-					<h3>批量导入</h3>
 						 <table width="80%" border="0" cellspacing="1" cellpadding="1" align="center">
 							  <tr>
 								<td width="92" align="center" valign="middle">&nbsp;</td>
-								<td width="138" align="center" valign="middle">选择上传的文件</td>
+								<td width="138" align="center" valign="middle">STB file for importing:</td>
 								<td width="200" align="center" valign="middle"><s2:file name="upload"/> </td>
 								<td width="123" align="center" valign="middle"></td>
-								<td width="129" align="center" valign="middle"><s2:submit value="上传文件" /> </td>
+								<td width="129" align="center" valign="middle"><s2:submit value="Import" /> </td>
 							  </tr>
 							</table>
 					<s2:if test="showError">
@@ -62,7 +60,7 @@
 						  </table>
 					</s2:if>
 					<s2:if test="showNomal">
-					<h3>文件中的信息</h3>
+					<h3>STB file for importing:</h3>
 						 <table width="80%" border="0" align="center" cellpadding="1" cellspacing="1">
 						  <tr>
 							<td align="center" valign="middle">用户名称</td>
