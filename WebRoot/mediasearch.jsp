@@ -41,7 +41,18 @@ return true;
 			<div id="container">
 			<!-- // #start sidebar -->
         		<div id="sidebar">
-	        			<%@include file="menu_media.jsp" %> 
+        			<ul class="sideNav">
+                    	<li><a href="premediasearch.action"  class="active">Media Management</a></li>
+                    	<li><a href="precatalogman.action" >Directory Management</a></li>
+                    	<li><a href="premediainsert.action" >New Media</a></li>
+                    	<li><a href="premediabatchupload.action">Import Medias</a></li>
+                    	<s2:if test='#session.admin.level.equals("1") || #session.admin.level.equals("2")'>
+                    	<li><a href="premediaapprove.action">确认节目审核通过</a></li>
+                    	</s2:if>
+                    	<s2:if test='#session.admin.level.equals("1") '>
+                    	<li><a href="premediadisapprove.action" >确认节目发布</a></li>
+                    	</s2:if>
+                   	</ul>
                 </div>    
                 <!-- // #end sidebar -->
                 
