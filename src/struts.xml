@@ -19,6 +19,11 @@
 			<result name="input">/usersearch.jsp</result>
 			<result name="success">/usersearch.jsp</result>
 		</action>
+		<action name="accountDelete" class="preusersearch" method="del">
+			<result name="input">/usersearch.jsp</result>
+			<result name="success">/usersearch.jsp</result>
+		</action>
+		
 
 <!-- Product start-->
 		<action name="*_product_*" class="productAction" method="{1}" >

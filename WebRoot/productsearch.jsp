@@ -15,7 +15,6 @@ function next(){
 	document.getElementsByName("pageString")[0].value="next";
 }
 function resetPage(){
-	document.getElementsByName("pageString")[0].value="";
 	document.getElementsByName("product.currentPage")[0].value="";
 	document.getElementsByName("product.pageCount")[0].value="";
 	return true;

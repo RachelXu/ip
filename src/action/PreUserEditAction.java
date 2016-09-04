@@ -10,13 +10,13 @@ public class PreUserEditAction extends MySuperAction {
 	 */
 	private static final long serialVersionUID = 4875306436871318474L;
 	private UserForm userEdit;
-	private String editId;
+	private String itemId;
 	private PreUserEditLogic logic;
 
 	public String execute() throws Exception {
 		userEdit = new UserForm();
 		userEdit.initView(false);
-		LogicDTO logicDTO = logic.doLogic(editId, userEdit);
+		LogicDTO logicDTO = logic.doLogic(itemId, userEdit);
 		if (logicDTO.isResult()) {
 			return SUCCESS;
 		} else {
@@ -25,19 +25,12 @@ public class PreUserEditAction extends MySuperAction {
 		}
 	}
 
-	/**
-	 * @return the editId
-	 */
-	public String getEditId() {
-		return editId;
+	public String getItemId() {
+		return itemId;
 	}
 
-	/**
-	 * @param editId
-	 *            the editId to set
-	 */
-	public void setEditId(String editId) {
-		this.editId = editId;
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
 	}
 
 	/**

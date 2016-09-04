@@ -15,17 +15,20 @@ function next(){
 document.getElementsByName("pageString")[0].value="next";
 }
 function resetPage(){
-document.getElementsByName("pageString")[0].value="";
 document.getElementsByName("account.currentPage")[0].value="";
 document.getElementsByName("account.pageCount")[0].value="";
 }
 function edit(parm){
-document.getElementsByName("editId")[0].value=parm;
+document.getElementsByName("itemId")[0].value=parm;
 return true;
 }
 function del(parm){
-document.getElementsByName("deleteId")[0].value=parm;
-return true;
+	if (confirm("Will you delete Account: " + parm + "?")) {
+        document.getElementsByName("itemId")[0].value=parm;
+        return true;
+    } else {
+		return false;
+    }	
 }
 
 function select_all(state) 
@@ -80,11 +83,10 @@ function select_inverse() {
                 <div id="main1" class="main">
                 <p align="left"><s2:fielderror cssStyle="font-size:15px; color:red; font-weight:bold "/></p>
                 <s2:form action="prousersearch" theme="simple">
-                <s2:hidden name="pageString"/>
+                <s2:hidden name="pageString" value=""/>
                 <s2:hidden name="account.currentPage"/>
                 <s2:hidden name="account.pageCount"/>
-                <s2:hidden name="deleteId"/>
-                <s2:hidden name="editId"/>
+                <s2:hidden name="itemId" value=""/>
 					<h3>Query</h3>
                     	<table border="1">	
 							<tr>
@@ -125,8 +127,8 @@ function select_inverse() {
 							  <td><s2:property value="accountId"/> </td>       
 						      <td><s2:property value="state"/></td>    
 						      <td>
-					          <s2:submit action="preuseredit" value="Modify" onclick="edit(%{id})"> </s2:submit>
-					          <s2:submit action="preuserdelete" value="Delete" onclick="del(%{id})">  </s2:submit> </td> 
+					          <s2:submit action="preuseredit" value="Modify" onclick="edit('%{accountId}')"> </s2:submit>
+					          <s2:submit action="accountDelete" value="Delete" onclick="del('%{accountId}')">  </s2:submit> </td> 
 					      </tr>
 					      </s2:iterator>
 					      <tr>

@@ -21,6 +21,7 @@ public class PreUserSearchAction extends MySuperAction {
 	private AccountLogic accLogic;
 	private String pageString;
 	private String productId;
+	private String itemId;
 	
 	private List<ProductSet> products = new ArrayList<ProductSet>();
 
@@ -54,6 +55,30 @@ public class PreUserSearchAction extends MySuperAction {
 		
 	}
 
+	public String del(){
+		if (CommonUtil.isEmpty(account.getCurrentPage())
+				|| account.getCurrentPage() < 1) {
+			account.setCurrentPage(1);
+		}
+		if (!CommonUtil.isEmpty(pageString)) {
+			if (Contants.PRIV.equals(pageString)) {
+				account.setCurrentPage(account.getCurrentPage() - 1);
+			}
+			if (Contants.NEXT.equals(pageString)) {
+				account.setCurrentPage(account.getCurrentPage() + 1);
+			}
+		}
+		accLogic.delete(this.itemId);
+		LogicDTO dto = accLogic.search(account, this.productId);
+		if (dto.isResult()) {
+			initView(true);
+			return SUCCESS;
+		} else {
+			this.addFieldError("field", getText(dto.getErrorCode()));
+			initView(false);
+			return INPUT;
+		}
+	}
 	private void initView(boolean resultFlag) {
 		if (account == null) account = new AccountForm();
 		
@@ -106,6 +131,14 @@ public class PreUserSearchAction extends MySuperAction {
 
 	public void setProducts(List<ProductSet> products) {
 		this.products = products;
+	}
+
+	public String getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
 	}
 	
 

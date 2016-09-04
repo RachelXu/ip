@@ -36,6 +36,20 @@ public class AccountLogic {
 		return dto;
 	}
 
+	public boolean delete(String accId) {
+		Object o = accountDao.findById(Account.class, accId);
+		try{
+		
+			if (o != null) {
+				accountDao.delete(o);
+			}
+			
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
 
 	public AccountDAO getAccountDao() {
 		return accountDao;
