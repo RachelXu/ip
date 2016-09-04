@@ -21,7 +21,7 @@
         <!-- // #end mainNav -->
         <div id="containerHolder">
 			<div id="container">
-			<!-- // #start sidebar -->
+			<!-- // #start sidebar 
         		<div id="sidebar">
                 	<ul class="sideNav">
                 	    <li><a href="precardbatchinsert.action"  class="active">充值卡批量生成</a></li>
@@ -35,8 +35,15 @@
                     	</s2:if>
                     </ul>
                 </div>    
-                <!-- // #end sidebar -->
-                
+                #end sidebar -->
+                <div id="sidebar">
+                	<ul class="sideNav">
+                    	<li><a href="precardsearch.action" class="active">Card Management</a></li>
+                	    <li><a href="precardbatchinsert.action" >Create Prepay Cards</a></li>
+                	    <li><a href="precardbatchinsert.action" >Imports Prepay Cards</a></li>
+                	    <li><a href="precardbatchinsert.action" >New a Prepay Card</a></li>
+                    </ul>
+                </div>  
                 <!-- main page -->
                 <h2><a href="#">充值卡管理</a> &raquo; <a href="#" class="active">充值卡批量生成</a></h2>
                 <div id="main1" class="main">

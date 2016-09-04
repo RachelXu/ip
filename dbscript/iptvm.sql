@@ -1,4 +1,4 @@
-﻿/*
+/*
 Navicat MySQL Data Transfer
 
 Source Server         : RealServer
@@ -196,6 +196,127 @@ INSERT INTO `channelset` VALUES ('Chan0043', 'dzair2', '188.138.89.40', '/images
 INSERT INTO `channelset` VALUES ('Chan0044', 'dzair3', '188.138.89.40', '/images/dzair3.jpg', '/IPTV_Files/dzair3/dzair3.m3u8', 'sep', 'Live', 'Lang0009', 'PRD0010');
 INSERT INTO `channelset` VALUES ('Chan0045', 'dzair4', '188.138.89.40', '/images/dzair4.jpg', '/IPTV_Files/dzair4/dzair4.m3u8', 'sep', 'Live', 'Lang0001', 'PRD0010');
 
+-- ----------------------------
+-- Table structure for directory
+-- ----------------------------
+DROP TABLE IF EXISTS `directory`;
+CREATE TABLE `directory` (
+  `DirectoryID` varchar(20) NOT NULL,
+  `ParentID` varchar(20) NOT NULL,
+  `DirectoryName` varchar(20) NOT NULL,  
+  `Order1` int(3) NOT NULL,
+  PRIMARY KEY (`DirectoryID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of directory
+-- ----------------------------
+INSERT INTO `directory` VALUES ('DIR0001', 'DIR0000', 'MiddleEastVIP',1);
+INSERT INTO `directory` VALUES ('DIR0002', 'DIR0000', 'EgyptVIP',1);
+INSERT INTO `directory` VALUES ('DIR0003', 'DIR0000', 'PalestineVIP',2);
+INSERT INTO `directory` VALUES ('DIR0004', 'DIR0000', 'IsraelVIP',3);
+INSERT INTO `directory` VALUES ('DIR0005', 'DIR0000', 'TurkeyVIP',4);
+INSERT INTO `directory` VALUES ('DIR0006', 'DIR0000', 'IranVIP',5);
+INSERT INTO `directory` VALUES ('DIR0007', 'DIR0000', 'AmericaLive',6);
+INSERT INTO `directory` VALUES ('DIR0008', 'DIR0000', 'BrazilLive',7);
+INSERT INTO `directory` VALUES ('DIR0009', 'DIR0000', 'EuropeLive',8);
+INSERT INTO `directory` VALUES ('DIR0010', 'DIR0000', 'CanadaLive',9);
+INSERT INTO `directory` VALUES ('DIR1001', 'DIR0001', 'Arabic',10);
+INSERT INTO `directory` VALUES ('DIR1002', 'DIR0001', 'Tunisia',11);
+INSERT INTO `directory` VALUES ('DIR1003', 'DIR0001', 'PreMium',12);
+INSERT INTO `directory` VALUES ('DIR1004', 'DIR0001', 'Sports',13);
+INSERT INTO `directory` VALUES ('DIR1005', 'DIR0001', 'Europe',14);
+INSERT INTO `directory` VALUES ('DIR1006', 'DIR0001', 'French',15);
+INSERT INTO `directory` VALUES ('DIR1007', 'DIR0001', 'Movies',16);
+INSERT INTO `directory` VALUES ('DIR1008', 'DIR0001', 'KIDS',17);
+
+
+-- ----------------------------
+-- Table structure for channel_directory
+-- ----------------------------
+DROP TABLE IF EXISTS `channel_directory`;
+CREATE TABLE `channel_directory` (
+  `DirectoryID` varchar(20) NOT NULL,
+  `ChannelID` varchar(20) NOT NULL,
+  PRIMARY KEY (`DirectoryID`,`ChannelID`),
+  KEY `FK_channel_directory2` (`ChannelID`)
+  CONSTRAINT `FK_channel_directory2` FOREIGN KEY (`ChannelID`) REFERENCES `channelset` (`ChannelID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  KEY `FK_channel_directory1` (`DirectoryID`),
+  CONSTRAINT `FK_channel_directory1` FOREIGN KEY (`DirectoryID`) REFERENCES `directory` (`DirectoryID`) ON DELETE CASCADE ON UPDATE CASCADE
+  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of channel_directory
+-- ----------------------------
+INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0001');
+INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0001');
+INSERT INTO `channel_directory` VALUES ('DIR1005', 'Chan0002');
+INSERT INTO `channel_directory` VALUES ('DIR1006', 'Chan0002');
+INSERT INTO `channel_directory` VALUES ('DIR1007', 'Chan0002');
+INSERT INTO `channel_directory` VALUES ('DIR1002', 'Chan0003');
+INSERT INTO `channel_directory` VALUES ('DIR1005', 'Chan0003');
+INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0004');
+INSERT INTO `channel_directory` VALUES ('DIR1005', 'Chan0005');
+INSERT INTO `channel_directory` VALUES ('DIR1008', 'Chan0006');
+INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0007');
+INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0008');
+INSERT INTO `channel_directory` VALUES ('DIR1005', 'Chan0008');
+INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0009');
+INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0010');
+INSERT INTO `channel_directory` VALUES ('DIR1006', 'Chan0010');
+INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0011');
+INSERT INTO `channel_directory` VALUES ('DIR1002', 'Chan0012');
+INSERT INTO `channel_directory` VALUES ('DIR1004', 'Chan0012');
+INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0013');
+INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0014');
+INSERT INTO `channel_directory` VALUES ('DIR1006', 'Chan0015');
+INSERT INTO `channel_directory` VALUES ('DIR1002', 'Chan0016');
+INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0016');
+INSERT INTO `channel_directory` VALUES ('DIR1004', 'Chan0017');
+INSERT INTO `channel_directory` VALUES ('DIR1007', 'Chan0017');
+INSERT INTO `channel_directory` VALUES ('DIR1008', 'Chan0017');
+INSERT INTO `channel_directory` VALUES ('DIR1007', 'Chan0018');
+INSERT INTO `channel_directory` VALUES ('DIR1008', 'Chan0018');
+INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0019');
+INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0020');
+INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0021');
+INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0022');
+INSERT INTO `channel_directory` VALUES ('DIR1008', 'Chan0022');
+INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0023');
+INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0024');
+INSERT INTO `channel_directory` VALUES ('DIR1005', 'Chan0025');
+INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0026');
+INSERT INTO `channel_directory` VALUES ('DIR1004', 'Chan0027');
+INSERT INTO `channel_directory` VALUES ('DIR1006', 'Chan0028');
+INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0029');
+INSERT INTO `channel_directory` VALUES ('DIR1007', 'Chan0030');
+INSERT INTO `channel_directory` VALUES ('DIR1005', 'Chan0031');
+INSERT INTO `channel_directory` VALUES ('DIR1006', 'Chan0031');
+INSERT INTO `channel_directory` VALUES ('DIR1002', 'Chan0032');
+INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0032');
+INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0033');
+INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0034');
+INSERT INTO `channel_directory` VALUES ('DIR1006', 'Chan0035');
+INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0036');
+INSERT INTO `channel_directory` VALUES ('DIR1007', 'Chan0036');
+INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0037');
+INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0038');
+INSERT INTO `channel_directory` VALUES ('DIR1002', 'Chan0039');
+INSERT INTO `channel_directory` VALUES ('DIR1004', 'Chan0040');
+INSERT INTO `channel_directory` VALUES ('DIR1008', 'Chan0040');
+INSERT INTO `channel_directory` VALUES ('DIR1002', 'Chan0041');
+INSERT INTO `channel_directory` VALUES ('DIR1005', 'Chan0041');
+INSERT INTO `channel_directory` VALUES ('DIR1007', 'Chan0041');
+INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0042');
+INSERT INTO `channel_directory` VALUES ('DIR1004', 'Chan0043');
+INSERT INTO `channel_directory` VALUES ('DIR1006', 'Chan0044');
+INSERT INTO `channel_directory` VALUES ('DIR1007', 'Chan0044');
+INSERT INTO `channel_directory` VALUES ('DIR1002', 'Chan0045');
+INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0045');
+INSERT INTO `channel_directory` VALUES ('DIR1004', 'Chan0045');
+
+
 
 -- ----------------------------
 -- Table structure for admin
@@ -214,6 +335,7 @@ CREATE TABLE `admin` (
 -- ----------------------------
 INSERT INTO `admin` VALUES ('1', 'admin', '0192023a7bbd73250516f069df18b500', '1');
 
+
 -- ----------------------------
 -- Table structure for area
 -- ----------------------------
@@ -227,24 +349,24 @@ CREATE TABLE `area` (
 -- ----------------------------
 -- Records of area
 -- ----------------------------
-INSERT INTO `area` VALUES ('1', '大陆');
-INSERT INTO `area` VALUES ('2', '美国');
-INSERT INTO `area` VALUES ('3', '日本');
-INSERT INTO `area` VALUES ('4', '韩国');
-INSERT INTO `area` VALUES ('5', '英国');
-INSERT INTO `area` VALUES ('6', '香港');
-INSERT INTO `area` VALUES ('7', '台湾');
-INSERT INTO `area` VALUES ('8', '印度');
-INSERT INTO `area` VALUES ('9', '法国');
-INSERT INTO `area` VALUES ('10', '加拿大');
-INSERT INTO `area` VALUES ('11', '西班牙');
-INSERT INTO `area` VALUES ('12', '新加坡');
-INSERT INTO `area` VALUES ('13', '泰国');
-INSERT INTO `area` VALUES ('14', '意大利');
-INSERT INTO `area` VALUES ('15', '德国');
-INSERT INTO `area` VALUES ('16', '俄罗斯');
-INSERT INTO `area` VALUES ('17', '越南');
-INSERT INTO `area` VALUES ('18', '澳大利亚');
+INSERT INTO `area` VALUES ('1', '��½');
+INSERT INTO `area` VALUES ('2', '����');
+INSERT INTO `area` VALUES ('3', '�ձ�');
+INSERT INTO `area` VALUES ('4', '����');
+INSERT INTO `area` VALUES ('5', 'Ӣ��');
+INSERT INTO `area` VALUES ('6', '���');
+INSERT INTO `area` VALUES ('7', '̨��');
+INSERT INTO `area` VALUES ('8', 'ӡ��');
+INSERT INTO `area` VALUES ('9', '����');
+INSERT INTO `area` VALUES ('10', '���ô�');
+INSERT INTO `area` VALUES ('11', '������');
+INSERT INTO `area` VALUES ('12', '�¼���');
+INSERT INTO `area` VALUES ('13', '̩��');
+INSERT INTO `area` VALUES ('14', '�����');
+INSERT INTO `area` VALUES ('15', '�¹�');
+INSERT INTO `area` VALUES ('16', '����˹');
+INSERT INTO `area` VALUES ('17', 'Խ��');
+INSERT INTO `area` VALUES ('18', '�Ĵ�����');
 
 -- ----------------------------
 -- Table structure for batch
@@ -347,89 +469,89 @@ CREATE TABLE `catalog` (
 -- ----------------------------
 -- Records of catalog
 -- ----------------------------
-INSERT INTO `catalog` VALUES ('1', '电影', 'dianying', null, '9');
-INSERT INTO `catalog` VALUES ('2', '电视剧', 'dianshijv', null, '5');
-INSERT INTO `catalog` VALUES ('3', '综艺', 'zongyi', null, '4');
-INSERT INTO `catalog` VALUES ('4', '动漫', 'dongman', null, '3');
-INSERT INTO `catalog` VALUES ('5', '纪录片', 'jilupian', null, '2');
-INSERT INTO `catalog` VALUES ('6', '教育', 'jiaoyu', null, '1');
-INSERT INTO `catalog` VALUES ('7', '华语', 'huayu', '1', '1');
-INSERT INTO `catalog` VALUES ('8', '美国', 'meiguo', '1', '2');
-INSERT INTO `catalog` VALUES ('9', '欧洲', 'ouzhou', '1', '3');
-INSERT INTO `catalog` VALUES ('10', '日本', 'riben', '1', '4');
-INSERT INTO `catalog` VALUES ('11', '韩国', 'hanguo', '1', '5');
-INSERT INTO `catalog` VALUES ('12', '最新', 'zuixin', '1', '6');
-INSERT INTO `catalog` VALUES ('13', '爱情', 'aiqing', '7', '1');
-INSERT INTO `catalog` VALUES ('14', '动作', 'dongzuo', '7', '2');
-INSERT INTO `catalog` VALUES ('15', '喜剧', 'xijv', '7', '3');
-INSERT INTO `catalog` VALUES ('16', '科幻', 'kehuan', '7', '4');
-INSERT INTO `catalog` VALUES ('17', '风月', 'fengyue', '7', '5');
-INSERT INTO `catalog` VALUES ('18', '剧情', 'jvqing', '7', '6');
-INSERT INTO `catalog` VALUES ('19', '警匪', 'jingfei', '7', '7');
-INSERT INTO `catalog` VALUES ('20', '武侠', 'wuxia', '7', '8');
-INSERT INTO `catalog` VALUES ('21', '爱情', 'aiqing', '8', '1');
-INSERT INTO `catalog` VALUES ('22', '动作', 'dongzuo', '8', '2');
-INSERT INTO `catalog` VALUES ('23', '喜剧', 'xijv', '8', '3');
-INSERT INTO `catalog` VALUES ('24', '科幻', 'kehuan', '8', '4');
-INSERT INTO `catalog` VALUES ('25', '恐怖', 'kongbu', '8', '5');
-INSERT INTO `catalog` VALUES ('26', '剧情', 'jvqing', '8', '6');
-INSERT INTO `catalog` VALUES ('27', '歌舞', 'gewu', '8', '7');
-INSERT INTO `catalog` VALUES ('28', '战争', 'zhanzheng', '8', '8');
-INSERT INTO `catalog` VALUES ('29', '爱情', 'aiqing', '9', '1');
-INSERT INTO `catalog` VALUES ('30', '动作', 'dongzuo', '9', '2');
-INSERT INTO `catalog` VALUES ('31', '喜剧', 'xijv', '9', '3');
-INSERT INTO `catalog` VALUES ('32', '惊悚', 'jingsong', '9', '4');
-INSERT INTO `catalog` VALUES ('33', '剧情', 'jvqing', '9', '5');
-INSERT INTO `catalog` VALUES ('34', '悬疑', 'xuanyi', '9', '6');
-INSERT INTO `catalog` VALUES ('35', '动画', 'donghua', '9', '7');
-INSERT INTO `catalog` VALUES ('36', '爱情', 'aiqing', '10', '1');
-INSERT INTO `catalog` VALUES ('37', '动作', 'dongzuo', '10', '2');
-INSERT INTO `catalog` VALUES ('38', '喜剧', 'xijv', '10', '3');
-INSERT INTO `catalog` VALUES ('39', '科幻', 'kehuan', '10', '4');
-INSERT INTO `catalog` VALUES ('40', '剧情', 'jvqing', '10', '5');
-INSERT INTO `catalog` VALUES ('41', '悬疑', 'xuanyi', '10', '6');
-INSERT INTO `catalog` VALUES ('42', '动画', 'donghua', '10', '7');
-INSERT INTO `catalog` VALUES ('43', '爱情', 'aiqing', '11', '1');
-INSERT INTO `catalog` VALUES ('44', '动作', 'dongzuo', '11', '2');
-INSERT INTO `catalog` VALUES ('45', '喜剧', 'xijv', '11', '3');
-INSERT INTO `catalog` VALUES ('46', '科幻', 'kehuan', '11', '4');
-INSERT INTO `catalog` VALUES ('47', '剧情', 'jvqing', '11', '5');
-INSERT INTO `catalog` VALUES ('48', '悬疑', 'xuanyi', '11', '6');
-INSERT INTO `catalog` VALUES ('49', '动画', 'donghua', '11', '7');
-INSERT INTO `catalog` VALUES ('50', '国产动画', 'guochandong', '4', '1');
-INSERT INTO `catalog` VALUES ('51', '日本动画', 'ridonghua', '4', '2');
-INSERT INTO `catalog` VALUES ('52', '欧美动画', 'oudonghua', '4', '3');
-INSERT INTO `catalog` VALUES ('53', '校园', 'xiaoyuan', '50', '1');
-INSERT INTO `catalog` VALUES ('54', '热血', 'rexue', '50', '2');
-INSERT INTO `catalog` VALUES ('55', '冒险', 'maoxian', '50', '3');
-INSERT INTO `catalog` VALUES ('56', '历史', 'lishi', '50', '4');
-INSERT INTO `catalog` VALUES ('57', '搞笑', 'gaoxiao', '50', '5');
-INSERT INTO `catalog` VALUES ('58', '机战', 'jizhan', '50', '6');
-INSERT INTO `catalog` VALUES ('59', '校园', 'xiaoyuan', '51', '1');
-INSERT INTO `catalog` VALUES ('60', '热血', 'rexue', '51', '2');
-INSERT INTO `catalog` VALUES ('61', '冒险', 'maoxian', '51', '3');
-INSERT INTO `catalog` VALUES ('62', '历史', 'lishi', '51', '4');
-INSERT INTO `catalog` VALUES ('63', '搞笑', 'gaoxiao', '51', '5');
-INSERT INTO `catalog` VALUES ('64', '机战', 'jizhan', '51', '6');
-INSERT INTO `catalog` VALUES ('65', '校园', 'xiaoyuan', '52', '1');
-INSERT INTO `catalog` VALUES ('66', '热血', 'rexue', '52', '2');
-INSERT INTO `catalog` VALUES ('67', '冒险', 'maoxian', '52', '3');
-INSERT INTO `catalog` VALUES ('68', '历史', 'lishi', '52', '4');
-INSERT INTO `catalog` VALUES ('69', '搞笑', 'gaoxiao', '52', '5');
-INSERT INTO `catalog` VALUES ('70', '机战', 'jizhan', '52', '6');
-INSERT INTO `catalog` VALUES ('71', '心理学', 'xinlixue', '6', '1');
-INSERT INTO `catalog` VALUES ('72', '社会学', 'shehuixue', '6', '2');
-INSERT INTO `catalog` VALUES ('73', '计算机', 'jisuanji', '6', '3');
-INSERT INTO `catalog` VALUES ('74', '金融', 'jinrong', '6', '4');
-INSERT INTO `catalog` VALUES ('75', '直播', 'zhibo', null, '1');
-INSERT INTO `catalog` VALUES ('76', '中央台', 'zhongyangtai', '75', '1');
-INSERT INTO `catalog` VALUES ('77', '地方台', 'difangtai', '75', '2');
-INSERT INTO `catalog` VALUES ('78', '本地频道', 'bendipindao', '75', '3');
-INSERT INTO `catalog` VALUES ('79', '其他频道', 'qitapindao', '75', '4');
-INSERT INTO `catalog` VALUES ('80', '美剧', 'meijv', '2', '9');
-INSERT INTO `catalog` VALUES ('81', '韩剧', 'hanjv', '2', '8');
-INSERT INTO `catalog` VALUES ('82', '日剧', 'rijv', '2', '7');
-INSERT INTO `catalog` VALUES ('83', '港剧', 'gangjv', '2', '6');
+INSERT INTO `catalog` VALUES ('1', '��Ӱ', 'dianying', null, '9');
+INSERT INTO `catalog` VALUES ('2', '���Ӿ�', 'dianshijv', null, '5');
+INSERT INTO `catalog` VALUES ('3', '����', 'zongyi', null, '4');
+INSERT INTO `catalog` VALUES ('4', '����', 'dongman', null, '3');
+INSERT INTO `catalog` VALUES ('5', '��¼Ƭ', 'jilupian', null, '2');
+INSERT INTO `catalog` VALUES ('6', '����', 'jiaoyu', null, '1');
+INSERT INTO `catalog` VALUES ('7', '����', 'huayu', '1', '1');
+INSERT INTO `catalog` VALUES ('8', '����', 'meiguo', '1', '2');
+INSERT INTO `catalog` VALUES ('9', 'ŷ��', 'ouzhou', '1', '3');
+INSERT INTO `catalog` VALUES ('10', '�ձ�', 'riben', '1', '4');
+INSERT INTO `catalog` VALUES ('11', '����', 'hanguo', '1', '5');
+INSERT INTO `catalog` VALUES ('12', '����', 'zuixin', '1', '6');
+INSERT INTO `catalog` VALUES ('13', '����', 'aiqing', '7', '1');
+INSERT INTO `catalog` VALUES ('14', '����', 'dongzuo', '7', '2');
+INSERT INTO `catalog` VALUES ('15', 'ϲ��', 'xijv', '7', '3');
+INSERT INTO `catalog` VALUES ('16', '�ƻ�', 'kehuan', '7', '4');
+INSERT INTO `catalog` VALUES ('17', '����', 'fengyue', '7', '5');
+INSERT INTO `catalog` VALUES ('18', '����', 'jvqing', '7', '6');
+INSERT INTO `catalog` VALUES ('19', '����', 'jingfei', '7', '7');
+INSERT INTO `catalog` VALUES ('20', '����', 'wuxia', '7', '8');
+INSERT INTO `catalog` VALUES ('21', '����', 'aiqing', '8', '1');
+INSERT INTO `catalog` VALUES ('22', '����', 'dongzuo', '8', '2');
+INSERT INTO `catalog` VALUES ('23', 'ϲ��', 'xijv', '8', '3');
+INSERT INTO `catalog` VALUES ('24', '�ƻ�', 'kehuan', '8', '4');
+INSERT INTO `catalog` VALUES ('25', '�ֲ�', 'kongbu', '8', '5');
+INSERT INTO `catalog` VALUES ('26', '����', 'jvqing', '8', '6');
+INSERT INTO `catalog` VALUES ('27', '����', 'gewu', '8', '7');
+INSERT INTO `catalog` VALUES ('28', 'ս��', 'zhanzheng', '8', '8');
+INSERT INTO `catalog` VALUES ('29', '����', 'aiqing', '9', '1');
+INSERT INTO `catalog` VALUES ('30', '����', 'dongzuo', '9', '2');
+INSERT INTO `catalog` VALUES ('31', 'ϲ��', 'xijv', '9', '3');
+INSERT INTO `catalog` VALUES ('32', '���', 'jingsong', '9', '4');
+INSERT INTO `catalog` VALUES ('33', '����', 'jvqing', '9', '5');
+INSERT INTO `catalog` VALUES ('34', '����', 'xuanyi', '9', '6');
+INSERT INTO `catalog` VALUES ('35', '����', 'donghua', '9', '7');
+INSERT INTO `catalog` VALUES ('36', '����', 'aiqing', '10', '1');
+INSERT INTO `catalog` VALUES ('37', '����', 'dongzuo', '10', '2');
+INSERT INTO `catalog` VALUES ('38', 'ϲ��', 'xijv', '10', '3');
+INSERT INTO `catalog` VALUES ('39', '�ƻ�', 'kehuan', '10', '4');
+INSERT INTO `catalog` VALUES ('40', '����', 'jvqing', '10', '5');
+INSERT INTO `catalog` VALUES ('41', '����', 'xuanyi', '10', '6');
+INSERT INTO `catalog` VALUES ('42', '����', 'donghua', '10', '7');
+INSERT INTO `catalog` VALUES ('43', '����', 'aiqing', '11', '1');
+INSERT INTO `catalog` VALUES ('44', '����', 'dongzuo', '11', '2');
+INSERT INTO `catalog` VALUES ('45', 'ϲ��', 'xijv', '11', '3');
+INSERT INTO `catalog` VALUES ('46', '�ƻ�', 'kehuan', '11', '4');
+INSERT INTO `catalog` VALUES ('47', '����', 'jvqing', '11', '5');
+INSERT INTO `catalog` VALUES ('48', '����', 'xuanyi', '11', '6');
+INSERT INTO `catalog` VALUES ('49', '����', 'donghua', '11', '7');
+INSERT INTO `catalog` VALUES ('50', '��������', 'guochandong', '4', '1');
+INSERT INTO `catalog` VALUES ('51', '�ձ�����', 'ridonghua', '4', '2');
+INSERT INTO `catalog` VALUES ('52', 'ŷ������', 'oudonghua', '4', '3');
+INSERT INTO `catalog` VALUES ('53', 'У԰', 'xiaoyuan', '50', '1');
+INSERT INTO `catalog` VALUES ('54', '��Ѫ', 'rexue', '50', '2');
+INSERT INTO `catalog` VALUES ('55', 'ð��', 'maoxian', '50', '3');
+INSERT INTO `catalog` VALUES ('56', '��ʷ', 'lishi', '50', '4');
+INSERT INTO `catalog` VALUES ('57', '��Ц', 'gaoxiao', '50', '5');
+INSERT INTO `catalog` VALUES ('58', '��ս', 'jizhan', '50', '6');
+INSERT INTO `catalog` VALUES ('59', 'У԰', 'xiaoyuan', '51', '1');
+INSERT INTO `catalog` VALUES ('60', '��Ѫ', 'rexue', '51', '2');
+INSERT INTO `catalog` VALUES ('61', 'ð��', 'maoxian', '51', '3');
+INSERT INTO `catalog` VALUES ('62', '��ʷ', 'lishi', '51', '4');
+INSERT INTO `catalog` VALUES ('63', '��Ц', 'gaoxiao', '51', '5');
+INSERT INTO `catalog` VALUES ('64', '��ս', 'jizhan', '51', '6');
+INSERT INTO `catalog` VALUES ('65', 'У԰', 'xiaoyuan', '52', '1');
+INSERT INTO `catalog` VALUES ('66', '��Ѫ', 'rexue', '52', '2');
+INSERT INTO `catalog` VALUES ('67', 'ð��', 'maoxian', '52', '3');
+INSERT INTO `catalog` VALUES ('68', '��ʷ', 'lishi', '52', '4');
+INSERT INTO `catalog` VALUES ('69', '��Ц', 'gaoxiao', '52', '5');
+INSERT INTO `catalog` VALUES ('70', '��ս', 'jizhan', '52', '6');
+INSERT INTO `catalog` VALUES ('71', '����ѧ', 'xinlixue', '6', '1');
+INSERT INTO `catalog` VALUES ('72', '���ѧ', 'shehuixue', '6', '2');
+INSERT INTO `catalog` VALUES ('73', '�����', 'jisuanji', '6', '3');
+INSERT INTO `catalog` VALUES ('74', '����', 'jinrong', '6', '4');
+INSERT INTO `catalog` VALUES ('75', 'ֱ��', 'zhibo', null, '1');
+INSERT INTO `catalog` VALUES ('76', '����̨', 'zhongyangtai', '75', '1');
+INSERT INTO `catalog` VALUES ('77', '�ط�̨', 'difangtai', '75', '2');
+INSERT INTO `catalog` VALUES ('78', '����Ƶ��', 'bendipindao', '75', '3');
+INSERT INTO `catalog` VALUES ('79', '����Ƶ��', 'qitapindao', '75', '4');
+INSERT INTO `catalog` VALUES ('80', '����', 'meijv', '2', '9');
+INSERT INTO `catalog` VALUES ('81', '����', 'hanjv', '2', '8');
+INSERT INTO `catalog` VALUES ('82', '�վ�', 'rijv', '2', '7');
+INSERT INTO `catalog` VALUES ('83', '�۾�', 'gangjv', '2', '6');
 
 -- ----------------------------
 -- Table structure for catalog_media_relation
@@ -563,120 +685,7 @@ INSERT INTO `catalog_media_relation` VALUES ('49', '76');
 INSERT INTO `catalog_media_relation` VALUES ('49', '80');
 INSERT INTO `catalog_media_relation` VALUES ('1', '81');
 
--- ----------------------------
--- Table structure for channel_directory
--- ----------------------------
-DROP TABLE IF EXISTS `channel_directory`;
-CREATE TABLE `channel_directory` (
-  `DirectoryID` varchar(20) NOT NULL,
-  `ChannelID` varchar(20) NOT NULL,
-  PRIMARY KEY (`DirectoryID`,`ChannelID`),
-  KEY `FK_channel_directory2` (`ChannelID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- ----------------------------
--- Records of channel_directory
--- ----------------------------
-INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0001');
-INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0001');
-INSERT INTO `channel_directory` VALUES ('DIR1005', 'Chan0002');
-INSERT INTO `channel_directory` VALUES ('DIR1006', 'Chan0002');
-INSERT INTO `channel_directory` VALUES ('DIR1007', 'Chan0002');
-INSERT INTO `channel_directory` VALUES ('DIR1002', 'Chan0003');
-INSERT INTO `channel_directory` VALUES ('DIR1005', 'Chan0003');
-INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0004');
-INSERT INTO `channel_directory` VALUES ('DIR1005', 'Chan0005');
-INSERT INTO `channel_directory` VALUES ('DIR1008', 'Chan0006');
-INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0007');
-INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0008');
-INSERT INTO `channel_directory` VALUES ('DIR1005', 'Chan0008');
-INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0009');
-INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0010');
-INSERT INTO `channel_directory` VALUES ('DIR1006', 'Chan0010');
-INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0011');
-INSERT INTO `channel_directory` VALUES ('DIR1002', 'Chan0012');
-INSERT INTO `channel_directory` VALUES ('DIR1004', 'Chan0012');
-INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0013');
-INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0014');
-INSERT INTO `channel_directory` VALUES ('DIR1006', 'Chan0015');
-INSERT INTO `channel_directory` VALUES ('DIR1002', 'Chan0016');
-INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0016');
-INSERT INTO `channel_directory` VALUES ('DIR1004', 'Chan0017');
-INSERT INTO `channel_directory` VALUES ('DIR1007', 'Chan0017');
-INSERT INTO `channel_directory` VALUES ('DIR1008', 'Chan0017');
-INSERT INTO `channel_directory` VALUES ('DIR1007', 'Chan0018');
-INSERT INTO `channel_directory` VALUES ('DIR1008', 'Chan0018');
-INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0019');
-INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0020');
-INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0021');
-INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0022');
-INSERT INTO `channel_directory` VALUES ('DIR1008', 'Chan0022');
-INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0023');
-INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0024');
-INSERT INTO `channel_directory` VALUES ('DIR1005', 'Chan0025');
-INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0026');
-INSERT INTO `channel_directory` VALUES ('DIR1004', 'Chan0027');
-INSERT INTO `channel_directory` VALUES ('DIR1006', 'Chan0028');
-INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0029');
-INSERT INTO `channel_directory` VALUES ('DIR1007', 'Chan0030');
-INSERT INTO `channel_directory` VALUES ('DIR1005', 'Chan0031');
-INSERT INTO `channel_directory` VALUES ('DIR1006', 'Chan0031');
-INSERT INTO `channel_directory` VALUES ('DIR1002', 'Chan0032');
-INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0032');
-INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0033');
-INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0034');
-INSERT INTO `channel_directory` VALUES ('DIR1006', 'Chan0035');
-INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0036');
-INSERT INTO `channel_directory` VALUES ('DIR1007', 'Chan0036');
-INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0037');
-INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0038');
-INSERT INTO `channel_directory` VALUES ('DIR1002', 'Chan0039');
-INSERT INTO `channel_directory` VALUES ('DIR1004', 'Chan0040');
-INSERT INTO `channel_directory` VALUES ('DIR1008', 'Chan0040');
-INSERT INTO `channel_directory` VALUES ('DIR1002', 'Chan0041');
-INSERT INTO `channel_directory` VALUES ('DIR1005', 'Chan0041');
-INSERT INTO `channel_directory` VALUES ('DIR1007', 'Chan0041');
-INSERT INTO `channel_directory` VALUES ('DIR1001', 'Chan0042');
-INSERT INTO `channel_directory` VALUES ('DIR1004', 'Chan0043');
-INSERT INTO `channel_directory` VALUES ('DIR1006', 'Chan0044');
-INSERT INTO `channel_directory` VALUES ('DIR1007', 'Chan0044');
-INSERT INTO `channel_directory` VALUES ('DIR1002', 'Chan0045');
-INSERT INTO `channel_directory` VALUES ('DIR1003', 'Chan0045');
-INSERT INTO `channel_directory` VALUES ('DIR1004', 'Chan0045');
-
-
--- ----------------------------
--- Table structure for directory
--- ----------------------------
-DROP TABLE IF EXISTS `directory`;
-CREATE TABLE `directory` (
-  `DirectoryID` varchar(20) NOT NULL,
-  `ParentID` varchar(20) NOT NULL,
-  `DirectoryName` varchar(20) NOT NULL,
-  PRIMARY KEY (`DirectoryID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of directory
--- ----------------------------
-INSERT INTO `directory` VALUES ('DIR0001', 'DIR0000', 'MiddleEastVIP');
-INSERT INTO `directory` VALUES ('DIR0002', 'DIR0000', 'EgyptVIP');
-INSERT INTO `directory` VALUES ('DIR0003', 'DIR0000', 'PalestineVIP');
-INSERT INTO `directory` VALUES ('DIR0004', 'DIR0000', 'IsraelVIP');
-INSERT INTO `directory` VALUES ('DIR0005', 'DIR0000', 'TurkeyVIP');
-INSERT INTO `directory` VALUES ('DIR0006', 'DIR0000', 'IranVIP');
-INSERT INTO `directory` VALUES ('DIR0007', 'DIR0000', 'AmericaLive');
-INSERT INTO `directory` VALUES ('DIR0008', 'DIR0000', 'BrazilLive');
-INSERT INTO `directory` VALUES ('DIR0009', 'DIR0000', 'EuropeLive');
-INSERT INTO `directory` VALUES ('DIR0010', 'DIR0000', 'CanadaLive');
-INSERT INTO `directory` VALUES ('DIR1001', 'DIR0001', 'Arabic');
-INSERT INTO `directory` VALUES ('DIR1002', 'DIR0001', 'Tunisia');
-INSERT INTO `directory` VALUES ('DIR1003', 'DIR0001', 'PreMium');
-INSERT INTO `directory` VALUES ('DIR1004', 'DIR0001', 'Sports');
-INSERT INTO `directory` VALUES ('DIR1005', 'DIR0001', 'Europe');
-INSERT INTO `directory` VALUES ('DIR1006', 'DIR0001', 'French');
-INSERT INTO `directory` VALUES ('DIR1007', 'DIR0001', 'Movies');
-INSERT INTO `directory` VALUES ('DIR1008', 'DIR0001', 'KIDS');
 
 -- ----------------------------
 -- Table structure for group
@@ -728,8 +737,8 @@ CREATE TABLE `iptvsoftware` (
 -- ----------------------------
 -- Records of iptvsoftware
 -- ----------------------------
-INSERT INTO `iptvsoftware` VALUES ('1', '修复交替进退在线影视与个人空间出现光标同时高亮的问题', '20121212', '1', '20150202', '1_iptv.zip');
-INSERT INTO `iptvsoftware` VALUES ('2', '新增以媒体文件类型分类显示', '20140202', '2', '20150212', '2_iptv.zip');
+INSERT INTO `iptvsoftware` VALUES ('1', '�޸������������Ӱ������˿ռ���ֹ��ͬʱ����������', '20121212', '1', '20150202', '1_iptv.zip');
+INSERT INTO `iptvsoftware` VALUES ('2', '������ý���ļ����ͷ�����ʾ', '20140202', '2', '20150212', '2_iptv.zip');
 
 -- ----------------------------
 -- Table structure for language
@@ -744,17 +753,17 @@ CREATE TABLE `language` (
 -- ----------------------------
 -- Records of language
 -- ----------------------------
-INSERT INTO `language` VALUES ('1', '国语');
-INSERT INTO `language` VALUES ('2', '英语');
-INSERT INTO `language` VALUES ('3', '日语');
-INSERT INTO `language` VALUES ('4', '韩语');
-INSERT INTO `language` VALUES ('5', '粤语');
-INSERT INTO `language` VALUES ('6', '印度语');
-INSERT INTO `language` VALUES ('7', '法语');
-INSERT INTO `language` VALUES ('8', '西班牙语');
-INSERT INTO `language` VALUES ('9', '俄语');
-INSERT INTO `language` VALUES ('10', '意大利语');
-INSERT INTO `language` VALUES ('11', '德语');
+INSERT INTO `language` VALUES ('1', '����');
+INSERT INTO `language` VALUES ('2', 'Ӣ��');
+INSERT INTO `language` VALUES ('3', '����');
+INSERT INTO `language` VALUES ('4', '����');
+INSERT INTO `language` VALUES ('5', '����');
+INSERT INTO `language` VALUES ('6', 'ӡ����');
+INSERT INTO `language` VALUES ('7', '����');
+INSERT INTO `language` VALUES ('8', '��������');
+INSERT INTO `language` VALUES ('9', '����');
+INSERT INTO `language` VALUES ('10', '�������');
+INSERT INTO `language` VALUES ('11', '����');
 
 -- ----------------------------
 -- Table structure for languageset
@@ -936,79 +945,79 @@ CREATE TABLE `media_catalog` (
 -- ----------------------------
 -- Records of media_catalog
 -- ----------------------------
-INSERT INTO `media_catalog` VALUES ('4', '画皮2', 'huapi2', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('5', '非诚勿扰 1-2 合辑', 'feichengwurao', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('7', '双城计中计', 'shuangzhongji', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('8', '致命替身', 'zhimingtishen', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('9', '四大名捕', 'sidamingbu', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('10', '哈维的最后机会', 'lastchancehavy', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('11', '双面女蝎星', 'pointofreturn', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('12', '醉饿游戏', 'zuieyouxi', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('14', '我，弗兰肯斯坦', 'wofulanke', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('15', '变形金刚', 'transformers', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('16', '冰雪奇缘', 'bingxueqingyuan', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('17', '名扬四海', 'mingyangsihai', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('18', '遥远的桥', 'yaoyuandeqiao', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('19', '巴顿将军', 'baodunjiangjun', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('20', '中途岛之战', 'zhongtudao', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('21', '天堂电影院', 'tiantangdianyingyuan', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('22', '西西里的美丽传说', 'xixilimeilichuanshuo', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('23', '里昂黑帮', 'liangheibang', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('24', '伴雨行', 'banyuxing', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('25', '方托马斯大战苏格兰场', 'fangtuomasi', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('26', '方托马斯合辑', 'fangtuomasiheji', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('27', '食人恋', 'shirenlian', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('28', '奇可和丽塔', 'qikehelita', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('29', '附身', 'fushen', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('30', '野蛮入侵', 'yemanruqin', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('31', '船长哈洛克', 'chuanzhanghualuoke', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('32', '贞子', 'zhenzi', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('33', '100次哭泣', 'yibaicikuqi', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('34', '十三刺客', 'shisancike', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('35', '短暂和平', 'duanzanheping', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('36', '热血青春', 'rexueqingchun', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('37', '大叔', 'dashu', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('38', '胡狼来了', 'hulang', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('39', '小企鹅南极历险记', 'xiaoqqlixianji', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('40', '汉江怪物', 'hanjiangguaiwu', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('41', '三国演义', 'sanguoyanyi', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('42', '葫芦娃', 'huluwa', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('43', '喜羊羊与灰太狼', 'xiyangyang', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('44', '铠甲勇士拿瓦', 'kaijiayongshi', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('45', '小鲤鱼历险记', 'xiaoliyulixianji', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('46', '黑礁', 'heijiao', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('47', '全金属狂潮', 'quanjinshu', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('48', '驱魔少年', 'qvmoshaonian', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('49', '一骑当千', 'yiqidangqian', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('50', '猫和老鼠', 'maohelaoshu', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('51', '邪恶力量', 'xieeliliang', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('52', '南方公园', 'nanfangongyuan', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('53', 'TED演讲集', 'ted', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('54', '斯坦福大学开放课程: 编程方法', 'sitanfubiaocheng', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('55', '耶鲁公开课：哲学与人性', 'zhexueyurenxing', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('56', '耶鲁大学开放课程：金融理论', 'jinronglilun', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('57', '耶鲁大学开放课程：金融市场', 'jinrongshichang', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('58', '麻省理工学院开放课程：算法导论', 'suanfadaolun', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('59', '斯坦福大学开放课程: 编程范式', 'bianchengfanshi', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('60', '耶鲁大学开放课程：资本主义：成功、危机与改革', 'zibenzhuyi', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('4', '��Ƥ2', 'huapi2', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('5', '�ǳ����� 1-2 �ϼ�', 'feichengwurao', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('7', '˫�Ǽ��м�', 'shuangzhongji', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('8', '��������', 'zhimingtishen', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('9', '�Ĵ�����', 'sidamingbu', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('10', '��ά��������', 'lastchancehavy', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('11', '˫��ŮЫ��', 'pointofreturn', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('12', '������Ϸ', 'zuieyouxi', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('14', '�ң�������˹̹', 'wofulanke', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('15', '���ν��', 'transformers', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('16', '��ѩ��Ե', 'bingxueqingyuan', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('17', '�����ĺ�', 'mingyangsihai', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('18', 'ңԶ����', 'yaoyuandeqiao', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('19', '�Ͷٽ���', 'baodunjiangjun', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('20', '��;��֮ս', 'zhongtudao', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('21', '���õ�ӰԺ', 'tiantangdianyingyuan', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('22', '�������������˵', 'xixilimeilichuanshuo', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('23', '�ﰺ�ڰ�', 'liangheibang', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('24', '������', 'banyuxing', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('25', '������˹��ս�ո�����', 'fangtuomasi', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('26', '������˹�ϼ�', 'fangtuomasiheji', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('27', 'ʳ����', 'shirenlian', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('28', '��ɺ�����', 'qikehelita', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('29', '����', 'fushen', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('30', 'Ұ������', 'yemanruqin', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('31', '���������', 'chuanzhanghualuoke', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('32', '����', 'zhenzi', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('33', '100�ο���', 'yibaicikuqi', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('34', 'ʮ���̿�', 'shisancike', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('35', '���ݺ�ƽ', 'duanzanheping', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('36', '��Ѫ�ഺ', 'rexueqingchun', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('37', '����', 'dashu', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('38', '��������', 'hulang', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('39', 'С����ϼ����ռ�', 'xiaoqqlixianji', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('40', '��������', 'hanjiangguaiwu', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('41', '��������', 'sanguoyanyi', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('42', '��«��', 'huluwa', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('43', 'ϲ�������̫��', 'xiyangyang', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('44', '������ʿ����', 'kaijiayongshi', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('45', 'С�������ռ�', 'xiaoliyulixianji', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('46', '�ڽ�', 'heijiao', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('47', 'ȫ������', 'quanjinshu', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('48', '��ħ����', 'qvmoshaonian', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('49', 'һ�ﵱǧ', 'yiqidangqian', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('50', 'è������', 'maohelaoshu', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('51', 'а������', 'xieeliliang', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('52', '�Ϸ���԰', 'nanfangongyuan', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('53', 'TED�ݽ���', 'ted', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('54', '˹̹����ѧ���ſγ�: ��̷���', 'sitanfubiaocheng', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('55', 'Ү³�����Σ���ѧ������', 'zhexueyurenxing', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('56', 'Ү³��ѧ���ſγ̣���������', 'jinronglilun', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('57', 'Ү³��ѧ���ſγ̣������г�', 'jinrongshichang', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('58', '��ʡ����ѧԺ���ſγ̣��㷨����', 'suanfadaolun', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('59', '˹̹����ѧ���ſγ�: ��̷�ʽ', 'bianchengfanshi', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('60', 'Ү³��ѧ���ſγ̣��ʱ����壺�ɹ���Σ����ĸ�', 'zibenzhuyi', '2014-03-22', 'http://sfdasfasf');
 INSERT INTO `media_catalog` VALUES ('61', 'CCTV-1', 'CCTV-1', '2014-03-22', 'http://sfdasfasf');
 INSERT INTO `media_catalog` VALUES ('62', 'CCTV-2', 'CCTV-2', '2014-03-22', 'http://sfdasfasf');
 INSERT INTO `media_catalog` VALUES ('63', 'CCTV-3', 'CCTV-3', '2014-03-22', 'http://sfdasfasf');
 INSERT INTO `media_catalog` VALUES ('64', 'CCTV-4', 'CCTV-4', '2014-03-22', 'http://sfdasfasf');
 INSERT INTO `media_catalog` VALUES ('65', 'CCTV-5', 'CCTV-5', '2014-03-22', 'http://sfdasfasf');
 INSERT INTO `media_catalog` VALUES ('66', 'CCTV-6', 'CCTV-6', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('67', '湖南卫视', 'HNTV', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('68', '江苏卫视', 'JSTV', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('69', '浙江卫视', 'ZSTV', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('70', '东方卫视', 'DFTV', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('71', '天津影视', 'TJYS', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('72', '天津都市', 'TJDS', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('73', '天津体育', 'TJTY', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('74', '凤凰卫视', 'FHTV', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('75', '香港卫视', 'HKTV', '2014-03-22', 'http://sfdasfasf');
-INSERT INTO `media_catalog` VALUES ('76', '啦啦啦', 'lalala', null, null);
-INSERT INTO `media_catalog` VALUES ('80', '啦啦啦', '', null, null);
-INSERT INTO `media_catalog` VALUES ('81', '雷神', 'Thor ', null, null);
+INSERT INTO `media_catalog` VALUES ('67', '��������', 'HNTV', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('68', '��������', 'JSTV', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('69', '�㽭����', 'ZSTV', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('70', '��������', 'DFTV', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('71', '���Ӱ��', 'TJYS', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('72', '�����', 'TJDS', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('73', '�������', 'TJTY', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('74', '�������', 'FHTV', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('75', '�������', 'HKTV', '2014-03-22', 'http://sfdasfasf');
+INSERT INTO `media_catalog` VALUES ('76', '������', 'lalala', null, null);
+INSERT INTO `media_catalog` VALUES ('80', '������', '', null, null);
+INSERT INTO `media_catalog` VALUES ('81', '����', 'Thor ', null, null);
 
 -- ----------------------------
 -- Table structure for media_desc
@@ -1042,77 +1051,77 @@ CREATE TABLE `media_desc` (
 -- ----------------------------
 -- Records of media_desc
 -- ----------------------------
-INSERT INTO `media_desc` VALUES ('4', '画皮2', '4', '1', '1', '20120808', '乌尔善', '费翔 / 冯绍峰 / 杨幂', '妖狐小 唯（周迅 饰）因救人违反妖界规则，被封冻在寒冰地狱中度过了五百年，痛苦不堪。在命运面前，逃离冰窟的小唯只有两个选择：要么被寒冰地狱的冰舌抓回去，要么获得一 颗“主动奉献”的人心真正成人。小唯四处寻找目标，直到偶遇逃婚并因一次意外被毁容的靖公主（赵薇 饰）。小唯很快发现，公主有一颗与众不同的心，她把变成人的理想全部寄托在公主身上。', '80', 'bcc91714.jpg', '1', null, null, null);
-INSERT INTO `media_desc` VALUES ('5', '非诚勿扰 1-2 合辑', '5', '1', '1', '20120505', '冯小刚', '葛优 / 舒淇 / 方中信 / 胡可 / 徐若瑄 / 范伟 ', '海归秦奋（葛优 饰）的天才发明“分歧终端机”因能公平和平地解决人类分歧，被风投者以200万英镑高价买走。秦奋也开始踏上网上征婚的路途，一路笑话不断，不是重遇 Gay友，就是遇到推销客，秦奋颇有点心灰意冷，以致遇到清冷女子梁笑笑（舒淇 饰）时便开门见山请求对方说明来意。这次更为棘手，笑笑爱上有妇之夫，陷于苦恋中不停挣扎，这次纯属听从家里人安排才出来与秦奋见上一面。不再打算再见的 二人尽情地分享了生命中最隐秘的秘密。', '85', 'bcc91715.jpg', '1', null, null, null);
-INSERT INTO `media_desc` VALUES ('7', '双城计中计', '7', '1', '1', '20120204', '潘安子', '翁虹 / 刘承俊 / 熊乃瑾 / 腾格尔', '在赌场内“散步”的小老千陈少卿欠下黑道老大林啸东一只手，为了保住这只手，陈少卿不得已将一条财路乖乖奉上。并带着林啸东找到假扮探长肥唐行骗的“千面鬼脸”以及躲在监狱中颐养天年的“不动石佛”两位江湖巨骗。', '35', 'bcc91717.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('8', '致命替身', '8', '1', '1', '20121116', '过华', '刘青 / 魏建云 / 王诗乔', '北漂女孩应佳（刘青 饰）怀着当明星的梦想，在这座城市里靠跑剧组来寻找演戏的机会。半个月没有接到戏的她，在接到某剧组试戏通知后，跟随副导一同驱车前往郊外的艺术顾问那里试戏。试戏结束，就在他们准备回去的时候，车子却意外出了故障。无奈之下，应佳只能在郊外暂宿一晚。半夜，被噩梦惊醒的应佳发 现自己在睡梦中被剁掉一根手指。而这不过是个开始，她逃跑失败再次被囚禁在这个阴森恐怖的房间里，无意间她发现通往密室的暗门。在这密室内藏了一具与应佳长得很像的女尸。应佳明白在这精心设计的谎言背后等待她的只有死亡，只有自救才能生存。一场惊心动魄的密室逃生由此展开', '50', 'bcc91718.jpg', '1', null, null, null);
-INSERT INTO `media_desc` VALUES ('9', '四大名捕', '9', '1', '1', '20120712', '陈嘉上', '郑中基 / 刘亦菲 / 邓超', '《四大名捕》是光线影业酝酿多年的计划，公司总顾问陈嘉上亲自执导该片，饰演四大名捕的演员也已经确定，冷血、无情、铁手、追命四人的扮演者分别是邓超、刘亦菲、邹兆龙和郑中基。', '60', 'bcc91719.jpg', '1', null, null, null);
-INSERT INTO `media_desc` VALUES ('10', '哈维的最后机会', '10', '2', '2', '20080819', '乔尔·霍普金斯', '帕特里克·巴拉迪 / 丹尼尔·莱派恩 ', '哈维的梦想本是做一名出色的爵士乐钢琴家，而现实却是他在纽约一家音乐工作室做广告歌曲的编曲人，老板对他的工作很不满意，早就有解雇他的打算，只不过看在往日情面上，才给了人到中年的哈维再一次机会，前提是不能再出任何差错。哈维打算去伦敦参加感情疏远的女儿的婚礼，在那里他的前妻给所有的亲戚朋友都租好了房子让他们可以歇息，但独独忘记了哈维。', '80', 'bcc91720.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('11', '双面女蝎星', '11', '2', '2', '19930202', '哈威·凯尔', '安妮·班克罗夫特', '麦琪因枪杀警察而被判死刑。当毒剂注入她的身体，她渐渐昏去。醒来时，她得知自己真实身份已经死亡，如果想要继续活命，就必须担当政府的杀手。经过一番脱胎换骨的训练，麦琪以新的身份重入社会，重新领略了生活的意义。而同时，她也产生了摆脱政府控制的想法。一场对立迅速展开', '72', 'bcc91721.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('12', '醉饿游戏', '12', '2', '2', '20140218', 'Josh Stolb', 'Ross Natha / Ben Begley ', '还记得在《醉后大丈夫》中的那4位难兄难弟的每一个失控单身派对吗？或是凯妮丝在《飢饿游戏》里无人能比的智慧与勇气（以及帅炸了的连恩汉斯沃）？看过电 影的人势必不会错过经典桥段，那　当4位喝醉了的大丈夫煳里煳涂地参加残酷的飢饿游戏时，又会擦出什么火花呢？就让醉饿游戏来演给大家看！', '60', 'bcc91722.jpg', '1', null, null, null);
-INSERT INTO `media_desc` VALUES ('14', '我，弗兰肯斯坦', '14', '2', '2', '20140114', '斯图尔特·比蒂', '艾伦·艾克哈特 / 伊冯娜·斯特拉霍夫斯', '《我，弗兰肯斯坦》与《绅士大联盟》（League Of Extraordinary Gentlemen）类似，也是把一群本来生活在不同文艺作品里的经典人物集中到了一个故事里，所不同的是，《我，弗兰肯斯坦》里集合的全都是怪物。', '73', 'bcc91724.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('15', '变形金刚系列', '15', '2', '2', '20070823', '迈克尔·贝', '希亚·拉博夫 / 梅根·福克斯', '故事由赛伯坦被威震天（Megatron）毁灭开始讲起，威震天为了找回可以为一切无生命物体注入生命能量的“火种源”（Allspark）用以称霸宇宙，只身来到了地球。可是他却不慎掉入北冰洋，被冰冻住。1897年，亚奇帕德·维特维奇船长（Archibald Witwicky）带领他的船员进入北冰洋，不慎坠入深洞，发现了威震天。', '99', 'bcc91725.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('16', '冰雪奇缘', '16', '2', '2', '20131117', '克里斯·巴克 / 詹妮弗·李', '克里斯汀·贝尔 / 乔纳森·格罗夫', '故事讲述一个严冬咒语令王国被冰天雪地永久覆盖，乐观无畏的安娜（克里斯汀·贝尔配音）和热爱冒险的山民克里斯托夫（乔纳森·格罗夫配音）以及他的驯鹿搭档组队出发，展开一段魔法层出不穷、旅程峰回路转的大冒险，以寻找安娜的姐姐——冰雪皇后艾莎（伊迪娜·门泽尔配音），破解她的冰封魔咒。一路上他们遇到搞笑的神奇雪人、各式奇幻精灵、意想不到的魔法迷阵，更在雪崩冰裂中步步惊心……他们最终能否拯救王国？', '90', 'bcc91726.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('17', '名扬四海', '17', '2', '2', '20091223', '凯文·唐查罗恩', '凯·帕娜贝克 / 娜图里·劳顿', '在纽约表演艺术高中里，聚集着一群在唱歌、舞蹈和表演上极有天赋的年轻学生。他们要在这里接受4年的学习。在毕业之后，他们就要为自己的理想而奋斗。或是被星探发现一举成名，或是参加选秀节目摘得头名……总之，每个人都有自己的奋斗目标、每个人都有自己的终极梦想。', '95', 'bcc91727.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('18', '遥远的桥', '18', '2', '2', '19770615', '理查德·阿滕伯勒', '詹姆斯·凯恩 / 迈克尔·凯恩', '欧战尾声，盟军上下逐渐弥漫着乐观的情绪。为了提前结束战争，各地盟军将领认为只要一番猛攻，便可提早直捣柏林结束战争。于是轻率地将大批伞兵空投在德军营地背后，去攻占阿纳姆的那座横跨莱茵河的大桥。不料遭遇德军的顽强抵抗，盟军付出了伤亡惨重的代价。这场堪称二战中最具戏剧性的战役，终以盟军的惨痛失败而告终。', '98', 'bcc91728.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('19', '巴顿将军', '19', '2', '2', '19770718', '富兰克林·沙夫纳', '乔治·C·斯科特 / 卡尔·莫尔登 ', '1943年3月，巴顿率美军在法属摩洛哥登陆后临危受命，担任美军在北非的第二军团长，性格强势、钟情古典文化又熟稔战史相信灵魂转世的巴顿很快用铁血律令扭转了北非部队的散漫风格，连番激战后与蒙哥马利统率的英军合力将“沙漠之狐”隆美尔赶出了北非。', '97', 'bcc91729.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('20', '中途岛之战', '20', '2', '2', '19760618', '杰克·斯米特', '查尔登·海斯顿 / 格伦·福特 ', '七十年代出品的大型战争片之一，焦点是美国与日本海军对垒的中途岛战役。在当年的一批同类电影之中，本片不算是突出之作，导演杰克．斯米特的处理手法相对比较平庸，但超级明星阵容却可以令今天的观众重睹上一代巨星风采，而海战的场面也实在拍得逼真，使本片仍维持了相当的趣味性。', '98', 'bcc91730.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('21', '天堂电影院', '21', '14', '10', '19881118', '朱塞佩·托纳多雷', '萨瓦特利·卡西欧 / 恩佐·卡拉瓦勒', '意大利南部小镇，古灵精怪的小男孩多多在胶片中找到了童年生活的乐趣。', '99', 'bcc91731.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('22', '西西里的美丽传说', '22', '14', '10', '20001027', '朱塞佩·托纳多雷', '莫妮卡·贝鲁奇 / 圭塞佩·苏尔法罗', '1941年，整个世界都被笼罩在二战的硝烟之中，但西西里岛仍是一片宁和，这里正是男孩雷纳托的家乡。他和所有13岁的孩子一样，天真、快乐、不安分，对生活充满幻想。终于有一天遇到了永远改变他生活的女人——梅琳娜。', '99', 'bcc91732.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('23', '里昂黑帮', '23', '9', '7', '20140114', '奥利维埃·马夏尔', '切基·卡尤 / 热拉尔·朗万', '成长在贫穷的吉普赛营地的埃德蒙·维达尔，又名摩门，保有着一份对家庭的责任感，无限忠诚与骄傲。尤其是，他和因偷窃而入狱的瑟奇·舒特尔依然保存着 友谊。两人无可避免的卷入到犯罪组织，六七十年代昂匪帮因持械抢劫而臭名卓著。不断壮大的匪帮在70年代中期得以遏制。', '80', 'bcc91733.jpg', '1', null, null, null);
-INSERT INTO `media_desc` VALUES ('24', '伴雨行', '24', '9', '7', '20130527', '陈英雄', '乔什·哈奈特', '洛杉矶警察克莱因在办案中惨遭羞辱，罪犯嗜血如命，喜欢肢解活人。克莱因身受重伤，仍侥幸活命，但心底留下阴影，被迫革职。3年后，一位中国富商委托克莱因帮忙寻找失 踪儿子师涛（木村拓哉 Takuya Kimura 饰），他来到香港，接待他的是好友孟子（余文乐 Shawn Yue 饰），后者亦是警察。', '76', 'bcc91734.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('25', '方托马斯大战苏格兰场', '25', '9', '7', '19700316', '安德里·胡尼贝勒', '路易·德·菲耐斯 / 让·马莱 / 麦琳娜·德蒙吉奥', '善于易容术的大盗方托马斯假扮成律师来到拉谢里爵士家，他提出所有的富人要想活命就必须缴纳生存权力税，否则将死在自己的手中。身价排名世界第三的拉谢里爵士当然要首当其冲，只要他肯交钱，其他富豪自然会效仿。方托马斯离开前限定了交钱的日期，拉谢里爵士只得向警方寻求帮助。', '68', 'bcc91735.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('26', '方托马斯合辑', '26', '9', '7', '19641107', '安德里·胡尼贝勒', '路易·德·菲耐斯 / 让·马莱 / 麦琳娜·德蒙吉奥', '善于易容术的大盗方托马斯假扮成律师来到拉谢里爵士家，他提出所有的富人要想活命就必须缴纳生存权力税，否则将死在自己的手中。身价排名世界第三的拉谢里爵士当然要首当其冲，只要他肯交钱，其他富豪自然会效仿。方托马斯离开前限定了交钱的日期，拉谢里爵士只得向警方寻求帮助。', '70', 'bcc91736.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('27', '食人恋', '27', '11', '8', '20131113', '曼纽尔·马丁·昆卡', '安东尼奥·德拉·托雷', '经营裁缝店的卡洛斯安静优雅，他生活在西班牙一座静谧舒适的小镇，每天只是裁剪和烹饪美食，爱情仿佛与他完全绝缘。那天，卡洛斯所在的公寓搬来一位名叫亚历珊德拉 （Olimpia Melinte 饰）的金发美丽女子。', '76', 'bcc91737.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('28', '奇可和丽塔', '28', '11', '8', '20101119', 'Tono Errando ', 'Limara Meneses', '故事发生在1948年的古巴，一次偶然中，钢琴师奇可结识了名叫丽塔的年轻女子，丽塔美妙的歌声吸引了奇可的注意，心心相惜的两颗心碰撞出了爱情的火花。', '65', 'bcc91738.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('29', '附身', '29', '10', '2', '20130527', '文森佐·纳塔利', '阿比盖尔·布蕾斯琳 / 大卫·休莱特', '影片主要讲了由阿比吉尔·布莱斯林饰演的女孩莉莎总是不断重回1985年的某天，同时，她遭遇的一系列惊悚事件也推动着她必须去解开这个谜团——为什么自己循环往复地回到这个奇怪的炼狱', '85', 'bcc91739.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('30', '野蛮入侵', '30', '10', '2', '20101013', '丹尼斯·阿康特', '雷米·吉拉德', '与父亲形同陌路的塞巴斯蒂安忽然接到母亲路易丝的电话，那个风流成性的历史教授父亲莱米如今躺在医院里，命不久矣。塞巴斯蒂安在一番犹豫之后赶回蒙特利尔，陪父亲走过最后一段时 光。多年的隔膜以及生活方式的差异让这对父子从一开始就吵了个天翻地覆，但塞巴斯蒂安还是想尽办法让父亲平静的走完最后的日子。', '74', 'bcc91740.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('31', '船长哈洛克', '31', '3', '3', '20131113', '荒牧伸志', '小栗旬 / 三浦春马', '根据松本零士原作漫画《宇宙海盗船长哈洛克》改编 。总制作费高达3000万美元的日本CG动画片《船长哈洛克》于2013年9月日本上映。声优由小栗旬，三浦春马，苍井优等担当。', '85', 'bcc91741.jpg', '1', null, null, null);
-INSERT INTO `media_desc` VALUES ('32', '贞子', '32', '3', '3', '20130525', '英勉', '泷本美织 / 濑户康史', '五年前，神秘的诅咒视频大肆泛滥，造成了令人难以估量的死亡事件和骚动。在此之后，鲇川茜（石原里美 饰）与安藤孝则（濑户康史 饰）结为夫妇，并生下可爱的女儿凪（平泽宏路路 饰）。可悲的是茜在产子后不久死去，孝则于是将女儿托付给就读临床心理学的妹妹枫子（泷本美织 饰）抚养。凪性格自闭，不愿与任何人交流，枫子为此颇感烦恼，却依旧努力和小侄女沟通，坚信总有一天可以令自幼失去母亲的凪敞开心扉。', '45', 'bcc91742.jpg', '1', null, null, null);
-INSERT INTO `media_desc` VALUES ('33', '100次哭泣', '33', '3', '3', '20100215', '广木隆一', '大仓忠义 / 桐谷美玲 ', '因为四年前的摩托车事故，藤井（大仓忠义）患上了逆行性健忘，失去了车祸前一年的记忆，忘记了他当时的女朋友佳美（桐谷美玲）的存在。', '87', 'bcc91743.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('34', '十三刺客', '34', '3', '3', '20100925', '三池崇史', '役所广司 / 山田孝之', '已是江户时代后期，时有明石藩江户之家老间宫图书（内野聖陽 饰）在幕府老中土井大炊头（平幹二朗 饰）的宅前自杀，此举引起朝野震动。一切皆由明石藩主齐昭（稲垣吾郎 饰）而起。齐昭系现任将军的异母弟弟，其人嗜血如命、暴虐无常，引起朝廷上下诸多人等的不满，然齐昭已内定成为下任老中。为免苍生遭其荼毒，土井授意岛田 新作卫门（役所広司 饰）在齐昭回藩途中予以刺杀。', '90', 'bcc91744.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('35', '短暂和平', '35', '3', '3', '20131210', '大友克洋', '早见沙织', '《短暂和平》由四个短片构成，情节上相互独立，在“日本”这个主题下，从历史、传统文化、亚文化、未来等不同维度来讲述故事。', '99', 'bcc91745.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('36', '热血青春', '36', '4', '4', '20140122', '李莲雨', '李钟硕 / 朴宝英 / 金英光', '《热血青春》讲述八十年代曾在忠南洪城一带非常有名的女生混混、传说的花花公子、火凤凰派老大，首尔来的转学生等青春男女的热血浪漫爱情故事。', '70', 'bcc91746.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('37', '大叔', '37', '4', '4', '20140805', '李政范', '元斌 / 金赛纶 / 金熙元', '妻子不幸去世后，前特殊要员泰锡（元彬饰）靠经营当铺生意为生，除了来店里委托当物的客人和住在隔壁的小女孩小米（金赛纶饰），他几乎不会主动与人交往和外出，因此有不少人怀疑他是隐姓埋名的犯罪者，生活有些寂寞冷清。', '85', 'bcc91747.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('38', '胡狼来了', '38', '4', '4', '20130716', '裴炯俊', '金在中 / 宋智孝 / 韩相镇', '传说中的冷艳女杀手奉敏静在隐退前接到一个谢幕任务——除掉现今顶尖红星“花美男”崔贤。为此，她潜入崔贤下榻的酒店，并成功绑架目标人物。在奉敏静的淫威之下，傲慢自大的崔贤不得不忍辱偷生，甚至谎称自己其实是山寨歌手崔宪，以求自保。', '71', 'bcc91748.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('39', '小企鹅南极历险记', '39', '4', '4', '20120222', '金晋滿 / 金在容', '宋钟基', '在父母永不息止的爱下，小皇帝企鹅Pengi和Sommi从蛋壳中苏醒过来。Pengi非常馋嘴，简直就是南极捣蛋小企鹅第一名；相反，可爱的Sommi 就文静得多，最喜欢躲在爸爸的怀里，它们慢慢就成为了好朋友。有一天，Sommi的爸爸到海边去觅食，好为冬天储备粮食，一去就没有回来。孤单的 Sommi独自面对寒冷和饥饿，Pengi拼命的想保护好友，助它渡过困难。最后，Pengi和Sommi能否排除万难成为又健康又美丽的成年皇帝企鹅？', '84', 'bcc91749.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('40', '汉江怪物', '40', '4', '4', '20060711', '奉俊昊', '宋康昊 / 朴海日 / 裴斗娜', '康斗（宋康昊饰）是一个平凡又有些糊涂的中年男人，他带着女儿玄舒（高雅成饰）与家人一起生活，在汉江边经营小店，过着安静祥和的生活。康斗父亲熙峰（边 熙峰饰）是一个和蔼老人，弟弟南日（朴海日饰）是家里唯一的大学生，却失业没有工作。他时常牢骚并酗酒，对现实不满。妹妹南珠（裴斗娜饰）是个射箭运动 员，却常在关键时刻掉链子。', '90', 'bcc91750.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('41', '三国演义', '41', '1', '1', '20091210', '朱敏', '徐涛 / 张震 / 李立宏', '三国时期三股最强的政治势力曹操、孙权、刘备之间错综复杂而充满张力的斗争，集中体现了那个时代层出不穷的杰出人物，以及他们的英勇行为和高强战略。', '95', 'bcc91751.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('42', '葫芦娃', '42', '1', '1', '19860212', '胡进庆', '姚忠礼', '一位老爷爷在山上采药，无意中进入了一个山洞，在洞中他救下一只穿山甲。穿山甲告诉老爷爷自己不小心穿破葫芦山，放走了蛇蝎二妖。穿山甲帮助老爷爷取出了能降妖服魔的宝葫芦籽。', '99', 'bcc91752.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('43', '喜羊羊与灰太狼', '43', '1', '1', '20050601', '黄伟明', '祖丽晴 / 张琳', '《喜羊羊与灰太狼》以羊和狼两大族群间妙趣横生的争斗为主线，剧情的轻松诙谐风格，情节爆笑，对白幽默。', '98', 'bcc91753.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('44', '铠甲勇士拿瓦', '44', '1', '1', '20131106', '郑国伟', '曹曦月', '马天与邪恶的李总（李笑愁）合作，企图发明可怕传染病毒和疫苗来大赚黑心钱，未料在一次运输意外中将未成熟的病毒扩散在城市里，此阶段的病毒会选择有犯罪基因的人做为宿主，并变异人类基因成为暴恶兽人-欧克瑟。', '85', 'bcc91754.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('45', '小鲤鱼历险记', '45', '1', '1', '20131106', '张族全', '伍凤春', '中央电视台耗资3600万元打造的大型动画电视连续剧《小鲤鱼历险记》是继四年前《哪吒传奇》之后央视推出的又一动画巨作。《小鲤鱼历险记》全剧共52集，总长1000多分钟，取材于中国古老的民间传说“小鲤鱼跳龙门”，不过在剧情上已经“面目全非”，据参与前期工作的有关人员透露该剧在制作过程中充分考虑了当今孩子的心理特点与喜好，无论从剧情设计、动画特效还是语言对白上都深受孩子们欢迎。', '96', 'bcc91755.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('46', '黑礁', '46', '3', '3', '20060408', '片渕须直', '浪川大辅', '故事的地点设在一个虚构的泰国海滨城市——罗阿那普拉（Roanapur），那里是黑帮和雇佣兵的天堂。黑礁商会的雇主多为聚集在罗阿那普拉的各大黑帮势 力，也包括一些临时出现的散客。任务一般是在海上运送各种各样的“货物”，包括带人跑路。黑礁商会主要的运输工具是一艘军用鱼雷快艇，但鱼雷只在第一话中 发射过，他们更多还是习惯于使用手枪、机枪等轻武器。值得一提的是在黑礁里出现的各种武器和运输工具大多在现实中存在，并非作者虚构的。', '99', 'bcc91756.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('47', '全金属狂潮', '47', '3', '3', '19980408', '贺东招二', '关智一', '《全金属狂潮》（台译《惊爆危机》）是一个年代设定为90年代，背景为冷战的架空世界，铁幕将世界分为东方和西方，美国和苏联两个超级大国维持着庞大的军 队，各自扶植了北大西洋公约和华沙条约两个组织，在世界范围内进行进攻和防御。从不正面交锋的东方和西方向各个敏感地区渗透自己的势力，无论是密林丛生的 中美洲还是千里戈壁的中亚，局部战争时有发生。', '99', 'bcc91757.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('48', '驱魔少年', '48', '3', '3', '20061003', '锅岛修', '小林沙苗', '在很久很久以前千年伯爵曾经想霸占地球，但有人用神的力量消灭千年伯爵后世界恢复和平，但预言说：千年伯爵会再度来临……', '99', 'bcc91758.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('49', '一骑当千', '49', '3', '3', '20061003', '渡部高志', '浅野真澄', '一骑当千是日本的大热ACG系列，由于内容与三国有一定关联，一直备受争议。系列横跨漫画、动画、游戏、周边产品等多个领域，原作为漫画家盐崎 雄二的同名漫画，2000年开始于漫画杂志《COMIC GUM》上连载至今，而后有TV动画四季和改编游戏3作。', '61', 'bcc91759.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('50', '猫和老鼠', '50', '2', '2', '19400101', '约瑟·巴贝拉', '汤姆 / 杰利', '猫和老鼠》采用了猫与鼠的原型，故事情节围绕一只常见的家猫汤姆和与它同居一室却难以抓住的老鼠杰瑞展开', '78', 'bcc91760.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('51', '邪恶力量', '51', '2', '2', '20081226', '宫繁之', '詹森·阿克斯 / 贾德·帕达里克', '《邪恶力量》，又译《狙魔人》（香港译）、《超自然档案》（台湾译），是由美国CW电视台播出的讲述灵异超自然现象的电视剧。在加拿大拍摄。该剧主要是在讲述两兄弟山姆·温彻斯特和迪恩·温彻斯特开着1967年的黑色雪佛兰“羚羊” 穿梭在美国各处调查超自然或不可思议的事件并与之战斗的故事，故事大多来自于美国的都市传说和民间传说。', '69', 'bcc91761.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('52', '南方公园', '52', '2', '2', '19990310', '崔·帕克', '特雷·帕克', '《南方公园》，其他译法包括《衰仔乐园》（港版翻译）或《南方四贱客》，是美国喜剧中心（Comedy Central）制作的一部剪纸摆拍动画剧集，由Matt Stone和Trey Parker创作。', '75', 'bcc91762.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('53', 'TED演讲集', '53', '2', '2', '20060627', '', '', '从2006年起，TED演讲的视频被上传到网上。截至2010年4月，TED官方网站上收录的TED演讲视频已达650个，有逾五千万的网民观看了TED演讲的视频。所有的TED演讲的视频都是以创用CC的方式予以授权的。', '86', 'bcc91763.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('54', '斯坦福大学开放课程: 编程方法', '54', '2', '2', '20050305', '', '', '本课程是最大的编程入门课程，也是斯坦福大学主要课程之一。介绍了当代程序设计基本思想：面向对象，模块化，封装，抽象化与测试。', '85', 'bcc91764.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('55', '耶鲁公开课：哲学与人性', '55', '2', '2', '20120407', '', '', '本课程是耶鲁公开课哲学与人性。', '85', 'bcc91765.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('56', '耶鲁大学开放课程：金融理论', '56', '2', '2', '20110311', '', '', '这门课程主要致力于解释金融系统在全球经济的背景下所扮演的角色及其重要性。 约翰.扬纳科普洛斯教授并没有把金融世界和经济世界分解开来，他将金融平衡作为经济平衡的一种补充来讲授。这门课程还将通过对冲基金来提供一种思考与分析的角度。', '90', 'bcc91766.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('57', '耶鲁大学开放课程：金融市场', '57', '2', '2', '20120602', '', '', '金融机构是文明社会的重要支柱。它们为投资活动提供支持及风险管理。如果我们想要预测金融机构动态及他们在这个信息时代中的发展态势，我们必须对其业务有 所了解。本课程将涉及的内容有：金融学理论、金融业的发展历程、金融机构（例如银行、保险公司、证券公司、期货公司及其他衍生市场）的优势与缺陷以及这些 机构的未来发展前景。', '89', 'bcc91767.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('58', '麻省理工学院开放课程：算法导论', '58', '2', '2', '20131012', '', '', '介绍一下课堂录像里面授课的两位MIT的老师，第一位，外表“绝顶聪明”的，是本书的第二作者Charles E. Leiserson，以逻辑严密，风趣幽默享MIT。第二位，留着金黄色的络腮胡子和马尾发的酷哥是Erik Demaine，21岁即取得MIT教授资格的天才，1981出生，今年才25岁，业余爱好是俄罗斯方块、演戏、琉璃、折纸、杂耍、魔术和结绳游戏。', '74', 'bcc91768.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('59', '斯坦福大学开放课程: 编程范式', '59', '2', '2', '20060224', '', '', 'c和c++高级内存管理特征。命令范式和面向对象范式的差别。函数范式--使用LISP和并发编程--使用c和c++。简单介绍一些其他流行的语言，如Python、Objective-C和C#。', '96', 'bcc91769.jpg', '2', '20150317', '20160302', '1');
-INSERT INTO `media_desc` VALUES ('60', '耶鲁大学开放课程：资本主义', '60', '2', '2', '20060224', '', '', '本课将用源自生物演化的思路，来诠释资本主义', '99', 'bcc91770.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('4', '��Ƥ2', '4', '1', '1', '20120808', '�ڶ���', '���� / ���ܷ� / ����', '����С Ψ����Ѹ �Σ������Υ��������򣬱��ⶳ�ں��������жȹ�������꣬ʹ�಻������������ǰ��������ߵ�СΨֻ������ѡ��Ҫô�����������ı���ץ��ȥ��Ҫô���һ �š��������ס��������������ˡ�СΨ�Ĵ�Ѱ��Ŀ�ֱ꣬��ż���ӻ鲢��һ�����ⱻ���ݵľ���������ޱ �Σ���СΨ�ܿ췢�֣�������һ�����ڲ�ͬ���ģ����ѱ���˵�����ȫ�������ڹ������ϡ�', '80', 'bcc91714.jpg', '1', null, null, null);
+INSERT INTO `media_desc` VALUES ('5', '�ǳ����� 1-2 �ϼ�', '5', '1', '1', '20120505', '��С��', '���� / ��� / ������ / ���� / �����u / ��ΰ ', '�����طܣ����� �Σ�����ŷ����������ն˻������ܹ�ƽ��ƽ�ؽ��������磬����Ͷ����200��Ӣ���߼����ߡ��ط�Ҳ��ʼ̤�����������·;��һ·Ц�����ϣ��������� Gay�ѣ��������������ͣ��ط����е��Ļ����䣬������������Ů����ЦЦ����� �Σ�ʱ�㿪�ż�ɽ����Է�˵�����⡣��θ�Ϊ���֣�ЦЦ�����и�֮�����ڿ����в�ͣ��������δ������Ӽ����˰��Ųų������طܼ���һ�档���ٴ����ټ��� ���˾���ط����������������ص����ܡ�', '85', 'bcc91715.jpg', '1', null, null, null);
+INSERT INTO `media_desc` VALUES ('7', '˫�Ǽ��м�', '7', '1', '1', '20120204', '�˰���', '�̺� / ���п� / ����� / �ڸ��', '�ڶĳ��ڡ�ɢ������С��ǧ������Ƿ�ºڵ��ϴ���Х��һֻ�֣�Ϊ�˱�ס��ֻ�֣������䲻���ѽ�һ����·�ԹԷ��ϡ���������Х���ҵ��ٰ�̽��������ƭ�ġ�ǧ��������Լ����ڼ�������������ġ�����ʯ����λ������ƭ��', '35', 'bcc91717.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('8', '��������', '8', '1', '1', '20121116', '����', '���� / κ���� / ��ʫ��', '��ƯŮ��Ӧ�ѣ����� �Σ����ŵ����ǵ����룬�����������￿�ܾ�����Ѱ����Ϸ�Ļ��ᡣ�����û�нӵ�Ϸ�������ڽӵ�ĳ������Ϸ֪ͨ�󣬸��渱��һͬ����ǰ���������������������Ϸ����Ϸ��������������׼����ȥ��ʱ�򣬳���ȴ������˹��ϡ�����֮�£�Ӧ��ֻ���ڽ�������һ������ҹ����ج�ξ��ѵ�Ӧ�ѷ� ���Լ���˯���б����һ����ָ�����ⲻ���Ǹ���ʼ��������ʧ���ٴα������������ɭ�ֲ��ķ���������������ͨ�����ҵİ��š����������ڲ���һ����Ӧ�ѳ��ú����Ůʬ��Ӧ���������⾫����ƵĻ��Ա���ȴ�����ֻ��������ֻ���ԾȲ������档һ�����Ķ��ǵ����������ɴ�չ��', '50', 'bcc91718.jpg', '1', null, null, null);
+INSERT INTO `media_desc` VALUES ('9', '�Ĵ�����', '9', '1', '1', '20120712', '�¼���', '֣�л� / ����� / �˳�', '���Ĵ��������ǹ���Ӱҵ�������ļƻ�����˾�ܹ��ʳ¼�������ִ����Ƭ�������Ĵ���������ԱҲ�Ѿ�ȷ������Ѫ�����顢���֡�׷�����˵İ����߷ֱ��ǵ˳�������ơ���������֣�л���', '60', 'bcc91719.jpg', '1', null, null, null);
+INSERT INTO `media_desc` VALUES ('10', '��ά��������', '10', '2', '2', '20080819', '�Ƕ������ս�˹', '������ˡ������� / ����������ɶ� ', '��ά�����뱾����һ����ɫ�ľ�ʿ�ָ��ټң�����ʵȴ������ŦԼһ�����ֹ��������������ı����ˣ��ϰ�����Ĺ����ܲ����⣬����н�����Ĵ��㣬ֻ�����������������ϣ��Ÿ����˵�����Ĺ�ά��һ�λ��ᣬǰ���ǲ����ٳ��κβ������ά����ȥ�׶زμӸ�����Զ��Ů���Ļ�������������ǰ�޸����е��������Ѷ�����˷��������ǿ���ЪϢ�������������˹�ά��', '80', 'bcc91720.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('11', '˫��ŮЫ��', '11', '2', '2', '19930202', '����������', '���ݡ�����޷���', '������ǹɱ������������̡�������ע���������壬��������ȥ������ʱ������֪�Լ���ʵ�����Ѿ������������Ҫ�����������ͱ��뵣��������ɱ�֡�����һ����̥���ǵ�ѵ�����������µ�����������ᣬ������������������塣��ͬʱ����Ҳ�����˰����������Ƶ��뷨��һ������Ѹ��չ��', '72', 'bcc91721.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('12', '������Ϸ', '12', '2', '2', '20140218', 'Josh Stolb', 'Ross Natha / Ben Begley ', '���ǵ��ڡ�������ɷ��е���4λ�����ѵܵ�ÿһ��ʧ�ص����ɶ��𣿻��ǿ���˿�ڡ��|����Ϸ���������ܱȵ��ǻ����������Լ�˧ը�˵�������˹�֣��������� Ӱ�����Ʊز�����������ŶΣ��ǡ���4λ�����˵Ĵ��ɷ�������Ϳ�زμӲп���|����Ϸʱ���ֻ����ʲô���أ�����������Ϸ���ݸ���ҿ���', '60', 'bcc91722.jpg', '1', null, null, null);
+INSERT INTO `media_desc` VALUES ('14', '�ң�������˹̹', '14', '2', '2', '20140114', '˹ͼ���ء��ȵ�', '���ס����˹��� / �����ȡ�˹��������˹', '���ң�������˹̹���롶��ʿ�����ˡ���League Of Extraordinary Gentlemen�����ƣ�Ҳ�ǰ�һȺ���������ڲ�ͬ������Ʒ��ľ������Ｏ�е���һ�����������ͬ���ǣ����ң�������˹̹���Ｏ�ϵ�ȫ���ǹ��', '73', 'bcc91724.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('15', '���ν��ϵ��', '15', '2', '2', '20070823', '���˶�����', 'ϣ�ǡ������� / ÷��������˹', '����������̹�������죨Megatron������ʼ����������Ϊ���һؿ���Ϊһ������������ע�����������ġ�����Դ����Allspark�����Գư����棬ֻ�������˵��򡣿�����ȴ�������뱱���󣬱�����ס��1897�꣬�������¡�ά��ά�洬����Archibald Witwicky���������Ĵ�Ա���뱱���󣬲���׹����������������졣', '99', 'bcc91725.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('16', '��ѩ��Ե', '16', '2', '2', '20131117', '����˹���Ϳ� / ղ�ݸ�����', '����˹͡������ / ����ɭ�����޷�', '���½���һ���϶�����������������ѩ�����ø��ǣ��ֹ���η�İ��ȣ�����˹͡���������������Ȱ�ð�յ�ɽ�����˹�з�����ɭ�����޷��������Լ�����ѱ¹���ӳ�����չ��һ��ħ���������ó̷��·ת�Ĵ�ð�գ���Ѱ�Ұ��ȵĽ�㡪����ѩ�ʺ�ɯ�������ȡ���������������ƽ����ı���ħ�䡣һ·������������Ц������ѩ�ˡ���ʽ��þ��顢���벻����ħ�����󣬸���ѩ�������в������ġ������������ܷ�����������', '90', 'bcc91726.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('17', '�����ĺ�', '17', '2', '2', '20091223', '���ġ��Ʋ��޶�', '�������ȱ��� / ��ͼ��Ͷ�', '��ŦԼ��������������ۼ���һȺ�ڳ��衢�赸�ͱ����ϼ����츳������ѧ��������Ҫ���������4���ѧϰ���ڱ�ҵ֮�����Ǿ�ҪΪ�Լ���������ܶ������Ǳ���̽����һ�ٳ��������ǲμ�ѡ���Ŀժ��ͷ��������֮��ÿ���˶����Լ��ķܶ�Ŀ�ꡢÿ���˶����Լ����ռ����롣', '95', 'bcc91727.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('18', 'ңԶ����', '18', '2', '2', '19770615', '����¡���������', 'ղķ˹������ / ���˶�������', 'ŷսβ�����˾��������������ֹ۵�������Ϊ����ǰ����ս���������˾�������ΪֻҪһ���͹����������ֱ�����ֽ���ս�����������ʵؽ�����ɡ����Ͷ�ڵ¾�Ӫ�ر���ȥ��ռ����ķ�������������ӵĴ��š����������¾�����ǿ�ֿ����˾��������������صĴ��ۡ��ⳡ���ƶ�ս�����Ϸ���Ե�ս�ۣ������˾��Ĳ�ʹʧ�ܶ����ա�', '98', 'bcc91728.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('19', '�Ͷٽ���', '19', '2', '2', '19770718', '�������֡�ɳ����', '���Ρ�C��˹���� / ������Ī���� ', '1943��3�£��Ͷ��������ڷ���Ħ����½����Σ���������������ڱ��ǵĵڶ����ų����Ը�ǿ�ơ�����ŵ��Ļ�������սʷ�������ת���İͶٺܿ�����Ѫ����Ťת�˱��ǲ��ӵ�ɢ�����������ս�����ɸ�����ͳ�ʵ�Ӣ����������ɳĮ֮����¡�����ϳ��˱��ǡ�', '97', 'bcc91729.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('20', '��;��֮ս', '20', '2', '2', '19760618', '�ܿˡ�˹����', '����ǡ���˹�� / ���ס����� ', '��ʮ�����Ʒ�Ĵ���ս��Ƭ֮һ���������������ձ��������ݵ���;��ս�ۡ��ڵ����һ��ͬ���Ӱ֮�У���Ƭ������ͻ��֮�������ݽܿˣ�˹���صĴ����ַ���ԱȽ�ƽӹ����������������ȴ���������Ĺ����ض���һ�����Ƿ�ɣ�����ս�ĳ���Ҳʵ���ĵñ��棬ʹ��Ƭ��ά�����൱��Ȥζ�ԡ�', '98', 'bcc91730.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('21', '���õ�ӰԺ', '21', '14', '10', '19881118', '�����塤���ɶ���', '��������������ŷ / ��������������', '������ϲ�С�򣬹��龫�ֵ�С�к�����ڽ�Ƭ���ҵ���ͯ���������Ȥ��', '99', 'bcc91731.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('22', '�������������˵', '22', '14', '10', '20001027', '�����塤���ɶ���', 'Ī�ݿ�����³�� / �����塤�ն�����', '1941�꣬�������綼�������ڶ�ս������֮�У��������ﵺ����һƬ���ͣ����������к������еļ��硣��������13��ĺ���һ�������桢���֡������֣�������������롣������һ����������Զ�ı��������Ů�ˡ���÷���ȡ�', '99', 'bcc91732.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('23', '�ﰺ�ڰ�', '23', '9', '7', '20140114', '����ά�������Ķ�', '�л������� / ������������', '�ɳ���ƶ��ļ�����Ӫ�صİ����ɡ�ά���������Ħ�ţ�������һ�ݶԼ�ͥ�����θУ������ҳ��뽾���������ǣ�������͵�Զ�������ɪ�桤���ض���Ȼ������ ���ꡣ�����޿ɱ���ľ��뵽������֯������ʮ������˰����е���ٶ�����׿��������׳��ķ˰���70������ڵ��Զ��ơ�', '80', 'bcc91733.jpg', '1', null, null, null);
+INSERT INTO `media_desc` VALUES ('24', '������', '24', '9', '7', '20130527', '��Ӣ��', '��ʲ��������', '��ɼ������������ڰ참�в������裬�ﷸ��Ѫ������ϲ��֫����ˡ��������������ˣ��Խ��һ��������ĵ�������Ӱ�����ȸ�ְ��3���һλ�й�����ί�п������æѰ��ʧ �ٶ���ʦ�Σ�ľ������ Takuya Kimura �Σ�����������ۣ��Ӵ������Ǻ������ӣ������� Shawn Yue �Σ����������Ǿ��졣', '76', 'bcc91734.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('25', '������˹��ս�ո�����', '25', '9', '7', '19700316', '��������ᱴ��', '·�ס��¡�����˹ / �á����� / �����ȡ����ɼ���', '�����������Ĵ��������˹�ٰ����ʦ������л���ʿ�ң���������еĸ���Ҫ������ͱ����������Ȩ��˰�����������Լ������С��������������������л���ʿ��ȻҪ�׵���壬ֻҪ���Ͻ�Ǯ������������Ȼ��Ч�¡�������˹�뿪ǰ�޶��˽�Ǯ�����ڣ���л���ʿֻ���򾯷�Ѱ�������', '68', 'bcc91735.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('26', '������˹�ϼ�', '26', '9', '7', '19641107', '��������ᱴ��', '·�ס��¡�����˹ / �á����� / �����ȡ����ɼ���', '�����������Ĵ��������˹�ٰ����ʦ������л���ʿ�ң���������еĸ���Ҫ������ͱ����������Ȩ��˰�����������Լ������С��������������������л���ʿ��ȻҪ�׵���壬ֻҪ���Ͻ�Ǯ������������Ȼ��Ч�¡�������˹�뿪ǰ�޶��˽�Ǯ�����ڣ���л���ʿֻ���򾯷�Ѱ�������', '70', 'bcc91736.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('27', 'ʳ����', '27', '11', '8', '20131113', '��Ŧ��������������', '������¡�����������', '��Ӫ�÷��Ŀ���˹�������ţ���������������һ���������ʵ�С��ÿ��ֻ�ǲü��������ʳ������·�������ȫ��Ե�����죬����˹���ڵĹ�Ԣ����һλ��������ɺ���� ��Olimpia Melinte �Σ��Ľ�����Ů�ӡ�', '76', 'bcc91737.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('28', '��ɺ�����', '28', '11', '8', '20101119', 'Tono Errando ', 'Limara Meneses', '���·�����1948��ĹŰͣ�һ��żȻ�У�����ʦ��ɽ�ʶ����������������Ů�ӣ���������ĸ�����������ɵ�ע�⣬������ϧ����������ײ���˰���Ļ𻨡�', '65', 'bcc91738.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('29', '����', '29', '10', '2', '20130527', '��ɭ����������', '���ȸǶ�������˹�� / ������������', 'ӰƬ��Ҫ�����ɰ��ȼ���������˹�����ݵ�Ů����ɯ���ǲ����ػ�1985���ĳ�죬ͬʱ����������һϵ�о���¼�Ҳ�ƶ���������ȥ�⿪������š���Ϊʲô�Լ�ѭ�������ػص������ֵ�����', '85', 'bcc91739.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('30', 'Ұ������', '30', '10', '2', '20101013', '����˹��������', '���ס�������', '�븸����ͬİ·������˹�ٰ���Ȼ�ӵ�ĸ��·��˿�ĵ绰���Ǹ��������Ե���ʷ���ڸ��������������ҽԺ��������ӡ�����˹�ٰ���һ����ԥ֮��ϻ������������㸸���߹����һ��ʱ �⡣����ĸ�Ĥ�Լ����ʽ�Ĳ�������Ը��Ӵ�һ��ʼ�ͳ��˸��췭�ظ���������˹�ٰ������뾡�취�ø���ƽ���������������ӡ�', '74', 'bcc91740.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('31', '���������', '31', '3', '3', '20131113', '������־', 'С��Ѯ / ���ִ���', '�����ɱ���ʿԭ�����������溣����������ˡ��ı� ���������Ѹߴ�3000����Ԫ���ձ�CG����Ƭ����������ˡ���2013��9���ձ���ӳ��������С��Ѯ�����ִ������Ծ��ŵȵ�����', '85', 'bcc91741.jpg', '1', null, null, null);
+INSERT INTO `media_desc` VALUES ('32', '����', '32', '3', '3', '20130525', 'Ӣ��', '����֯ / ������ʷ', '����ǰ�����ص�������Ƶ�������ģ�������������Թ����������¼���ɧ�����ڴ�֮���Ӵ��磨ʯԭ���� �Σ��밲��Т��������ʷ �Σ���Ϊ�򸾣������¿ɰ���Ů���M��ƽ���·· �Σ����ɱ��������ڲ��Ӻ󲻾���ȥ��Т�����ǽ�Ů���и����Ͷ��ٴ�����ѧ�����÷��ӣ�����֯ �Σ��������M�Ը��Ագ���Ը���κ��˽���������Ϊ���ĸз��գ�ȴ����Ŭ����СֶŮ��ͨ����������һ�����������ʧȥĸ�׵ĄM�������顣', '45', 'bcc91742.jpg', '1', null, null, null);
+INSERT INTO `media_desc` VALUES ('33', '100�ο���', '33', '3', '3', '20100215', '��ľ¡һ', '������� / ͩ������ ', '��Ϊ����ǰ��Ħ�г��¹ʣ��پ���������壩�����������Խ�����ʧȥ�˳���ǰһ��ļ��䣬����������ʱ��Ů���Ѽ�����ͩ�����ᣩ�Ĵ��ڡ�', '87', 'bcc91743.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('34', 'ʮ���̿�', '34', '3', '3', '20100925', '���س�ʷ', '������˾ / ɽ��Т֮', '���ǽ���ʱ�����ڣ�ʱ����ʯ������֮���ϼ乬ͼ�飨��Ұ�}� �Σ���Ļ������������ͷ��ƽ�ֶ��� �Σ���լǰ��ɱ���˾�����Ұ�𶯡�һ�н�����ʯ�������ѣ��Rԫ���� �Σ���������ϵ���ν�������ĸ�ܵܣ�������Ѫ��������Ű�޳�������͢��������˵ȵĲ�����Ȼ�������ڶ���Ϊ�������С�Ϊ���������ݱ�����������⵺�� �������ţ�������˾ �Σ������ѻط�;�����Դ�ɱ��', '90', 'bcc91744.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('35', '���ݺ�ƽ', '35', '3', '3', '20131210', '���ѿ���', '���ɳ֯', '�����ݺ�ƽ�����ĸ���Ƭ���ɣ�������໥�������ڡ��ձ�����������£�����ʷ����ͳ�Ļ������Ļ���δ���Ȳ�ͬά�����������¡�', '99', 'bcc91745.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('36', '��Ѫ�ഺ', '36', '4', '4', '20140122', '������', '����˶ / �ӱ�Ӣ / ��Ӣ��', '����Ѫ�ഺ��������ʮ����������Ϻ��һ���ǳ�������Ů����졢��˵�Ļ������ӡ��������ϴ��׶�����תѧ�����ഺ��Ů����Ѫ����������¡�', '70', 'bcc91746.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('37', '����', '37', '4', '4', '20140805', '������', 'Ԫ�� / ������ / ����Ԫ', '���Ӳ���ȥ����ǰ����ҪԱ̩����Ԫ���Σ�����Ӫ��������Ϊ��������������ί�е���Ŀ��˺�ס�ڸ��ڵ�СŮ��С�ף��������Σ��������������������˽��������������в����˻����������������ķ����ߣ�������Щ��į���塣', '85', 'bcc91747.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('38', '��������', '38', '4', '4', '20130716', '�ᾼ��', '������ / ����Т / ������', '��˵�е�����Ůɱ�ַ�����������ǰ�ӵ�һ��лĻ���񡪡������ֽ񶥼���ǡ������С����͡�Ϊ�ˣ���Ǳ�������齵ľƵ꣬���ɹ����Ŀ������ڷ�����������֮�£������Դ�Ĵ��Ͳ��ò�����͵���������ѳ��Լ���ʵ��ɽկ���ִ��ܣ������Ա���', '71', 'bcc91748.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('39', 'С����ϼ����ռ�', '39', '4', '4', '20120222', '����M / ������', '���ӻ�', '�ڸ�ĸ����Ϣֹ�İ��£�С�ʵ����Pengi��Sommi�ӵ��������ѹ�����Pengi�ǳ����죬��ֱ�����ϼ�����С����һ�����෴���ɰ���Sommi ���ľ��ö࣬��ϲ�����ڰְֵĻ�����������ͳ�Ϊ�˺����ѡ���һ�죬Sommi�İְֵ�����ȥ��ʳ����Ϊ���촢����ʳ��һȥ��û�л������µ��� Sommi������Ժ���ͼ�����Pengiƴ�����뱣�����ѣ������ɹ����ѡ����Pengi��Sommi�ܷ��ų����ѳ�Ϊ�ֽ����������ĳ���ʵ���죿', '84', 'bcc91749.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('40', '��������', '40', '4', '4', '20060711', '��', '�ο�� / �Ӻ��� / �ᶷ��', '�������ο���Σ���һ��ƽ������Щ��Ϳ���������ˣ�������Ů�����棨���ų��Σ������һ������ں����߾�ӪС�꣬���Ű�����͵���������������壨�� �����Σ���һ���Ͱ����ˣ��ܵ����գ��Ӻ����Σ��Ǽ���Ψһ�Ĵ�ѧ����ȴʧҵû�й�������ʱ����ɧ����ƣ�����ʵ�������������飨�ᶷ���Σ��Ǹ�����˶� Ա��ȴ���ڹؼ�ʱ�̵����ӡ�', '90', 'bcc91750.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('41', '��������', '41', '1', '1', '20091210', '����', '���� / ���� / ������', '����ʱ��������ǿ�����������ܲ١���Ȩ������֮����۸��Ӷ����������Ķ����������������Ǹ�ʱ���������Ľܳ�����Լ����ǵ�Ӣ����Ϊ�͸�ǿս�ԡ�', '95', 'bcc91751.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('42', '��«��', '42', '1', '1', '19860212', '������', 'Ҧ����', 'һλ��үү��ɽ�ϲ�ҩ�������н�����һ��ɽ�����ڶ���������һֻ��ɽ�ס���ɽ�׸�����үү�Լ���С�Ĵ��ƺ�«ɽ����������Ы��������ɽ�װ�����үүȡ�����ܽ�����ħ�ı���«�ѡ�', '99', 'bcc91752.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('43', 'ϲ�������̫��', '43', '1', '1', '20050601', '��ΰ��', '������ / ����', '��ϲ�������̫�ǡ��������������Ⱥ����Ȥ����������Ϊ���ߣ����������ڶг�����ڱ�Ц���԰���Ĭ��', '98', 'bcc91753.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('44', '������ʿ����', '44', '1', '1', '20131106', '֣��ΰ', '������', '������а������ܣ���Ц���������ͼ�������´�Ⱦ��������������׬����Ǯ��δ����һ�����������н�δ����Ĳ�����ɢ�ڳ�����˽׶εĲ�����ѡ���з�����������Ϊ��������������������Ϊ��������-ŷ��ɪ��', '85', 'bcc91754.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('45', 'С�������ռ�', '45', '1', '1', '20131106', '����ȫ', '��ﴺ', '�������̨����3600��Ԫ����Ĵ��Ͷ������������硶С�������ռǡ��Ǽ�����ǰ����߸���桷֮�������Ƴ�����һ������������С�������ռǡ�ȫ�繲52�����ܳ�1000����ӣ�ȡ�����й����ϵ���䴫˵��С���������š��������ھ������Ѿ�����Ŀȫ�ǡ����ݲ���ǰ�ڹ������й���Ա͸¶�þ������������г�ֿ����˵����ӵ������ص���ϲ�ã����۴Ӿ�����ơ�������Ч�������Զ԰��϶����ܺ����ǻ�ӭ��', '96', 'bcc91755.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('46', '�ڽ�', '46', '3', '3', '20060408', 'Ƭ�m��ֱ', '�˴���', '���µĵص�����һ���鹹��̩���������С����ް���������Roanapur���������Ǻڰ�͹�Ӷ�������á��ڽ��̻�Ĺ�����Ϊ�ۼ����ް��������ĸ���ڰ��� ����Ҳ����һЩ��ʱ���ֵ�ɢ�͡�����һ�����ں������͸��ָ����ġ����������������·���ڽ��̻���Ҫ�����乤����һ�Ҿ������׿�ͧ��������ֻ�ڵ�һ���� ����������Ǹ��໹��ϰ����ʹ����ǹ����ǹ����������ֵ��һ������ںڽ�����ֵĸ������������乤�ߴ������ʵ�д��ڣ����������鹹�ġ�', '99', 'bcc91756.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('47', 'ȫ������', '47', '3', '3', '19980408', '�ض��ж�', '����һ', '��ȫ�����񳱡���̨�롶����Σ��������һ������趨Ϊ90���������Ϊ��ս�ļܿ����磬��Ļ�������Ϊ���������������������������������ά�����Ӵ�ľ� �ӣ����Է�ֲ�˱�������Լ�ͻ�ɳ��Լ������֯�������緶Χ�ڽ��н����ͷ������Ӳ����潻��Ķ�����������������е�����͸�Լ������������������ִ����� �����޻���ǧ���ڵ����ǣ��ֲ�ս��ʱ�з�����', '99', 'bcc91757.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('48', '��ħ����', '48', '3', '3', '20061003', '������', 'С��ɳ��', '�ںܾúܾ���ǰǧ�겮���������ռ���򣬵������������������ǧ�겮��������ָ���ƽ����Ԥ��˵��ǧ�겮�����ٶ����١���', '99', 'bcc91758.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('49', 'һ�ﵱǧ', '49', '3', '3', '20061003', '�ɲ���־', 'ǳҰ���', 'һ�ﵱǧ���ձ��Ĵ���ACGϵ�У�����������������һ��������һֱ�������顣ϵ�к����������������Ϸ���ܱ߲�Ʒ�ȶ������ԭ��Ϊ���������� �۶���ͬ��������2000�꿪ʼ��������־��COMIC GUM�����������񣬶�����TV�����ļ��͸ı���Ϸ3����', '61', 'bcc91759.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('50', 'è������', '50', '2', '2', '19400101', 'Լɪ���ͱ���', '��ķ / ����', 'è�����󡷲�����è�����ԭ�ͣ��������Χ��һֻ�����ļ�è��ķ������ͬ��һ��ȴ����ץס���������չ��', '78', 'bcc91760.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('51', 'а������', '51', '2', '2', '20081226', '����֮', 'ղɭ������˹ / �ֵ¡��������', '��а�������������롶��ħ�ˡ�������룩��������Ȼ��������̨���룩����������CW����̨�����Ľ������쳬��Ȼ����ĵ��Ӿ硣�ڼ��ô����㡣�þ���Ҫ���ڽ������ֵ�ɽķ���³�˹�غ͵϶����³�˹�ؿ���1967��ĺ�ɫѩ���������� �����������������鳬��Ȼ�򲻿�˼����¼�����֮ս���Ĺ��£����´�������������Ķ��д�˵����䴫˵��', '69', 'bcc91761.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('52', '�Ϸ���԰', '52', '2', '2', '19990310', '�ޡ�����', '���ס�����', '���Ϸ���԰���������뷨������˥����԰�����۰淭�룩���Ϸ��ļ��͡���������ϲ�����ģ�Comedy Central��������һ����ֽ���Ķ����缯����Matt Stone��Trey Parker������', '75', 'bcc91762.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('53', 'TED�ݽ���', '53', '2', '2', '20060627', '', '', '��2006����TED�ݽ�����Ƶ���ϴ������ϡ�����2010��4�£�TED�ٷ���վ����¼��TED�ݽ���Ƶ�Ѵ�650����������ǧ�������ۿ���TED�ݽ�����Ƶ�����е�TED�ݽ�����Ƶ�����Դ���CC�ķ�ʽ������Ȩ�ġ�', '86', 'bcc91763.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('54', '˹̹����ѧ���ſγ�: ��̷���', '54', '2', '2', '20050305', '', '', '���γ������ı�����ſγ̣�Ҳ��˹̹����ѧ��Ҫ�γ�֮һ�������˵���������ƻ���˼�룺�������ģ�黯����װ����������ԡ�', '85', 'bcc91764.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('55', 'Ү³�����Σ���ѧ������', '55', '2', '2', '20120407', '', '', '���γ���Ү³��������ѧ�����ԡ�', '85', 'bcc91765.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('56', 'Ү³��ѧ���ſγ̣���������', '56', '2', '2', '20110311', '', '', '���ſγ���Ҫ�����ڽ��ͽ���ϵͳ��ȫ�򾭼õı����������ݵĽ�ɫ������Ҫ�ԡ� Լ��.���ɿ�����˹���ڲ�û�аѽ�������;�������ֽ⿪������������ƽ����Ϊ����ƽ���һ�ֲ��������ڡ����ſγ̻���ͨ���Գ�������ṩһ��˼��������ĽǶȡ�', '90', 'bcc91766.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('57', 'Ү³��ѧ���ſγ̣������г�', '57', '2', '2', '20120602', '', '', '���ڻ���������������Ҫ֧��������ΪͶ�ʻ�ṩ֧�ּ����չ��������������ҪԤ����ڻ�����̬�������������Ϣʱ���еķ�չ̬�ƣ����Ǳ������ҵ���� ���˽⡣���γ̽��漰�������У�����ѧ���ۡ�����ҵ�ķ�չ���̡����ڻ������������С����չ�˾��֤ȯ��˾���ڻ���˾�����������г�����������ȱ���Լ���Щ ������δ����չǰ����', '89', 'bcc91767.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('58', '��ʡ����ѧԺ���ſγ̣��㷨����', '58', '2', '2', '20131012', '', '', '����һ�¿���¼�������ڿε���λMIT����ʦ����һλ������������������ģ��Ǳ���ĵڶ�����Charles E. Leiserson�����߼����ܣ���Ȥ��Ĭ��MIT���ڶ�λ�����Ž��ɫ���������Ӻ���β���Ŀ����Erik Demaine��21�꼴ȡ��MIT�����ʸ����ţ�1981�����������25�꣬ҵ�మ���Ƕ���˹���顢��Ϸ����������ֽ����ˣ��ħ���ͽ�����Ϸ��', '74', 'bcc91768.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('59', '˹̹����ѧ���ſγ�: ��̷�ʽ', '59', '2', '2', '20060224', '', '', 'c��c++�߼��ڴ�������������ʽ���������ʽ�Ĳ�𡣺�����ʽ--ʹ��LISP�Ͳ������--ʹ��c��c++���򵥽���һЩ�������е����ԣ���Python��Objective-C��C#��', '96', 'bcc91769.jpg', '2', '20150317', '20160302', '1');
+INSERT INTO `media_desc` VALUES ('60', 'Ү³��ѧ���ſγ̣��ʱ�����', '60', '2', '2', '20060224', '', '', '���ν���Դ�������ݻ���˼·����ڹ���ʱ�����', '99', 'bcc91770.jpg', '2', '20150317', '20160302', '1');
 INSERT INTO `media_desc` VALUES ('61', 'CCTV-1', '61', '1', '1', '20131012', null, null, null, null, null, '3', '20160314', '20170225', '1');
 INSERT INTO `media_desc` VALUES ('62', 'CCTV-2', '62', '1', '1', null, null, null, null, null, null, '3', '20150314', '20170225', '1');
 INSERT INTO `media_desc` VALUES ('63', 'CCTV-3', '63', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
 INSERT INTO `media_desc` VALUES ('64', 'CCTV-4', '64', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
 INSERT INTO `media_desc` VALUES ('65', 'CCTV-5', '65', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
 INSERT INTO `media_desc` VALUES ('66', 'CCTV-6', '66', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
-INSERT INTO `media_desc` VALUES ('67', '湖南卫视', '67', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
-INSERT INTO `media_desc` VALUES ('68', '江苏卫视', '68', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
-INSERT INTO `media_desc` VALUES ('69', '浙江卫视', '69', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
-INSERT INTO `media_desc` VALUES ('70', '东方卫视', '70', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
-INSERT INTO `media_desc` VALUES ('71', '天津影视', '71', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
-INSERT INTO `media_desc` VALUES ('72', '天津都市', '72', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
-INSERT INTO `media_desc` VALUES ('73', '天津体育', '73', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
-INSERT INTO `media_desc` VALUES ('74', '凤凰卫视', '74', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
-INSERT INTO `media_desc` VALUES ('75', '香港卫视', '75', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
-INSERT INTO `media_desc` VALUES ('76', '雷神', '81', '1', '1', '20141202', '刘亚吉', '刘亚凶', '批量上传的', '1', null, '1', null, null, null);
+INSERT INTO `media_desc` VALUES ('67', '��������', '67', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
+INSERT INTO `media_desc` VALUES ('68', '��������', '68', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
+INSERT INTO `media_desc` VALUES ('69', '�㽭����', '69', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
+INSERT INTO `media_desc` VALUES ('70', '��������', '70', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
+INSERT INTO `media_desc` VALUES ('71', '���Ӱ��', '71', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
+INSERT INTO `media_desc` VALUES ('72', '�����', '72', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
+INSERT INTO `media_desc` VALUES ('73', '�������', '73', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
+INSERT INTO `media_desc` VALUES ('74', '�������', '74', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
+INSERT INTO `media_desc` VALUES ('75', '�������', '75', null, null, null, null, null, null, null, null, '3', '20150314', '20170225', '1');
+INSERT INTO `media_desc` VALUES ('76', '����', '81', '1', '1', '20141202', '���Ǽ�', '������', '�����ϴ���', '1', null, '1', null, null, null);
 
 -- ----------------------------
 -- Table structure for product
@@ -1241,10 +1250,10 @@ CREATE TABLE `serviec_type` (
 -- ----------------------------
 -- Records of serviec_type
 -- ----------------------------
-INSERT INTO `serviec_type` VALUES ('1', '免费试用', '1');
-INSERT INTO `serviec_type` VALUES ('2', '快乐15', '15');
-INSERT INTO `serviec_type` VALUES ('3', '包月', '30');
-INSERT INTO `serviec_type` VALUES ('4', '包年', '365');
+INSERT INTO `serviec_type` VALUES ('1', '�������', '1');
+INSERT INTO `serviec_type` VALUES ('2', '����15', '15');
+INSERT INTO `serviec_type` VALUES ('3', '����', '30');
+INSERT INTO `serviec_type` VALUES ('4', '����', '365');
 
 -- ----------------------------
 -- Table structure for stb
@@ -1502,42 +1511,42 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '郑悦', '1', '18', '13682076219', '天津市南开区学府街', '1', '1', '2', null, '22', null);
-INSERT INTO `user` VALUES ('2', '夏冬', '2', '101', '13682076219', '天津市南开区临潼道', '1', '1', '2', '增值业务潜在客户', '22', null);
-INSERT INTO `user` VALUES ('3', '春秋', '3', '102', '13682076219', '天津市南开区广开三马路', '1', '1', '1', null, '22', null);
-INSERT INTO `user` VALUES ('4', '李艳', '4', '103', '13682076219', '天津市南开区咸阳路', '1', '1', '1', '增值业务潜在客户', '22', null);
-INSERT INTO `user` VALUES ('5', '薛伟', '5', '104', '13682076219', '天津市南开区南泥湾路', '1', '2', '1', null, '22', null);
-INSERT INTO `user` VALUES ('6', '李国宾', '6', '105', '13682076219', '天津市南开区汉中里', '1', '1', '1', null, '22', null);
-INSERT INTO `user` VALUES ('7', '鲁瑞英', '7', '106', '13682076219', '天津市南开区碧园里', '1', '2', '1', '增值业务潜在客户', '22', null);
-INSERT INTO `user` VALUES ('8', '牛檀', '8', '107', '13682076219', '天津市南开区延长里', '1', '1', '1', null, '22', null);
-INSERT INTO `user` VALUES ('9', '陈宝庆', '9', '108', '13682076219', '天津市南开区长江道', '1', '1', '1', '增值业务潜在客户', '22', null);
-INSERT INTO `user` VALUES ('10', '潘宝', '10', '109', '13682076219', '天津市南开区黄河道', '1', '2', '1', null, '22', null);
-INSERT INTO `user` VALUES ('11', '华瑞林', '11', '110', '13682076219', '天津市河西区黑牛城道', '1', '2', '1', null, '22', null);
-INSERT INTO `user` VALUES ('12', '柳国治', '12', '111', '13682076219', '天津市河西区珠江道', '1', '2', '1', '增值业务潜在客户', '22', null);
-INSERT INTO `user` VALUES ('13', '李亚琼', '13', '112', '13682076219', '天津市河西区三水道', '1', '2', '1', null, '22', null);
-INSERT INTO `user` VALUES ('14', '罗治平', '14', '113', '13682076219', '天津河西区洞庭路', '1', '2', '1', null, '22', null);
-INSERT INTO `user` VALUES ('15', '刘燕', '15', '114', '13682076219', '天津市和平区南京路', '1', '2', '1', '增值业务潜在客户', '22', null);
-INSERT INTO `user` VALUES ('16', '姜静', '16', '115', '13682076219', '天津和平区福安大街', '1', '1', '1', null, '22', null);
-INSERT INTO `user` VALUES ('17', '王倩', '17', '116', '13682076219', '天津市红桥区勤俭道', '1', '1', '1', null, '22', null);
-INSERT INTO `user` VALUES ('18', '方浩', '18', '117', '13682076219', '天津市红桥区复兴路', '1', '1', '1', '增值业务潜在客户', '22', null);
-INSERT INTO `user` VALUES ('19', '刘开来', '19', '118', '13682076219', '天津市红桥区虹桥北路', '1', '2', '1', null, '22', null);
-INSERT INTO `user` VALUES ('20', '赵国增', '20', '119', '13682076219', '天津市红桥区光荣北路', '1', '1', '2', null, '22', null);
-INSERT INTO `user` VALUES ('21', '金易增', '21', '120', '13682076219', '天津市河西区珠江道', '2', '2', '2', null, '23', null);
-INSERT INTO `user` VALUES ('22', '韩立', 'tj123', '32', '1382076215', '天津市南开区', '1', '1', '6', '批量办理', '22', null);
-INSERT INTO `user` VALUES ('23', '元瑶', 'tj123', '35', '1362086325', '天津市和平区', '2', '1', '6', '批量办理', '23', null);
-INSERT INTO `user` VALUES ('24', '重龙', 'tj123', '36', '1395085254', '天津市河西区', '1', '2', '6', '批量办理', '22', null);
-INSERT INTO `user` VALUES ('25', '韩立', 'tj123', '32', '1382076215', '天津市南开区', '1', '1', '6', '批量办理', '22', null);
-INSERT INTO `user` VALUES ('26', '元瑶', 'tj123', '35', '1362086325', '天津市和平区', '2', '1', '6', '批量办理', '23', null);
-INSERT INTO `user` VALUES ('27', '重龙', 'tj123', '36', '1395085254', '天津市河西区', '1', '2', '6', '批量办理', '22', null);
-INSERT INTO `user` VALUES ('28', '韩立', 'tj123', '32', '1382076215', '天津市南开区', '1', '1', '6', '批量办理', '99', null);
-INSERT INTO `user` VALUES ('29', '元瑶', 'tj123', '35', '1362086325', '天津市和平区', '2', '1', '6', '批量办理', '120', null);
-INSERT INTO `user` VALUES ('30', '重龙', 'tj123', '36', '1395085254', '天津市河西区', '1', '2', '6', '批量办理', '149', null);
-INSERT INTO `user` VALUES ('31', '韩立', 'tj123', '32', '1382076215', '天津市南开区', '1', '1', '6', '批量办理', '99', null);
-INSERT INTO `user` VALUES ('32', '元瑶', 'tj123', '35', '1362086325', '天津市和平区', '2', '1', '6', '批量办理', '120', null);
-INSERT INTO `user` VALUES ('33', '重龙', 'tj123', '36', '1395085254', '天津市河西区', '1', '2', '6', '批量办理', '149', null);
-INSERT INTO `user` VALUES ('34', '韩立', 'tj123', '32', '1382076215', '天津市南开区', '1', '1', '6', '批量办理', '99', null);
-INSERT INTO `user` VALUES ('35', '元瑶', 'tj123', '35', '1362086325', '天津市和平区', '2', '1', '6', '批量办理', '120', null);
-INSERT INTO `user` VALUES ('36', '重龙', 'tj123', '36', '1395085254', '天津市河西区', '1', '2', '6', '批量办理', '149', null);
+INSERT INTO `user` VALUES ('1', '֣��', '1', '18', '13682076219', '������Ͽ���ѧ����', '1', '1', '2', null, '22', null);
+INSERT INTO `user` VALUES ('2', '�Ķ�', '2', '101', '13682076219', '������Ͽ���������', '1', '1', '2', '��ֵҵ��Ǳ�ڿͻ�', '22', null);
+INSERT INTO `user` VALUES ('3', '����', '3', '102', '13682076219', '������Ͽ����㿪����·', '1', '1', '1', null, '22', null);
+INSERT INTO `user` VALUES ('4', '����', '4', '103', '13682076219', '������Ͽ�������·', '1', '1', '1', '��ֵҵ��Ǳ�ڿͻ�', '22', null);
+INSERT INTO `user` VALUES ('5', 'Ѧΰ', '5', '104', '13682076219', '������Ͽ���������·', '1', '2', '1', null, '22', null);
+INSERT INTO `user` VALUES ('6', '�����', '6', '105', '13682076219', '������Ͽ���������', '1', '1', '1', null, '22', null);
+INSERT INTO `user` VALUES ('7', '³��Ӣ', '7', '106', '13682076219', '������Ͽ�����԰��', '1', '2', '1', '��ֵҵ��Ǳ�ڿͻ�', '22', null);
+INSERT INTO `user` VALUES ('8', 'ţ̴', '8', '107', '13682076219', '������Ͽ����ӳ���', '1', '1', '1', null, '22', null);
+INSERT INTO `user` VALUES ('9', '�±���', '9', '108', '13682076219', '������Ͽ���������', '1', '1', '1', '��ֵҵ��Ǳ�ڿͻ�', '22', null);
+INSERT INTO `user` VALUES ('10', '�˱�', '10', '109', '13682076219', '������Ͽ����ƺӵ�', '1', '2', '1', null, '22', null);
+INSERT INTO `user` VALUES ('11', '������', '11', '110', '13682076219', '����к�������ţ�ǵ�', '1', '2', '1', null, '22', null);
+INSERT INTO `user` VALUES ('12', '������', '12', '111', '13682076219', '����к������齭��', '1', '2', '1', '��ֵҵ��Ǳ�ڿͻ�', '22', null);
+INSERT INTO `user` VALUES ('13', '������', '13', '112', '13682076219', '����к�������ˮ��', '1', '2', '1', null, '22', null);
+INSERT INTO `user` VALUES ('14', '����ƽ', '14', '113', '13682076219', '����������ͥ·', '1', '2', '1', null, '22', null);
+INSERT INTO `user` VALUES ('15', '����', '15', '114', '13682076219', '����к�ƽ���Ͼ�·', '1', '2', '1', '��ֵҵ��Ǳ�ڿͻ�', '22', null);
+INSERT INTO `user` VALUES ('16', '����', '16', '115', '13682076219', '����ƽ���������', '1', '1', '1', null, '22', null);
+INSERT INTO `user` VALUES ('17', '��ٻ', '17', '116', '13682076219', '����к������ڼ��', '1', '1', '1', null, '22', null);
+INSERT INTO `user` VALUES ('18', '����', '18', '117', '13682076219', '����к���������·', '1', '1', '1', '��ֵҵ��Ǳ�ڿͻ�', '22', null);
+INSERT INTO `user` VALUES ('19', '������', '19', '118', '13682076219', '����к��������ű�·', '1', '2', '1', null, '22', null);
+INSERT INTO `user` VALUES ('20', '�Թ���', '20', '119', '13682076219', '����к��������ٱ�·', '1', '1', '2', null, '22', null);
+INSERT INTO `user` VALUES ('21', '������', '21', '120', '13682076219', '����к������齭��', '2', '2', '2', null, '23', null);
+INSERT INTO `user` VALUES ('22', '����', 'tj123', '32', '1382076215', '������Ͽ���', '1', '1', '6', '��������', '22', null);
+INSERT INTO `user` VALUES ('23', 'Ԫ��', 'tj123', '35', '1362086325', '����к�ƽ��', '2', '1', '6', '��������', '23', null);
+INSERT INTO `user` VALUES ('24', '����', 'tj123', '36', '1395085254', '����к�����', '1', '2', '6', '��������', '22', null);
+INSERT INTO `user` VALUES ('25', '����', 'tj123', '32', '1382076215', '������Ͽ���', '1', '1', '6', '��������', '22', null);
+INSERT INTO `user` VALUES ('26', 'Ԫ��', 'tj123', '35', '1362086325', '����к�ƽ��', '2', '1', '6', '��������', '23', null);
+INSERT INTO `user` VALUES ('27', '����', 'tj123', '36', '1395085254', '����к�����', '1', '2', '6', '��������', '22', null);
+INSERT INTO `user` VALUES ('28', '����', 'tj123', '32', '1382076215', '������Ͽ���', '1', '1', '6', '��������', '99', null);
+INSERT INTO `user` VALUES ('29', 'Ԫ��', 'tj123', '35', '1362086325', '����к�ƽ��', '2', '1', '6', '��������', '120', null);
+INSERT INTO `user` VALUES ('30', '����', 'tj123', '36', '1395085254', '����к�����', '1', '2', '6', '��������', '149', null);
+INSERT INTO `user` VALUES ('31', '����', 'tj123', '32', '1382076215', '������Ͽ���', '1', '1', '6', '��������', '99', null);
+INSERT INTO `user` VALUES ('32', 'Ԫ��', 'tj123', '35', '1362086325', '����к�ƽ��', '2', '1', '6', '��������', '120', null);
+INSERT INTO `user` VALUES ('33', '����', 'tj123', '36', '1395085254', '����к�����', '1', '2', '6', '��������', '149', null);
+INSERT INTO `user` VALUES ('34', '����', 'tj123', '32', '1382076215', '������Ͽ���', '1', '1', '6', '��������', '99', null);
+INSERT INTO `user` VALUES ('35', 'Ԫ��', 'tj123', '35', '1362086325', '����к�ƽ��', '2', '1', '6', '��������', '120', null);
+INSERT INTO `user` VALUES ('36', '����', 'tj123', '36', '1395085254', '����к�����', '1', '2', '6', '��������', '149', null);
 
 -- ----------------------------
 -- Table structure for user_product

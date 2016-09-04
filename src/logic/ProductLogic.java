@@ -32,7 +32,8 @@ public class ProductLogic {
 			dto.setResult(false);
 			dto.setErrorCode(Contants.E003);
 		} else {
-			List<ProductSet> productSetList = productSetDao.getList(form);
+			List<ProductSet> productSetList = productSetDao.getList(form.getProduct().getProductId(),
+					form.getProduct().getProductName(), form.getCurrentPage());
 			
 			form.setPageCount(CommonUtil.getTotalPage(Contants.PAGE_SIZE,
 					resultCount));
@@ -40,6 +41,10 @@ public class ProductLogic {
 			form.setProducts(productSetList);
 		}
 		return dto;
+	}
+	
+	public List<ProductSet> getAllProductSet() {
+		return productSetDao.getList(null, null, 0);
 	}
 	
 	public boolean delete(String productId) {

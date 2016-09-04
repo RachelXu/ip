@@ -38,18 +38,17 @@
                 <!-- // #end sidebar -->
                 
                 <!-- main page -->
-                <h2><a href="#">节目信息管理</a> &raquo; <a href="#" class="active">节目内容批量上传</a></h2>
+                <h2><a href="#">Media</a> &raquo; <a href="#" class="active">Import</a></h2>
                 <div id="main1" class="main">
                 <p align="left"><s2:fielderror cssStyle="font-size:15px; color:red; font-weight:bold "/></p>
                 <s2:form action="promediabatchupload" theme="simple" method="post" enctype="multipart/form-data">
- 					<h3>批量导入</h3>
 						 <table width="80%" border="0" cellspacing="1" cellpadding="1" align="center">
 							  <tr>
 								<td width="92" align="center" valign="middle">&nbsp;</td>
-								<td width="138" align="center" valign="middle">选择上传的文件</td>
+								<td width="138" align="center" valign="middle">File for importing</td>
 								<td width="200" align="center" valign="middle"><s2:file name="upload"/> </td>
 								<td width="123" align="center" valign="middle"></td>
-								<td width="129" align="center" valign="middle"><s2:submit value="上传文件" /> </td>
+								<td width="129" align="center" valign="middle"><s2:submit value="Import" /> </td>
 							  </tr>
 							</table>
 					<s2:if test="showError">

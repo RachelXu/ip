@@ -1,7 +1,7 @@
 package action;
 
 import logic.LogicDTO;
-import logic.ProUserSearchLogic;
+import logic.AccountLogic;
 import util.CommonUtil;
 import util.Contants;
 import form.UserForm;
@@ -12,31 +12,32 @@ public class ProUserSearchAction extends MySuperAction {
 	 */
 	private static final long serialVersionUID = 378340882595762250L;
 	private UserForm user;
-	private ProUserSearchLogic logic;
+	private AccountLogic logic;
 	private String pageString;
 
 	public String execute() throws Exception {
-		if (CommonUtil.isEmpty(user.getCurrentPage())
-				|| user.getCurrentPage() < 1) {
-			user.setCurrentPage(1);
-		}
-		if (!CommonUtil.isEmpty(pageString)) {
-			if (Contants.PRIV.equals(pageString)) {
-				user.setCurrentPage(user.getCurrentPage() - 1);
-			}
-			if (Contants.NEXT.equals(pageString)) {
-				user.setCurrentPage(user.getCurrentPage() + 1);
-			}
-		}
-		LogicDTO dto = logic.doLogic(user);
-		if (dto.isResult()) {
-			user.initView(true);
-			return SUCCESS;
-		} else {
-			this.addFieldError("field", getText(dto.getErrorCode()));
-			user.initView(false);
-			return INPUT;
-		}
+//		if (CommonUtil.isEmpty(user.getCurrentPage())
+//				|| user.getCurrentPage() < 1) {
+//			user.setCurrentPage(1);
+//		}
+//		if (!CommonUtil.isEmpty(pageString)) {
+//			if (Contants.PRIV.equals(pageString)) {
+//				user.setCurrentPage(user.getCurrentPage() - 1);
+//			}
+//			if (Contants.NEXT.equals(pageString)) {
+//				user.setCurrentPage(user.getCurrentPage() + 1);
+//			}
+//		}
+//		LogicDTO dto = logic.search(user);
+//		if (dto.isResult()) {
+//			user.initView(true);
+//			return SUCCESS;
+//		} else {
+//			this.addFieldError("field", getText(dto.getErrorCode()));
+//			user.initView(false);
+//			return INPUT;
+//		}
+		return INPUT;
 	}
 
 	public void validate() {
@@ -74,7 +75,7 @@ public class ProUserSearchAction extends MySuperAction {
 	/**
 	 * @return the logic
 	 */
-	public ProUserSearchLogic getLogic() {
+	public AccountLogic getLogic() {
 		return logic;
 	}
 
@@ -82,7 +83,7 @@ public class ProUserSearchAction extends MySuperAction {
 	 * @param logic
 	 *            the logic to set
 	 */
-	public void setLogic(ProUserSearchLogic logic) {
+	public void setLogic(AccountLogic logic) {
 		this.logic = logic;
 	}
 

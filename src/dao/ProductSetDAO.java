@@ -54,18 +54,18 @@ public class ProductSetDAO extends BaseDAO<ProductSet> {
 		}
 	}
 	
-	public List<ProductSet> getList(ProductForm form) {
+	public List<ProductSet> getList(String productId, String productName, int pageNumber) {
 		try {
 			StringBuilder sqlbuffer = new StringBuilder();
 			List<Object> paramList = new LinkedList<Object>();
 			sqlbuffer.append("from ProductSet where 1=1");
-			if (!CommonUtil.isEmpty(form.getProduct().getProductId())) {
+			if (!CommonUtil.isEmpty(productId)) {
 				sqlbuffer.append("and productId=?");
-				paramList.add(form.getProduct().getProductId());
+				paramList.add(productId);
 			}
-			if (!CommonUtil.isEmpty(form.getProduct().getProductName())) {
+			if (!CommonUtil.isEmpty(productName)) {
 				sqlbuffer.append("and productName=?");
-				paramList.add(form.getProduct().getProductName());
+				paramList.add(productName);
 			}
 			sqlbuffer.append("order by productId");
 			String sqlstring = sqlbuffer.toString();
@@ -73,9 +73,13 @@ public class ProductSetDAO extends BaseDAO<ProductSet> {
 			for (int i = 0; i < paramList.size(); i++) {
 				queryObject.setParameter(i, paramList.get(i));
 			}
-			queryObject.setFirstResult((form.getCurrentPage() - 1)
-					* Contants.PAGE_SIZE);
-			queryObject.setMaxResults(Contants.PAGE_SIZE);
+			if (pageNumber > 0) {
+				//get one page
+				queryObject.setFirstResult((pageNumber - 1)
+						* Contants.PAGE_SIZE);
+				queryObject.setMaxResults(Contants.PAGE_SIZE);
+			}
+			
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("failed to getAccount.");

@@ -38,7 +38,7 @@
                 <!-- // #end sidebar -->
                 
                 <!-- main page -->
-                <h2><a href="#">节目信息管理</a> &raquo; <a href="#" class="active">节目内容添加</a></h2>
+                <h2><a href="#">Media</a> &raquo; <a href="#" class="active">New</a></h2>
                 <div id="main1" class="main">
                 <p align="left"><s2:fielderror cssStyle="font-size:15px; color:red; font-weight:bold "/></p>
                 <s2:form action="promediainsert" theme="simple" method="post" enctype="multipart/form-data">
@@ -47,16 +47,15 @@
                 <s2:hidden name="media.pageCount"/>
                 <s2:hidden name="deleteId"/>
                 <s2:hidden name="editId"/>
-					<h3>添加信息</h3>
                     	<table border="1">	
 							<tr>
-							  <td>节目中文名称</td>
+							  <td>Name</td>
 							  <td><s2:textfield name="media.mediaName" size="10" maxlength="10"/></td>
 							  <td>节目英文名称</td>
 							  <td><s2:textfield name="media.mediaNameEn" size="10" maxlength="10"/></td>
 							</tr>
 							<tr>
-							  <td>语言</td>
+							  <td>Language</td>
 							  <td>
 								<s2:select list="media.languageList"  name="media.languageId" listKey="value" listValue="label" headerKey="" headerValue="-"  ></s2:select>
 							  </td>
@@ -78,11 +77,11 @@
 							  <td><s2:textfield name="media.grade" size="5" maxlength="5" /></td>
 							</tr>
 							<tr>
-							  <td>所在目录</td>
+							  <td>Directory</td>
 							  <td>
 							  <s2:select list="media.catalogList" name="media.mediaCatalogId" listKey="value" listValue="label" headerKey="" headerValue="-" multiple="true" size="5"></s2:select>
 							  </td>
-							  <td>简介</td>
+							  <td>Description</td>
 							  <td>
 							  <s2:textarea name="media.introduction" cols="20" rows="3" ></s2:textarea>
 							  </td>
@@ -95,7 +94,7 @@
 							</tr>
 							<tr align="center">
 								<td colspan="4" >
-									<s2:submit value="确认提交"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="重置" onclick="window.location.href='premediainsert.action'" />
+									<s2:submit value="OK"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Reset" onclick="window.location.href='premediainsert.action'" />
 								</td>
 							</tr>
                         </table>

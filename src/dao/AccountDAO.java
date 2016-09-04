@@ -9,7 +9,6 @@ import org.hibernate.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.model.Account;
-import form.UserForm;
 import util.CommonUtil;
 import util.Contants;
 
@@ -29,20 +28,24 @@ public class AccountDAO extends BaseDAO<Account> {
 	private static final Log log = LogFactory.getLog(AccountDAO.class);
 
 
-	public int getCount(UserForm form) {
+	public int getCount(String accountId, int state, String productId) {
 		try {
 			StringBuilder sqlbuffer = new StringBuilder();
 			List<Object> paramList = new LinkedList<Object>();
-			sqlbuffer.append("select count(*) from Account where 1=1");
-			// �û�ID
-			if (!CommonUtil.isEmpty(form.getName())) {
-				sqlbuffer.append("and accountId=?");
-				paramList.add(form.getName());
+			sqlbuffer.append("select count(distinct a) from Account a ");
+			if (!CommonUtil.isEmpty(productId)) {
+				sqlbuffer.append(" left join a.accountProds prod where prod.productSet.productId=? ");
+				paramList.add(productId);
+			} else {
+				sqlbuffer.append(" where 1=1 ");
 			}
-			// �û�����
-			if (!CommonUtil.isEmpty(form.getState())) {
-				sqlbuffer.append("and state=?");
-				paramList.add(form.getState());
+			if (!CommonUtil.isEmpty(accountId)) {
+				sqlbuffer.append("and a.accountId=?");
+				paramList.add(accountId);
+			}
+			if (state != 0) {
+				sqlbuffer.append("and a.state=?");
+				paramList.add(state);
 			}
 			String sqlstring = sqlbuffer.toString();
 			Query queryObject = getSession().createQuery(sqlstring);
@@ -56,28 +59,34 @@ public class AccountDAO extends BaseDAO<Account> {
 		}
 	}
 	
-	public List<Account> getAccount(UserForm form) {
+	public List<Account> getAccount(String accountId, int state, String productId, int pageNumber) {
 		try {
 			StringBuilder sqlbuffer = new StringBuilder();
 			List<Object> paramList = new LinkedList<Object>();
-			sqlbuffer.append("from Account where 1=1");
-			// �û�ID
-			if (!CommonUtil.isEmpty(form.getName())) {
-				sqlbuffer.append("and accountId=?");
-				paramList.add(form.getName());
+			sqlbuffer.append("select distinct a from Account a ");
+
+			if (!CommonUtil.isEmpty(productId)) {
+				sqlbuffer.append(" left join a.accountProds prod where prod.productSet.productId=? ");
+				paramList.add(productId);
+			} else {
+				sqlbuffer.append(" where 1=1 ");
 			}
-			// �û�����
-			if (!CommonUtil.isEmpty(form.getState())) {
-				sqlbuffer.append("and state=?");
-				paramList.add(form.getState());
+			
+			if (!CommonUtil.isEmpty(accountId)) {
+				sqlbuffer.append("and a.accountId=?");
+				paramList.add(accountId);
 			}
-			sqlbuffer.append("order by accountId");
+			if (state != 0) {
+				sqlbuffer.append("and a.state=?");
+				paramList.add(state);
+			}
+			sqlbuffer.append("order by a.accountId");
 			String sqlstring = sqlbuffer.toString();
 			Query queryObject = getSession().createQuery(sqlstring);
 			for (int i = 0; i < paramList.size(); i++) {
 				queryObject.setParameter(i, paramList.get(i));
 			}
-			queryObject.setFirstResult((form.getCurrentPage() - 1)
+			queryObject.setFirstResult((pageNumber - 1)
 					* Contants.PAGE_SIZE);
 			queryObject.setMaxResults(Contants.PAGE_SIZE);
 			return queryObject.list();

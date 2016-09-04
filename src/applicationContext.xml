@@ -115,12 +115,9 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 		</property>
 	</bean>
 	<!-- 帐户检索主逻辑处理类 -->
-	<bean id="ProUserSearchLogic" class="logic.ProUserSearchLogic"
+	<bean id="AccountLogic" class="logic.AccountLogic"
 		abstract="false" lazy-init="default" autowire="default"
 		dependency-check="default">
-		<property name="dao">
-			<ref local="UserDAO" />
-		</property>
 		<property name="accountDao">
 			<ref local="AccountDAO" />
 		</property>
@@ -173,11 +170,18 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 	<!-- 帐户检索处理Ation -->
 	<bean id="preusersearch" class="action.PreUserSearchAction"
 		scope="prototype">
+		<property name="productLogic">
+			<ref local="ProductLogic" />
+		</property>
+		<property name="accLogic">
+			<ref local="AccountLogic" />
+		</property>
+		
 	</bean>
 	<bean id="prousersearch" class="action.ProUserSearchAction"
 		scope="prototype">
 		<property name="logic">
-			<ref local="ProUserSearchLogic" />
+			<ref local="AccountLogic" />
 		</property>
 	</bean>
 

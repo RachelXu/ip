@@ -16,8 +16,8 @@ document.getElementsByName("pageString")[0].value="next";
 }
 function resetPage(){
 document.getElementsByName("pageString")[0].value="";
-document.getElementsByName("user.currentPage")[0].value="";
-document.getElementsByName("user.pageCount")[0].value="";
+document.getElementsByName("account.currentPage")[0].value="";
+document.getElementsByName("account.pageCount")[0].value="";
 }
 function edit(parm){
 document.getElementsByName("editId")[0].value=parm;
@@ -27,6 +27,33 @@ function del(parm){
 document.getElementsByName("deleteId")[0].value=parm;
 return true;
 }
+
+function select_all(state) 
+{
+ var inputs = document.getElementsByName("checkSign");
+
+ for(var i=0; i< inputs.length; i++)
+ {
+  if(inputs[i].type == "checkbox")
+  {
+   inputs[i].checked =state; 
+  }
+ }
+}
+
+function select_inverse() {
+ var inputs = document.getElementsByName("checkSign");
+ for(var i=0; i< inputs.length; i++) {
+  if(inputs[i].type == "checkbox"){
+	if (inputs[i].checked == true){
+	  inputs[i].checked = false; 
+	}else{
+		inputs[i].checked = true;
+	}
+  }
+ }
+}
+
 </script>
 </head>
 <body>
@@ -54,44 +81,47 @@ return true;
                 <p align="left"><s2:fielderror cssStyle="font-size:15px; color:red; font-weight:bold "/></p>
                 <s2:form action="prousersearch" theme="simple">
                 <s2:hidden name="pageString"/>
-                <s2:hidden name="user.currentPage"/>
-                <s2:hidden name="user.pageCount"/>
+                <s2:hidden name="account.currentPage"/>
+                <s2:hidden name="account.pageCount"/>
                 <s2:hidden name="deleteId"/>
                 <s2:hidden name="editId"/>
 					<h3>Query</h3>
                     	<table border="1">	
 							<tr>
 							  <td>STB ID:</td>
-							  <td><s2:textfield name="user.id" size="20" maxlength="20"/></td>
+							  <td><s2:textfield name="account.account.accountId" size="20" maxlength="20"/></td>
 							</tr>
 							<tr>
 							  <td>Product Sets:</td>
 							  <td>
-								<s2:select list="user.typeList"  name="user.type" listKey="value" listValue="label" headerKey="" headerValue="-"></s2:select>
+								<s2:select list="products"  name="productId" listKey="productId" listValue="productName" headerKey="" headerValue="-"></s2:select>
 							  </td>
 							</tr>
 							<tr>
 							  <td>State:</td>
 							  <td>
-								<s2:textfield name="user.state" size="20" maxlength="20"></s2:textfield>
+							    <s2:select list="account.accountStatus"  name="account.account.state" listKey="value" listValue="value" headerKey="" headerValue="-"></s2:select>
 							  </td>
 							</tr>
 							<tr align="center">
 								<td colspan="2" >
-									<s2:submit value="Search" onclick="resetPage()"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Reset" onclick="window.location.href='preusersearch.action'" />
+									<s2:submit value="Search" onclick="resetPage()"/>&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="button" value="Reset" onclick="window.location.href='preusersearch.action'" />
 								</td>
 							</tr>
                         </table>
-                        <s2:if test="user.resultFlag">
+                        <s2:if test="account.resultFlag">
                         <h3>Result</h3>
 						<table>
 							<tr >
+								<td>&nbsp; </td>
 						 	  <td >STB ID</td>
 						 	  <td >State</td>
 							  <td>Operation</td>
 	    					</tr>
-	    				  <s2:iterator value="user.accountList" var="detil">
-						  <tr>    
+	    				  <s2:iterator value="account.accountList" var="detil">
+						  <tr>
+						  	<td><s2:checkbox name="checkSign" value="false"/> </td>    
 							  <td><s2:property value="accountId"/> </td>       
 						      <td><s2:property value="state"/></td>    
 						      <td>
@@ -101,16 +131,34 @@ return true;
 					      </s2:iterator>
 					      <tr>
 					      	<td colspan="7" align="right">
-						      	<s2:property value="user.resultCount"/>records, <s2:property value="user.currentPage"/>/<s2:property value="user.pageCount"/>
-						        <s2:if test="user.currentPage!=1">
+						      	<s2:property value="user.resultCount"/>records, <s2:property value="account.currentPage"/>/<s2:property value="account.pageCount"/>
+						        <s2:if test="account.currentPage!=1">
 						        <s2:submit action="prousersearch" value="上一页" onclick="priv()"/>
 						        </s2:if>
-						        <s2:if test="user.currentPage<user.pageCount">
+						        <s2:if test="account.currentPage<account.pageCount">
 						        <s2:submit action="prousersearch" value="下一页" onclick="next()"/>
 						        </s2:if>
 					        </td>
 					      </tr>
 						</table>
+						
+						<h3>Operations</h3>
+                    	<table border="1">	
+							<tr align="center">
+								<td >
+									<s2:submit value="Assign Product" onclick="window.open('userproductinsert.jsp','','height=500,width=611,scrollbars=yes,status =yes')"/>
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="button" value="Remove Product" onclick="window.open('userproductremove.jsp','','height=500,width=611,scrollbars=yes,status =yes')" />
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="button" value=" Select All" onclick="select_all(true);" />
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="button" value=" Select None" onclick="select_all(false);" />
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="button" value=" Inverse " onclick="select_inverse();" />
+								</td>
+							</tr>
+                        </table>
+
 						</s2:if>
                    </s2:form>
                 </div>

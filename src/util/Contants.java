@@ -1,5 +1,8 @@
 package util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Contants {
 	/** 用户名无效 */
 	public static String E001 = "E001";
@@ -165,5 +168,36 @@ public class Contants {
 	/** 影片服务类型2：VIP节目 */
 	public static String MEIDIA_SERVICE_STATE_2 = "VIP节目";
 	public static final String DELIM_COMMA = ",";
+	
+	public enum AccountStatus {
+		IN_USE(1001), NOT_ACTIVE(1002), NO_PRODUCT(1003), ACTIVE_PRODUCT(1004);
+		
+		private int value;
+		private static Map<Integer, AccountStatus> maps = new HashMap<Integer, AccountStatus>();
+		
+		static {
+			for (AccountStatus accout : AccountStatus.values()) {
+				maps.put(accout.value, accout);						
+			}
+		}
+		
+		private AccountStatus(Integer value) {
+			this.value = value;
+		}
+
+		public Integer getValue() {
+			return value;
+		}		
+		
+
+		public AccountStatus getAccountStatusByValue(Integer value){
+			if (maps.containsKey(value)) {
+				return maps.get(value);
+			} else {
+				return null;
+			}
+		}
+	}
 
 }
+ 

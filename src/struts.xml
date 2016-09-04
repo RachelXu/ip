@@ -15,7 +15,7 @@
 		<action name="preusersearch" class="preusersearch">
 			<result name="success">/usersearch.jsp</result>
 		</action>
-		<action name="prousersearch" class="prousersearch">
+		<action name="prousersearch" class="preusersearch" method="search">
 			<result name="input">/usersearch.jsp</result>
 			<result name="success">/usersearch.jsp</result>
 		</action>

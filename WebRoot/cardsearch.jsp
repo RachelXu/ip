@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>宽宏IPTV播控平台</title>
+<title>DAQI IPTV</title>
 <link href="style/css/transdmin.css" rel="stylesheet" type="text/css" media="screen" />
 <!-- JavaScripts-->
 <script type="text/javascript" src="style/js/Calendar.js" ></script>
@@ -42,15 +42,10 @@ return true;
 			<!-- // #start sidebar -->
         		<div id="sidebar">
                 	<ul class="sideNav">
-                	    <li><a href="precardbatchinsert.action" >充值卡批量生成</a></li>
-                	    <li><a href="precarddownload.action">充值卡信息下载</a></li>
-                    	<li><a href="precardsearch.action" class="active">充值卡查询</a></li>
-                    	<li><a href="precardbatchedit.action">充值卡批量修改</a></li>
-                    	<li><a href="precardbatchdelete.action">充值卡批量删除</a></li>
-                    	<s2:if test='#session.admin.level.equals("1") || #session.admin.level.equals("2")'>
-                    	<li><a href="preserviceinsert.action" >添加服务套餐</a></li>
-                    	<li><a href="preservicesearch.action" >服务套餐管理</a></li>
-                    	</s2:if>
+                    	<li><a href="precardsearch.action" class="active">Card Management</a></li>
+                	    <li><a href="precardbatchinsert.action" >Imports Prepay Cards</a></li>
+                	    <li><a href="precardbatchinsert.action" >Create Prepay Cards</a></li>
+                	    <li><a href="precardbatchinsert.action" >New a Prepay Card</a></li>
                     </ul>
                 </div>    
                 <!-- // #end sidebar -->
