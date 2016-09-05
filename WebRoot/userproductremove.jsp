@@ -19,10 +19,10 @@
                 <s2:form action="prouseredit" theme="simple">
                 <s2:hidden name="editId"/>
 					<h3>Remove Product</h3>
-                    	<table border="1"  style="width:450px;" align="center">	
-							<tr  >
-							  <td align="right">Products:</td>
-								<td align="center"><s2:select name="product" style="width:200px;" label="select a product" list="{'Pakisitan VIP','Egypt VIP','Brasil VIP'}"/> </td>
+                    	<table border="1"  style="width:450px;" align="center">
+							
+							  <td align="right">   Products:</td>
+								<td align="center"><s2:select name="productId" style="width:200px;" label="select a product" list="products" listKey="productId" listValue="productName"/> </td>								
  							</tr>
 							<tr align="center">
 								<td colspan="2" >

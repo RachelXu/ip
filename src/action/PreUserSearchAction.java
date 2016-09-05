@@ -104,6 +104,31 @@ public class PreUserSearchAction extends MySuperAction {
 		
 	}
 	
+	public String addProduct(){
+		if (account == null) {
+			//GET request is pre execute
+			initView(false);
+			return SUCCESS;
+		} else {
+			//Post request is execute
+			this.addActionMessage("Update Success");
+			return SUCCESS;
+		}
+	}
+	
+	public String delProduct(){
+		if (account == null) {
+			//GET request is pre execute
+			initView(false);
+			return SUCCESS;
+		} else {
+			//Post request is execute
+			this.addActionMessage("Update Success");
+			return SUCCESS;
+		}
+	}
+	
+	
 	private void initView(boolean resultFlag) {
 		if (account == null) account = new AccountForm();
 		
