@@ -19,8 +19,9 @@ document.getElementsByName("account.currentPage")[0].value="";
 document.getElementsByName("account.pageCount")[0].value="";
 }
 function edit(parm){
-document.getElementsByName("itemId")[0].value=parm;
-return true;
+	var url = "accountUpdate?itemId=" + parm;
+	window.open(url,'','height=400,width=720, toolbar=no, menubar=no, scrollbars=yes, resizable=no,location=no, status=no')
+	return false;
 }
 function del(parm){
 	if (confirm("Will you delete Account: " + parm + "?")) {
@@ -127,7 +128,7 @@ function select_inverse() {
 							  <td><s2:property value="accountId"/> </td>       
 						      <td><s2:property value="state"/></td>    
 						      <td>
-					          <s2:submit action="preuseredit" value="Modify" onclick="edit('%{accountId}')"> </s2:submit>
+					          <s2:submit value="Update" onclick="edit('%{accountId}')" />
 					          <s2:submit action="accountDelete" value="Delete" onclick="del('%{accountId}')">  </s2:submit> </td> 
 					      </tr>
 					      </s2:iterator>

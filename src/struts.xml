@@ -23,6 +23,10 @@
 			<result name="input">/usersearch.jsp</result>
 			<result name="success">/usersearch.jsp</result>
 		</action>
+		<action name="accountUpdate" class="preusersearch" method="update">
+			<result name="input">/accountedit.jsp</result>
+			<result name="success">/accountedit.jsp</result>
+		</action>
 		
 
 <!-- Product start-->

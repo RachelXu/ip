@@ -3,6 +3,7 @@ package action;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.model.Account;
 import dao.model.ProductSet;
 import form.AccountForm;
 import logic.AccountLogic;
@@ -10,6 +11,7 @@ import logic.LogicDTO;
 import logic.ProductLogic;
 import util.CommonUtil;
 import util.Contants;
+import util.Contents;
 
 public class PreUserSearchAction extends MySuperAction {
 	/**
@@ -79,6 +81,29 @@ public class PreUserSearchAction extends MySuperAction {
 			return INPUT;
 		}
 	}
+	
+	public String update(){
+		if (account == null) {
+			//GET request is pre update
+			account = new AccountForm();
+			this.itemId = request.getParameter("itemId");
+			
+			Account acc = accLogic.loadAccount(this.itemId);
+			if (acc != null) {
+				account.setAccount(acc);			
+			} else {
+				this.itemId = request.getParameter("itemId");
+			}
+			return SUCCESS;
+		} else {
+			//Post request is update
+			this.addFieldError("field", getText(Contants.E001));
+			return SUCCESS;
+		}
+		
+		
+	}
+	
 	private void initView(boolean resultFlag) {
 		if (account == null) account = new AccountForm();
 		

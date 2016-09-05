@@ -36,6 +36,13 @@ public class AccountLogic {
 		return dto;
 	}
 
+	public Account loadAccount(String accId) {
+		Object o = accountDao.findById(Account.class, accId);
+		
+		return (Account)o;
+	}
+	
+	
 	public boolean delete(String accId) {
 		Object o = accountDao.findById(Account.class, accId);
 		try{
