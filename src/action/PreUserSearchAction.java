@@ -1,6 +1,8 @@
 package action;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import dao.model.Account;
@@ -117,7 +119,11 @@ public class PreUserSearchAction extends MySuperAction {
 			return SUCCESS;
 		} else {
 			//Post request is execute
-			
+			if (opType.equalsIgnoreCase("Add")){
+				accLogic.assignProduct(Arrays.asList(itemIds.split("\\;")), Arrays.asList(productId.split("\\, ")), new Date());
+			} else {
+				accLogic.reduceProduct(Arrays.asList(itemIds.split("\\;")), Arrays.asList(productId.split("\\, ")));
+			}
 			System.out.println(productId);
 			System.out.println(itemIds);
 			System.out.println(opType);

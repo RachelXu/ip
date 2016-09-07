@@ -1,5 +1,7 @@
 package dao.model;
 
+import java.util.Date;
+
 /**
  * 
  */
@@ -13,7 +15,7 @@ public class AccountProductSet implements java.io.Serializable {
 	private int id;
 	private Account account;
 	private ProductSet productSet;
-	private String endDate;
+	private Date endDate;
 	
 	/** default constructor */
 	public AccountProductSet() {
@@ -35,11 +37,12 @@ public class AccountProductSet implements java.io.Serializable {
 		this.productSet = productSet;
 	}
 
-	public String getEndDate() {
+	
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
