@@ -24,6 +24,8 @@ public class PreUserSearchAction extends MySuperAction {
 	private String pageString;
 	private String productId;
 	private String itemId;
+	private String itemIds;
+	private String opType;
 	
 	private List<ProductSet> products = new ArrayList<ProductSet>();
 
@@ -104,25 +106,22 @@ public class PreUserSearchAction extends MySuperAction {
 		
 	}
 	
-	public String addProduct(){
-		if (account == null) {
+	public String assignProduct(){
+		if (opType == null) {
 			//GET request is pre execute
-			initView(false);
+			account = new AccountForm();
+			itemIds = request.getParameter("accIds");
+			opType = request.getParameter("type");
+			
+			this.products = productLogic.getAllProductSet();			
 			return SUCCESS;
 		} else {
 			//Post request is execute
-			this.addActionMessage("Update Success");
-			return SUCCESS;
-		}
-	}
-	
-	public String delProduct(){
-		if (account == null) {
-			//GET request is pre execute
-			initView(false);
-			return SUCCESS;
-		} else {
-			//Post request is execute
+			
+			System.out.println(productId);
+			System.out.println(itemIds);
+			System.out.println(opType);
+			this.products = productLogic.getAllProductSet();	
 			this.addActionMessage("Update Success");
 			return SUCCESS;
 		}
@@ -189,6 +188,22 @@ public class PreUserSearchAction extends MySuperAction {
 
 	public void setItemId(String itemId) {
 		this.itemId = itemId;
+	}
+
+	public String getItemIds() {
+		return itemIds;
+	}
+
+	public void setItemIds(String itemIds) {
+		this.itemIds = itemIds;
+	}
+
+	public String getOpType() {
+		return opType;
+	}
+
+	public void setOpType(String opType) {
+		this.opType = opType;
 	}
 	
 

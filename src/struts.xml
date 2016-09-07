@@ -27,14 +27,11 @@
 			<result name="input">/accountedit.jsp</result>
 			<result name="success">/accountedit.jsp</result>
 		</action>
-		<action name="accountAddProduct" class="preusersearch" method="addProduct">
+		<action name="accountProduct" class="preusersearch" method="assignProduct">
 			<result name="input">/userproductinsert.jsp</result>
 			<result name="success">/userproductinsert.jsp</result>
 		</action>
-		<action name="accountDelProduct" class="preusersearch" method="delProduct">
-			<result name="input">/userproductremove.jsp</result>
-			<result name="success">/userproductremove.jsp</result>
-		</action>
+		
 		
 
 <!-- Product start-->

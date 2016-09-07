@@ -20,7 +20,7 @@ document.getElementsByName("account.pageCount")[0].value="";
 }
 function edit(parm){
 	var url = "accountUpdate?itemId=" + parm;
-	window.open(url,'','height=400,width=720, toolbar=no, menubar=no, scrollbars=yes, resizable=no,location=no, status=no')
+	window.open(url,'','height=400,width=720, toolbar=no, menubar=no, scrollbars=yes, resizable=no,location=no, status=no');
 	return false;
 }
 function del(parm){
@@ -30,6 +30,25 @@ function del(parm){
     } else {
 		return false;
     }	
+}
+function assignProduct(opType){
+	var inputs = document.getElementsByName("checkSign");
+	var accIds = "";
+	for(var i=0; i< inputs.length; i++) {
+		if (inputs[i].checked){
+			accIds = accIds + ";" + inputs[i].value;
+		}
+	}
+	if (accIds.length > 1){
+		accIds = accIds.substring(1);
+		var url = "accountProduct?accIds=" + accIds + "&type=" + opType;
+		alert(url);
+		window.open(url,'','height=400,width=720, toolbar=no, menubar=no, scrollbars=yes, resizable=no,location=no, status=no');
+	} else {
+		alert("Please select account first.");
+	}
+	
+	return false;
 }
 
 function select_all(state) 
@@ -124,7 +143,7 @@ function select_inverse() {
 	    					</tr>
 	    				  <s2:iterator value="account.accountList" var="detil">
 						  <tr>
-						  	<td><s2:checkbox name="checkSign" value="false"/> </td>    
+						  	<td><s2:checkbox name="checkSign" value="false" fieldValue="%{accountId}"/> </td>    
 							  <td><s2:property value="accountId"/> </td>       
 						      <td><s2:property value="state"/></td>    
 						      <td>
@@ -149,9 +168,9 @@ function select_inverse() {
                     	<table border="1">	
 							<tr align="center">
 								<td >
-									<s2:submit value="Assign Product" onclick="window.open('userproductinsert.jsp','','height=500,width=611,scrollbars=yes,status =yes')"/>
+									<input type="button" value="Assign Product" onclick="assignProduct('Add');"/>
 									&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="button" value="Remove Product" onclick="window.open('userproductremove.jsp','','height=500,width=611,scrollbars=yes,status =yes')" />
+									<input type="button" value="Remove Product" onclick="assignProduct('Del');" />
 									&nbsp;&nbsp;&nbsp;&nbsp;
 									<input type="button" value=" Select All" onclick="select_all(true);" />
 									&nbsp;&nbsp;&nbsp;&nbsp;
