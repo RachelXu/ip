@@ -11,7 +11,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import dao.AccountDAO;
-import dao.BaseDAO;
 import dao.model.Account;
 import dao.model.AccountProductSet;
 import dao.model.ProductSet;
@@ -49,6 +48,14 @@ public class AccountLogic {
 		Object o = accountDao.findById(Account.class, accId);
 		
 		return (Account)o;
+	}
+	
+	public void updateAccount(Account acc) {
+		accountDao.update(acc);
+	}
+	
+	public void saveAccount(Account acc) {
+		accountDao.saveOrUpdate(acc);
 	}
 	
 	public void assignProduct(List<String> accIds, List<String> prodIds, Date validTime) {

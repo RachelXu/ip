@@ -101,7 +101,10 @@ public class PreUserSearchAction extends MySuperAction {
 			return SUCCESS;
 		} else {
 			//Post request is update
-			this.addFieldError("field", getText(Contants.E001));
+			Account existAcc = accLogic.loadAccount(account.getAccount().getAccountId());
+			existAcc.setState(account.getAccount().getState());
+			accLogic.updateAccount(existAcc);
+			this.addActionMessage("Update Success");
 			return SUCCESS;
 		}
 		
@@ -132,7 +135,18 @@ public class PreUserSearchAction extends MySuperAction {
 			return SUCCESS;
 		}
 	}
-	
+	public String add() throws Exception {
+		if (account == null) {
+			initView(false);
+			return SUCCESS;
+		} else {
+			//Post request is update
+			accLogic.saveAccount(new Account(account.getAccount().getAccountId(), account.getAccount().getState()));
+			this.addActionMessage("Save Success");
+			return SUCCESS;
+		}
+		
+	}
 	
 	private void initView(boolean resultFlag) {
 		if (account == null) account = new AccountForm();

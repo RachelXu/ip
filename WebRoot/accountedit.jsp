@@ -15,7 +15,8 @@
                 <!-- main page -->
                 <h2><a href="#">Account Management</a> &raquo; <a href="#" class="active">Update Account</a></h2>
                 <div id="main1" class="main"><br/>
-                <p align="left"><s2:fielderror cssStyle="font-size:15px; color:red; font-weight:bold "/></p>
+                <p align="left"><s2:fielderror cssStyle="font-size:15px; color:red; font-weight:bold "/>
+                <s2:actionmessage cssStyle="font-size:15px; font-weight:bold "/></p>
                 <s2:form action="accountUpdate" theme="simple">
                 <s2:hidden name="editId"/>
 					<h3>Current Account:<br/></h3>
@@ -26,7 +27,7 @@
 							</tr>							
 							<tr>
 							  <td align="right">Account State:&nbsp;</td>
-							  <td align="center"><s2:textfield name="account.account.state" size="30" readonly="true" /></td>
+							  <td align="center"><s2:textfield name="account.account.state" size="30" readonly="false" /></td>
 							</tr>
 							<tr align="center">
 								<td colspan="2" >

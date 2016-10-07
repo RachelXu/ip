@@ -32,7 +32,11 @@
 			<result name="success">/userproductinsert.jsp</result>
 		</action>
 		
-		
+		<action name="*_user_*" class="preusersearch" method="{1}" >
+		    <result name="input">/{2}.jsp</result>            
+			<result name="success">/{2}.jsp</result>  
+			<result name="error">/error.jsp</result>  
+		</action> 
 
 <!-- Product start-->
 		<action name="*_product_*" class="productAction" method="{1}" >

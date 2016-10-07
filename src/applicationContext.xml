@@ -968,9 +968,11 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
+			<!-- 
 				<ref bean="mediaJobTrigger" />
 				<ref bean="userChargingJobTrigger" />
 				<ref bean="cardInvalidJobTrigger" />
+				 -->
 			</list>
 		</property>
 	</bean>
