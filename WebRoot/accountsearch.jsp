@@ -41,7 +41,7 @@ function assignProduct(opType){
 	}
 	if (accIds.length > 1){
 		accIds = accIds.substring(1);
-		var url = "assignProduct_account_userproductinsert?accIds=" + accIds + "&type=" + opType;
+		var url = "assignProduct_account_accountassign?accIds=" + accIds + "&type=" + opType;
 		alert(url);
 		window.open(url,'','height=400,width=720, toolbar=no, menubar=no, scrollbars=yes, resizable=no,location=no, status=no');
 	} else {

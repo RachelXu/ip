@@ -8,70 +8,6 @@
 <link href="style/css/transdmin.css" rel="stylesheet" type="text/css" media="screen" />
 <!-- JavaScripts-->
 <script language="javascript" type="text/javascript">
-function priv(){
-document.getElementsByName("pageString")[0].value="priv";
-}
-function next(){
-document.getElementsByName("pageString")[0].value="next";
-}
-function resetPage(){
-document.getElementsByName("account.currentPage")[0].value="";
-document.getElementsByName("account.pageCount")[0].value="";
-}
-function del(parm){
-	if (confirm("Will you delete Account: " + parm + "?")) {
-        document.getElementsByName("itemId")[0].value=parm;
-        return true;
-    } else {
-		return false;
-    }	
-}
-function assignProduct(opType){
-	var inputs = document.getElementsByName("checkSign");
-	var accIds = "";
-	for(var i=0; i< inputs.length; i++) {
-		if (inputs[i].checked){
-			accIds = accIds + ";" + inputs[i].value;
-		}
-	}
-	if (accIds.length > 1){
-		accIds = accIds.substring(1);
-		var url = "assignProduct_account_accountassign?accIds=" + accIds + "&type=" + opType;
-		alert(url);
-		window.open(url,'','height=400,width=720, toolbar=no, menubar=no, scrollbars=yes, resizable=no,location=no, status=no');
-	} else {
-		alert("Please select account first.");
-	}
-	
-	return false;
-}
-
-function select_all(state) 
-{
- var inputs = document.getElementsByName("checkSign");
-
- for(var i=0; i< inputs.length; i++)
- {
-  if(inputs[i].type == "checkbox")
-  {
-   inputs[i].checked =state; 
-  }
- }
-}
-
-function select_inverse() {
- var inputs = document.getElementsByName("checkSign");
- for(var i=0; i< inputs.length; i++) {
-  if(inputs[i].type == "checkbox"){
-	if (inputs[i].checked == true){
-	  inputs[i].checked = false; 
-	}else{
-		inputs[i].checked = true;
-	}
-  }
- }
-}
-
 </script>
 </head>
 <body>
@@ -111,8 +47,7 @@ function select_inverse() {
 							</tr>
 							<tr align="center">
 								<td colspan="2" >
-									<s2:submit value="Submit"/>&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="button" value="Reset" onclick="window.location.href='search_account_accountsearch.action'" />
+									<s2:submit value="Submit"/>
 								</td>
 							</tr>
                         </table>

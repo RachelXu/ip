@@ -27,13 +27,8 @@ public class AccountAction extends MySuperAction {
 	private String itemId;
 	private String itemIds;
 	private String opType;
-	
 	private List<ProductSet> products = new ArrayList<ProductSet>();
 
-	public String execute() throws Exception {
-		initView(false);
-		return SUCCESS;
-	}
 
 	public String search() {
 		if (account == null) {
@@ -130,9 +125,6 @@ public class AccountAction extends MySuperAction {
 			} else {
 				accLogic.reduceProduct(Arrays.asList(itemIds.split("\\;")), Arrays.asList(productId.split("\\, ")));
 			}
-			System.out.println(productId);
-			System.out.println(itemIds);
-			System.out.println(opType);
 			this.products = productLogic.getAllProductSet();	
 			this.addActionMessage("Update Success");
 			return SUCCESS;

@@ -25,6 +25,24 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 			<ref local="sessionFactory" />
 		</property>
 	</bean>
+	
+	<!-- Transaction -->
+	<tx:advice id="iptvTXAdvice" transaction-manager="transactionManager">
+	    <tx:attributes>
+			<tx:method name="load*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="find*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="search*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="*" propagation="REQUIRED" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+	
+    <aop:config>
+		<aop:pointcut id="iptvServiceMethods"
+			expression="execution(* logic.*.*(..))" />
+		<aop:advisor advice-ref="iptvTXAdvice" pointcut-ref="iptvServiceMethods" />
+	</aop:config>
+
+    
 	<!-- ================================================== -->
 	
 	<!-- DAO -->
