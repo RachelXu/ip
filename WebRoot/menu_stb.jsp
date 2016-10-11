@@ -51,7 +51,7 @@ function switchSysBar(){
 
 
 					<ul class="sideNav">
-                    	<li><a href="preusersearch.action" class="active" >STB Management</a></li>
+                    	<li><a href="search_account_accountsearch.action" class="active" >STB Management</a></li>
                     	<li><a href="preuserupload.action" >Import STBs</a></li>
                     	<li><a href="preuserbatchedit.action">New STB</a></li>
                     </ul>

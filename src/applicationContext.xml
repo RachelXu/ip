@@ -26,6 +26,8 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 		</property>
 	</bean>
 	<!-- ================================================== -->
+	
+	<!-- DAO -->
 	<bean id="AreaDAO" class="dao.AreaDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -167,31 +169,23 @@ http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 			<ref local="ProLoginLogic" />
 		</property>
 	</bean>
-	<!-- 帐户检索处理Ation -->
-	<bean id="preusersearch" class="action.PreUserSearchAction"
-		scope="prototype">
+
+    <!-- accountAction -->
+    <bean id="accountAction" class="action.AccountAction" scope="prototype">
 		<property name="productLogic">
 			<ref local="ProductLogic" />
 		</property>
 		<property name="accLogic">
 			<ref local="AccountLogic" />
-		</property>
-		
+		</property>		
 	</bean>
-	<bean id="prousersearch" class="action.ProUserSearchAction"
-		scope="prototype">
-		<property name="logic">
-			<ref local="AccountLogic" />
-		</property>
-	</bean>
-
-	<!-- productAction begin--> 
+	<!-- productAction --> 
 	<bean id="productAction" class="action.ProductAction" scope="prototype">
 		<property name="logic">
 			<ref local="ProductLogic" />
 		</property>
 	</bean>
-	<!-- productAction end-->
+
 
 	<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 	<bean id="IptvsoftwareDAO" class="dao.IptvsoftwareDAO">

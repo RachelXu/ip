@@ -13,9 +13,8 @@ import logic.LogicDTO;
 import logic.ProductLogic;
 import util.CommonUtil;
 import util.Contants;
-import util.Contents;
 
-public class PreUserSearchAction extends MySuperAction {
+public class AccountAction extends MySuperAction {
 	/**
 	 * 
 	 */
@@ -37,33 +36,38 @@ public class PreUserSearchAction extends MySuperAction {
 	}
 
 	public String search() {
-		if (CommonUtil.isEmpty(account.getCurrentPage())
-				|| account.getCurrentPage() < 1) {
-			account.setCurrentPage(1);
-		}
-		if (!CommonUtil.isEmpty(pageString)) {
-			if (Contants.PRIV.equals(pageString)) {
-				account.setCurrentPage(account.getCurrentPage() - 1);
-			}
-			if (Contants.NEXT.equals(pageString)) {
-				account.setCurrentPage(account.getCurrentPage() + 1);
-			}
-		}
-		LogicDTO dto = accLogic.search(account, this.productId);
-		if (dto.isResult()) {
-			initView(true);
+		if (account == null) {
+			initView(false);
 			return SUCCESS;
 		} else {
-			this.addFieldError("field", getText(dto.getErrorCode()));
-			initView(false);
-			return INPUT;
+			if (CommonUtil.isEmpty(account.getCurrentPage()) || account.getCurrentPage() < 1) {
+				account.setCurrentPage(1);
+			}
+			if (!CommonUtil.isEmpty(pageString)) {
+				if (Contants.PRIV.equals(pageString)) {
+					account.setCurrentPage(account.getCurrentPage() - 1);
+				}
+				if (Contants.NEXT.equals(pageString)) {
+					account.setCurrentPage(account.getCurrentPage() + 1);
+				}
+			}
+			
+			LogicDTO dto = accLogic.search(account, this.productId);
+			if (dto.isResult()) {
+				initView(true);
+				return SUCCESS;
+			} else {
+				this.addFieldError("field", getText(dto.getErrorCode()));
+				initView(false);
+				return INPUT;
+			}
 		}
-		
 	}
 
 	public String del(){
-		if (CommonUtil.isEmpty(account.getCurrentPage())
-				|| account.getCurrentPage() < 1) {
+		
+		accLogic.delete(this.itemId);
+		if (CommonUtil.isEmpty(account.getCurrentPage()) || account.getCurrentPage() < 1) {
 			account.setCurrentPage(1);
 		}
 		if (!CommonUtil.isEmpty(pageString)) {
@@ -74,7 +78,6 @@ public class PreUserSearchAction extends MySuperAction {
 				account.setCurrentPage(account.getCurrentPage() + 1);
 			}
 		}
-		accLogic.delete(this.itemId);
 		LogicDTO dto = accLogic.search(account, this.productId);
 		if (dto.isResult()) {
 			initView(true);

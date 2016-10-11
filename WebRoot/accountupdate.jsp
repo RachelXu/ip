@@ -17,7 +17,7 @@
                 <div id="main1" class="main"><br/>
                 <p align="left"><s2:fielderror cssStyle="font-size:15px; color:red; font-weight:bold "/>
                 <s2:actionmessage cssStyle="font-size:15px; font-weight:bold "/></p>
-                <s2:form action="accountUpdate" theme="simple">
+                <s2:form action="update_account_accountupdate" theme="simple">
                 <s2:hidden name="editId"/>
 					<h3>Current Account:<br/></h3>
                     	<table border="1"  style="width:550px;" align="center">	

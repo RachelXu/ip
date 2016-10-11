@@ -28,7 +28,7 @@ function resetCondition(){
 			<!-- // #start sidebar -->
         		<div id="sidebar">
         		    <ul class="sideNav">
-                    	<li><a href="preusersearch.action">STB Management</a></li>
+                    	<li><a href="search_account_accountsearch.action">STB Management</a></li>
                     	<li><a href="preuserupload.action" >Import STBs</a></li>
                     	<li><a href="userinsert.jsp" class="active" >New a STB</a></li>
                     </ul>

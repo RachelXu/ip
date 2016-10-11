@@ -3,7 +3,7 @@
 
 
         <ul id="mainNav">
-        	<li><a href="preusersearch.action" >STB</a></li>
+        	<li><a href="search_account_accountsearch.action" >STB</a></li>
 			<li><a href="premediasearch.action" class="active">Media</a></li>
         	<li><a href="precardbatchinsert.action">Prepay Card</a></li>
 			<li><a href="preproductsearch.action">Product</a></li>

@@ -23,7 +23,7 @@
 			<!-- // #start sidebar -->
         		<div id="sidebar">
                 	<ul class="sideNav">
-                    	<li><a href="preusersearch.action"  >账户查询</a></li>
+                    	<li><a href="search_account_accountsearch.action"  >账户查询</a></li>
                     	<li><a href="preuserupload.action" >账户批量导入</a></li>
                     	<li><a href="preuserbatchedit.action" class="active">账户批量修改</a></li>
                     	<li><a href="preuserbatchdelete.action">账户批量删除</a></li>

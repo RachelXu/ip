@@ -18,11 +18,6 @@ function resetPage(){
 document.getElementsByName("account.currentPage")[0].value="";
 document.getElementsByName("account.pageCount")[0].value="";
 }
-function edit(parm){
-	var url = "accountUpdate?itemId=" + parm;
-	window.open(url,'','height=400,width=720, toolbar=no, menubar=no, scrollbars=yes, resizable=no,location=no, status=no');
-	return false;
-}
 function del(parm){
 	if (confirm("Will you delete Account: " + parm + "?")) {
         document.getElementsByName("itemId")[0].value=parm;
@@ -41,7 +36,7 @@ function assignProduct(opType){
 	}
 	if (accIds.length > 1){
 		accIds = accIds.substring(1);
-		var url = "accountProduct?accIds=" + accIds + "&type=" + opType;
+		var url = "assignProduct_account_accountassign?accIds=" + accIds + "&type=" + opType;
 		alert(url);
 		window.open(url,'','height=400,width=720, toolbar=no, menubar=no, scrollbars=yes, resizable=no,location=no, status=no');
 	} else {
@@ -91,9 +86,9 @@ function select_inverse() {
 			<!-- // #start sidebar -->
         		<div id="sidebar">
 					<ul class="sideNav">
-                    	<li><a href="preusersearch.action">STB Management</a></li>
+                    	<li><a href="search_account_accountsearch.action">STB Management</a></li>
                     	<li><a href="preuserupload.action" >Import STBs</a></li>
-                    	<li><a href="add_user_useradd.action"  class="active" >New a STB</a></li>
+                    	<li><a href="add_account_accountadd.action"  class="active" >New a STB</a></li>
                     </ul>
                 </div>    
                 <!-- // #end sidebar -->
@@ -102,7 +97,7 @@ function select_inverse() {
                 <h2><a href="#">STB</a> &raquo; <a href="#" class="active"> Management</a></h2>
                 <div id="main1" class="main">
                 <p align="left"><s2:fielderror cssStyle="font-size:15px; color:red; font-weight:bold "/><s2:actionmessage cssStyle="font-size:15px; font-weight:bold "/></p>
-                <s2:form action="add_user_useradd.action" theme="simple">
+                <s2:form action="add_account_accountadd.action" theme="simple">
                     	<table border="1">	
 							<tr>
 							  <td>STB ID:</td>
@@ -117,7 +112,7 @@ function select_inverse() {
 							<tr align="center">
 								<td colspan="2" >
 									<s2:submit value="Submit"/>&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="button" value="Reset" onclick="window.location.href='preusersearch.action'" />
+									<input type="button" value="Reset" onclick="window.location.href='search_account_accountsearch.action'" />
 								</td>
 							</tr>
                         </table>
