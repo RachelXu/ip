@@ -16,7 +16,7 @@
                 <h2><a href="#">STB Management</a> &raquo; <a href="#" class="active">Assign a Product</a></h2>
                 <div id="main1" class="main">
                 <p align="left"><s2:fielderror cssStyle="font-size:15px; color:red; font-weight:bold "/><s2:actionmessage cssStyle="font-size:15px; font-weight:bold "/></p>
-                <s2:form action="accountProduct" theme="simple">
+                <s2:form action="assignProduct_account_accountassign" theme="simple">
                 <s2:hidden name="opType"/>
                 <s2:hidden name="itemIds"/>
                     <s2:if test="opType=='Add'">

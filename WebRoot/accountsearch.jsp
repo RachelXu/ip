@@ -19,7 +19,7 @@ document.getElementsByName("account.currentPage")[0].value="";
 document.getElementsByName("account.pageCount")[0].value="";
 }
 function edit(parm){
-	var url = "accountUpdate?itemId=" + parm;
+	var url = "update_account_accountupdate?itemId=" + parm;
 	window.open(url,'','height=400,width=720, toolbar=no, menubar=no, scrollbars=yes, resizable=no,location=no, status=no');
 	return false;
 }
@@ -41,7 +41,7 @@ function assignProduct(opType){
 	}
 	if (accIds.length > 1){
 		accIds = accIds.substring(1);
-		var url = "accountProduct?accIds=" + accIds + "&type=" + opType;
+		var url = "assignProduct_account_userproductinsert?accIds=" + accIds + "&type=" + opType;
 		alert(url);
 		window.open(url,'','height=400,width=720, toolbar=no, menubar=no, scrollbars=yes, resizable=no,location=no, status=no');
 	} else {
@@ -84,16 +84,16 @@ function select_inverse() {
     	<!-- h1 tag stays for the logo, you can use the a tag for linking the index page -->
     	<h1><a href="#"><span>管理系统</span></a></h1>
     	<!-- // #start mainNav -->
-    	<%@include file="headbar_user.jsp" %>
+    	<%@include file="headbar_account.jsp" %>
         <!-- // #end mainNav -->
         <div id="containerHolder">
 			<div id="container">
 			<!-- // #start sidebar -->
         		<div id="sidebar">
 					<ul class="sideNav">
-                    	<li><a href="preusersearch.action" class="active" >STB Management</a></li>
+                    	<li><a href="search_account_accountsearch.action" class="active" >STB Management</a></li>
                     	<li><a href="preuserupload.action" >Import STBs</a></li>
-                    	<li><a href="add_user_useradd.action">New a STB</a></li>
+                    	<li><a href="add_account_accountadd.action">New a STB</a></li>
                     </ul>
                 </div>    
                 <!-- // #end sidebar -->
@@ -102,7 +102,7 @@ function select_inverse() {
                 <h2><a href="#">STB</a> &raquo; <a href="#" class="active"> Management</a></h2>
                 <div id="main1" class="main">
                 <p align="left"><s2:fielderror cssStyle="font-size:15px; color:red; font-weight:bold "/></p>
-                <s2:form action="prousersearch" theme="simple">
+                <s2:form action="search_account_accountsearch" theme="simple">
                 <s2:hidden name="pageString" value=""/>
                 <s2:hidden name="account.currentPage"/>
                 <s2:hidden name="account.pageCount"/>
@@ -116,19 +116,18 @@ function select_inverse() {
 							<tr>
 							  <td>Product Sets:</td>
 							  <td>
-								<s2:select list="products"  name="productId" listKey="productId" listValue="productName" headerKey="" headerValue="-"></s2:select>
+								<s2:select name="productId" list="products" listKey="productId" listValue="productName" headerKey="" headerValue="-"></s2:select>
 							  </td>
 							</tr>
 							<tr>
 							  <td>State:</td>
 							  <td>
-							    <s2:select list="account.accountStatus"  name="account.account.state" listKey="value" listValue="value" headerKey="" headerValue="-"></s2:select>
+							    <s2:select name="account.account.state" list="account.accountStatus" listKey="value" listValue="value" headerKey="" headerValue="-"></s2:select>
 							  </td>
 							</tr>
 							<tr align="center">
 								<td colspan="2" >
-									<s2:submit value="Search" onclick="resetPage()"/>&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="button" value="Reset" onclick="window.location.href='preusersearch.action'" />
+									<s2:submit value="Search" onclick="resetPage()"/>
 								</td>
 							</tr>
                         </table>
@@ -136,9 +135,9 @@ function select_inverse() {
                         <h3>Result</h3>
 						<table>
 							<tr >
-								<td>&nbsp; </td>
-						 	  <td >STB ID</td>
-						 	  <td >State</td>
+							  <td>&nbsp; </td>
+						 	  <td>STB ID</td>
+						 	  <td>State</td>
 							  <td>Operation</td>
 	    					</tr>
 	    				  <s2:iterator value="account.accountList" var="detil">
@@ -148,17 +147,17 @@ function select_inverse() {
 						      <td><s2:property value="state"/></td>    
 						      <td>
 					          <s2:submit value="Update" onclick="edit('%{accountId}')" />
-					          <s2:submit action="accountDelete" value="Delete" onclick="del('%{accountId}')">  </s2:submit> </td> 
+					          <s2:submit action="del_account_accountsearch" value="Delete" onclick="del('%{accountId}')"></s2:submit> </td> 
 					      </tr>
 					      </s2:iterator>
 					      <tr>
 					      	<td colspan="7" align="right">
 						      	<s2:property value="user.resultCount"/>records, <s2:property value="account.currentPage"/>/<s2:property value="account.pageCount"/>
 						        <s2:if test="account.currentPage!=1">
-						        <s2:submit action="prousersearch" value="上一页" onclick="priv()"/>
+						        <s2:submit action="search_account_accountsearch" value="Prev" onclick="priv()"/>
 						        </s2:if>
 						        <s2:if test="account.currentPage<account.pageCount">
-						        <s2:submit action="prousersearch" value="下一页" onclick="next()"/>
+						        <s2:submit action="search_account_accountsearch" value="Next" onclick="next()"/>
 						        </s2:if>
 					        </td>
 					      </tr>
