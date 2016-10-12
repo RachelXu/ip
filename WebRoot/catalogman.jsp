@@ -51,6 +51,7 @@ return true;
                 <s2:form action="procatalogman" theme="simple">
                 <s2:hidden name="deleteId"/>
                 <s2:hidden name="editId"/>
+                	<h3>Add Directory</h3>
 						<table>
 						<tr>
 							<td>Name:</td>
@@ -59,9 +60,9 @@ return true;
 							<td><s2:textfield name="catalog.catalogEnName"  size="10" maxlength="10"/></td>
 						</tr>
 						<tr>
-							<td>��ʾ˳��:</td>
+							<td>Show Order:</td>
 							<td><s2:textfield name="catalog.order"  size="3" maxlength="3"/></td>
-							<td>�ϼ���Ŀ:</td>
+							<td>Parent:</td>
 							<td><s2:select list="catalog.firstLeveList" name="catalog.superId" listKey="value" listValue="label" headerKey="" headerValue="-">
 								<s2:iterator value="catalog.secondLabel" var="sencondLable" status="status" >
 								<s2:optgroup label="%{sencondLable}" list="catalog.sencondLeveList.get(#status.index)" listKey="value" listValue="label">
@@ -72,20 +73,20 @@ return true;
 						</tr>
 						<tr>
 						<td colspan="4" align="center" >
-							<s2:submit value="�ύ"></s2:submit>&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="button" value="����" onclick="window.location.href='precatalogman.action'" />
+							<s2:submit value="submit"></s2:submit>&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="button" value="reset" onclick="window.location.href='precatalogman.action'" />
 						</td>
 						</tr>
 						</table>
 						<s2:if test="catalog.resultFlag">
-                        <h3>��Ŀ����</h3>
+                        <h3>Modify/Delete Directory</h3>
 						<table>
 							<tr>
-						 	  <td >Ŀ¼ID</td>
-						      <td >Ŀ¼�������</td>
-						      <td >Ŀ¼Ӣ�����</td>
-						 	  <td >��ʾ˳��</td>
-							  <td>����</td>
+						 	  <td >Directory ID</td>
+						      <td >Directory Name ZH</td>
+						      <td >Directory Name EN</td>
+						 	  <td >Show Order</td>
+							  <td>Operation</td>
 	    					</tr>
 	    				  <s2:iterator value="catalog.resultList" var="detil">
 						  <tr>    
@@ -94,8 +95,8 @@ return true;
 						 	  <td><s2:property value="catalogEnName"/></td>   
 						      <td><s2:property value="order"/></td>
 						      <td>
-					          <s2:submit action="precatalogedit" value="�޸�" onclick="edit('%{catalogId}')"> </s2:submit>
-					          <s2:submit action="precatalogdelete" value="ɾ��" onclick="del('%{catalogId}')">  </s2:submit> </td> 
+					          <s2:submit action="precatalogedit" value="Modify" onclick="edit('%{catalogId}')"> </s2:submit>
+					          <s2:submit action="precatalogdelete" value="Delete" onclick="del('%{catalogId}')">  </s2:submit> </td> 
 					      </tr>
 					      </s2:iterator>
 						</table>
