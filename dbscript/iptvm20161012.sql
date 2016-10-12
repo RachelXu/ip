@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2016-10-12 16:41:38
+Date: 2016-10-12 21:07:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -627,10 +627,12 @@ INSERT INTO `channel_directory` VALUES ('14', '45');
 DROP TABLE IF EXISTS `directory`;
 CREATE TABLE `directory` (
   `DirectoryID` int(11) NOT NULL AUTO_INCREMENT,
-  `ParentID` varchar(20) DEFAULT NULL,
+  `ParentID` int(11) DEFAULT NULL,
   `DirectoryName` varchar(20) NOT NULL,
   `ShowOrder` int(11) NOT NULL,
-  PRIMARY KEY (`DirectoryID`)
+  PRIMARY KEY (`DirectoryID`),
+  KEY `FK_Relationship_4` (`ParentID`),
+  CONSTRAINT `FK_Relationship_4` FOREIGN KEY (`ParentID`) REFERENCES `directory` (`DirectoryID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -1036,12 +1038,23 @@ CREATE TABLE `product_channel` (
   `ProductID` int(11) NOT NULL,
   `ChannelID` int(11) NOT NULL,
   PRIMARY KEY (`ProductID`,`ChannelID`),
-  KEY `FK_product_channel2` (`ChannelID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  KEY `FK_product_channel2` (`ChannelID`),
+  CONSTRAINT `FK_product_channel` FOREIGN KEY (`ProductID`) REFERENCES `productset` (`ProductID`),
+  CONSTRAINT `FK_product_channel2` FOREIGN KEY (`ChannelID`) REFERENCES `channelset` (`ChannelID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of product_channel
 -- ----------------------------
+INSERT INTO `product_channel` VALUES ('4', '1');
+INSERT INTO `product_channel` VALUES ('4', '2');
+INSERT INTO `product_channel` VALUES ('4', '3');
+INSERT INTO `product_channel` VALUES ('4', '4');
+INSERT INTO `product_channel` VALUES ('4', '5');
+INSERT INTO `product_channel` VALUES ('4', '6');
+INSERT INTO `product_channel` VALUES ('4', '7');
+INSERT INTO `product_channel` VALUES ('4', '8');
+INSERT INTO `product_channel` VALUES ('4', '9');
 INSERT INTO `product_channel` VALUES ('1', '10');
 INSERT INTO `product_channel` VALUES ('1', '11');
 INSERT INTO `product_channel` VALUES ('1', '12');
@@ -1056,15 +1069,6 @@ INSERT INTO `product_channel` VALUES ('3', '20');
 INSERT INTO `product_channel` VALUES ('3', '21');
 INSERT INTO `product_channel` VALUES ('3', '22');
 INSERT INTO `product_channel` VALUES ('3', '23');
-INSERT INTO `product_channel` VALUES ('4', '1');
-INSERT INTO `product_channel` VALUES ('4', '2');
-INSERT INTO `product_channel` VALUES ('4', '3');
-INSERT INTO `product_channel` VALUES ('4', '4');
-INSERT INTO `product_channel` VALUES ('4', '5');
-INSERT INTO `product_channel` VALUES ('4', '6');
-INSERT INTO `product_channel` VALUES ('4', '7');
-INSERT INTO `product_channel` VALUES ('4', '8');
-INSERT INTO `product_channel` VALUES ('4', '9');
 INSERT INTO `product_channel` VALUES ('5', '24');
 INSERT INTO `product_channel` VALUES ('5', '25');
 INSERT INTO `product_channel` VALUES ('5', '26');
