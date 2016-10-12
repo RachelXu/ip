@@ -10,11 +10,8 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2016-10-12 13:55:18
+Date: 2016-10-12 16:41:38
 */
-drop database if exists iptvm;
-create database iptvm default character set utf8 collate utf8_general_ci;
-use iptvm;
 
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -487,62 +484,59 @@ CREATE TABLE `channelset` (
   `UrlType` varchar(20) NOT NULL,
   `ChannelType` varchar(10) NOT NULL,
   `LanguageID` int(11) NOT NULL,
-  `ProductID` int(11) NOT NULL,
   PRIMARY KEY (`ChannelID`),
   KEY `FK_Relationship_3` (`LanguageID`),
-  KEY `FK_Relationship_4` (`ProductID`),
-  CONSTRAINT `FK_Relationship_3` FOREIGN KEY (`LanguageID`) REFERENCES `languageset` (`LanguageID`),
-  CONSTRAINT `FK_Relationship_4` FOREIGN KEY (`ProductID`) REFERENCES `productset` (`ProductID`)
+  CONSTRAINT `FK_Relationship_3` FOREIGN KEY (`LanguageID`) REFERENCES `languageset` (`LanguageID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of channelset
 -- ----------------------------
-INSERT INTO `channelset` VALUES ('1', 'bein1', '188.138.89.40', '/images/bein1.jpg', 'http://188.138.89.40/IPTV_Files/bein1/bein1.m3u8', 'entire', 'Live', '1', '4');
-INSERT INTO `channelset` VALUES ('2', 'bein2', '188.138.89.40', '/images/bein2.jpg', 'http://188.138.89.40/IPTV_Files/bein2/bein2.m3u8', 'entire', 'Live', '1', '4');
-INSERT INTO `channelset` VALUES ('3', 'bein3', '188.138.89.40', '/images/bein3.jpg', 'http://188.138.89.40/IPTV_Files/bein3/bein3.m3u8', 'entire', 'Live', '1', '4');
-INSERT INTO `channelset` VALUES ('4', 'bein4', '188.138.89.40', '/images/bein4.jpg', 'http://188.138.89.40/IPTV_Files/bein4/bein4.m3u8', 'entire', 'Live', '1', '4');
-INSERT INTO `channelset` VALUES ('5', 'bein5', '188.138.89.40', '/images/bein5.jpg', 'http://188.138.89.40/IPTV_Files/bein5/bein5.m3u8', 'entire', 'Live', '5', '4');
-INSERT INTO `channelset` VALUES ('6', 'bein6', '188.138.89.40', '/images/bein6.jpg', 'http://188.138.89.40/IPTV_Files/bein6/bein6.m3u8', 'entire', 'Live', '5', '4');
-INSERT INTO `channelset` VALUES ('7', 'bein7', '188.138.89.40', '/images/bein7.jpg', 'http://188.138.89.40/IPTV_Files/bein7/bein7.m3u8', 'entire', 'Live', '8', '4');
-INSERT INTO `channelset` VALUES ('8', 'bein8', '188.138.89.40', '/images/bein8.jpg', 'http://188.138.89.40/IPTV_Files/bein8/bein8.m3u8', 'entire', 'Live', '9', '4');
-INSERT INTO `channelset` VALUES ('9', 'bein9', '188.138.89.40', '/images/bein9.jpg', 'http://188.138.89.40/IPTV_Files/bein9/bein9.m3u8', 'entire', 'Live', '10', '4');
-INSERT INTO `channelset` VALUES ('10', 'nile1', '188.138.89.40', '/images/nile1.jpg', '/IPTV_Files/nile1/nile1.m3u8', 'sep', 'Live', '1', '1');
-INSERT INTO `channelset` VALUES ('11', 'nile2', '188.138.89.40', '/images/nile2.jpg', '/IPTV_Files/nile2/nile2.m3u8', 'sep', 'Live', '2', '1');
-INSERT INTO `channelset` VALUES ('12', 'nile3', '188.138.89.40', '/images/nile3.jpg', '/IPTV_Files/nile3/nile3.m3u8', 'sep', 'Live', '3', '1');
-INSERT INTO `channelset` VALUES ('13', 'nile4', '188.138.89.40', '/images/nile4.jpg', '/IPTV_Files/nile4/nile4.m3u8', 'sep', 'Live', '4', '1');
-INSERT INTO `channelset` VALUES ('14', 'nile5', '188.138.89.40', '/images/nile5.jpg', '/IPTV_Files/nile5/nile5.m3u8', 'sep', 'Live', '5', '1');
-INSERT INTO `channelset` VALUES ('15', 'nile6', '188.138.89.40', '/images/nile6.jpg', '/IPTV_Files/nile6/nile6.m3u8', 'sep', 'Live', '6', '1');
-INSERT INTO `channelset` VALUES ('16', 'nile7', '188.138.89.40', '/images/nile7.jpg', '/IPTV_Files/nile7/nile7.m3u8', 'sep', 'Live', '7', '1');
-INSERT INTO `channelset` VALUES ('17', 'mbc1', '188.138.89.40', '/images/mbc1.jpg', '/IPTV_Files/mbc1/mbc1.m3u8', 'sep', 'Live', '1', '2');
-INSERT INTO `channelset` VALUES ('18', 'mbc2', '188.138.89.40', '/images/mbc2.jpg', '/IPTV_Files/mbc2/mbc2.m3u8', 'sep', 'Live', '2', '2');
-INSERT INTO `channelset` VALUES ('19', 'mbc3', '188.138.89.40', '/images/mbc3.jpg', '/IPTV_Files/mbc3/mbc3.m3u8', 'sep', 'Live', '3', '2');
-INSERT INTO `channelset` VALUES ('20', 'baraem1', '188.138.89.40', '/images/baraem1.jpg', '/IPTV_Files/baraem1/baraem1.m3u8', 'sep', 'Live', '1', '3');
-INSERT INTO `channelset` VALUES ('21', 'baraem2', '188.138.89.40', '/images/baraem2.jpg', '/IPTV_Files/baraem2/baraem2.m3u8', 'sep', 'Live', '2', '3');
-INSERT INTO `channelset` VALUES ('22', 'baraem3', '188.138.89.40', '/images/baraem3.jpg', '/IPTV_Files/baraem3/baraem3.m3u8', 'sep', 'Live', '5', '3');
-INSERT INTO `channelset` VALUES ('23', 'baraem4', '188.138.89.40', '/images/baraem4.jpg', '/IPTV_Files/baraem4/baraem4.m3u8', 'sep', 'Live', '6', '3');
-INSERT INTO `channelset` VALUES ('24', 'dream1', '188.138.89.40', '/images/dram1.jpg', 'http://188.138.89.40/IPTV_Files/dream1/dream1.m3u8', 'entire', 'Live', '5', '5');
-INSERT INTO `channelset` VALUES ('25', 'dream2', '188.138.89.40', '/images/dream2.jpg', 'http://188.138.89.40/IPTV_Files/dream2/deram2.m3u8', 'entire', 'Live', '3', '5');
-INSERT INTO `channelset` VALUES ('26', 'dream3', '188.138.89.40', '/images/dream3.jpg', 'http://188.138.89.40/IPTV_Files/deram3/dream3.m3u8', 'entire', 'Live', '7', '5');
-INSERT INTO `channelset` VALUES ('27', 'cbc1', '188.138.89.40', '/images/cbc1.jpg', 'http://188.138.89.40/IPTV_Files/cbc1/cbc1.m3u8', 'entire', 'Live', '6', '6');
-INSERT INTO `channelset` VALUES ('28', 'cbc2', '188.138.89.40', '/images/cbc2.jpg', 'http://188.138.89.40/IPTV_Files/cbc2/cbc2.m3u8', 'entire', 'Live', '2', '6');
-INSERT INTO `channelset` VALUES ('29', 'cbc3', '188.138.89.40', '/images/cbc3.jpg', 'http://188.138.89.40/IPTV_Files/cbc3/cbc3.m3u8', 'entire', 'Live', '3', '6');
-INSERT INTO `channelset` VALUES ('30', 'sky1', '188.138.89.40', '/images/sky1.jpg', 'http://188.138.89.40/IPTV_Files/sky1/sky1.m3u8', 'entire', 'Live', '5', '7');
-INSERT INTO `channelset` VALUES ('31', 'sky2', '188.138.89.40', '/images/sky2.jpg', 'http://188.138.89.40/IPTV_Files/sky2/sky2.m3u8', 'entire', 'Live', '4', '7');
-INSERT INTO `channelset` VALUES ('32', 'sky3', '188.138.89.40', '/images/sky3.jpg', 'http://188.138.89.40/IPTV_Files/sky3/sky3.m3u8', 'entire', 'Live', '2', '7');
-INSERT INTO `channelset` VALUES ('33', 'sky4', '188.138.89.40', '/images/sky4.jpg', 'http://188.138.89.40/IPTV_Files/sky4/sky4.m3u8', 'entire', 'Live', '3', '7');
-INSERT INTO `channelset` VALUES ('34', 'rai1', '188.138.89.40', '/images/rai1.jpg', 'http://188.138.89.40/IPTV_Files/rai1/rai1.m3u8', 'entire', 'Live', '9', '8');
-INSERT INTO `channelset` VALUES ('35', 'rai2', '188.138.89.40', '/images/rai2.jpg', 'http://188.138.89.40/IPTV_Files/rai2/rai2.m3u8', 'entire', 'Live', '6', '8');
-INSERT INTO `channelset` VALUES ('36', 'rai3', '188.138.89.40', '/images/rai3.jpg', 'http://188.138.89.40/IPTV_Files/rai3/rai3.m3u8', 'entire', 'Live', '4', '8');
-INSERT INTO `channelset` VALUES ('37', 'rai4', '188.138.89.40', '/images/rai4.jpg', 'http://188.138.89.40/IPTV_Files/rai4/rai4.m3u8', 'entire', 'Live', '3', '8');
-INSERT INTO `channelset` VALUES ('38', 'rai5', '188.138.89.40', '/images/rai5.jpg', 'http://188.138.89.40/IPTV_Files/rai5/rai5.m3u8', 'entire', 'Live', '1', '8');
-INSERT INTO `channelset` VALUES ('39', 'canal1', '188.138.89.40', '/images/canal1.jpg', '/IPTV_Files/canal1/canal1.m3u8', 'sep', 'Live', '7', '9');
-INSERT INTO `channelset` VALUES ('40', 'canal2', '188.138.89.40', '/images/canal2.jpg', '/IPTV_Files/canal2/canal2.m3u8', 'sep', 'Live', '5', '9');
-INSERT INTO `channelset` VALUES ('41', 'canal3', '188.138.89.40', '/images/canal3.jpg', '/IPTV_Files/canal3/canal3.m3u8', 'sep', 'Live', '3', '9');
-INSERT INTO `channelset` VALUES ('42', 'dzair1', '188.138.89.40', '/images/dzair1.jpg', '/IPTV_Files/dzair1/dzair1.m3u8', 'sep', 'Live', '5', '10');
-INSERT INTO `channelset` VALUES ('43', 'dzair2', '188.138.89.40', '/images/dzair2.jpg', '/IPTV_Files/dzair2/dzair2.m3u8', 'sep', 'Live', '6', '10');
-INSERT INTO `channelset` VALUES ('44', 'dzair3', '188.138.89.40', '/images/dzair3.jpg', '/IPTV_Files/dzair3/dzair3.m3u8', 'sep', 'Live', '9', '10');
-INSERT INTO `channelset` VALUES ('45', 'dzair4', '188.138.89.40', '/images/dzair4.jpg', '/IPTV_Files/dzair4/dzair4.m3u8', 'sep', 'Live', '1', '10');
+INSERT INTO `channelset` VALUES ('1', 'bein1', '188.138.89.40', '/images/bein1.jpg', 'http://188.138.89.40/IPTV_Files/bein1/bein1.m3u8', 'entire', 'Live', '1');
+INSERT INTO `channelset` VALUES ('2', 'bein2', '188.138.89.40', '/images/bein2.jpg', 'http://188.138.89.40/IPTV_Files/bein2/bein2.m3u8', 'entire', 'Live', '1');
+INSERT INTO `channelset` VALUES ('3', 'bein3', '188.138.89.40', '/images/bein3.jpg', 'http://188.138.89.40/IPTV_Files/bein3/bein3.m3u8', 'entire', 'Live', '1');
+INSERT INTO `channelset` VALUES ('4', 'bein4', '188.138.89.40', '/images/bein4.jpg', 'http://188.138.89.40/IPTV_Files/bein4/bein4.m3u8', 'entire', 'Live', '1');
+INSERT INTO `channelset` VALUES ('5', 'bein5', '188.138.89.40', '/images/bein5.jpg', 'http://188.138.89.40/IPTV_Files/bein5/bein5.m3u8', 'entire', 'Live', '5');
+INSERT INTO `channelset` VALUES ('6', 'bein6', '188.138.89.40', '/images/bein6.jpg', 'http://188.138.89.40/IPTV_Files/bein6/bein6.m3u8', 'entire', 'Live', '5');
+INSERT INTO `channelset` VALUES ('7', 'bein7', '188.138.89.40', '/images/bein7.jpg', 'http://188.138.89.40/IPTV_Files/bein7/bein7.m3u8', 'entire', 'Live', '8');
+INSERT INTO `channelset` VALUES ('8', 'bein8', '188.138.89.40', '/images/bein8.jpg', 'http://188.138.89.40/IPTV_Files/bein8/bein8.m3u8', 'entire', 'Live', '9');
+INSERT INTO `channelset` VALUES ('9', 'bein9', '188.138.89.40', '/images/bein9.jpg', 'http://188.138.89.40/IPTV_Files/bein9/bein9.m3u8', 'entire', 'Live', '10');
+INSERT INTO `channelset` VALUES ('10', 'nile1', '188.138.89.40', '/images/nile1.jpg', '/IPTV_Files/nile1/nile1.m3u8', 'sep', 'Live', '1');
+INSERT INTO `channelset` VALUES ('11', 'nile2', '188.138.89.40', '/images/nile2.jpg', '/IPTV_Files/nile2/nile2.m3u8', 'sep', 'Live', '2');
+INSERT INTO `channelset` VALUES ('12', 'nile3', '188.138.89.40', '/images/nile3.jpg', '/IPTV_Files/nile3/nile3.m3u8', 'sep', 'Live', '3');
+INSERT INTO `channelset` VALUES ('13', 'nile4', '188.138.89.40', '/images/nile4.jpg', '/IPTV_Files/nile4/nile4.m3u8', 'sep', 'Live', '4');
+INSERT INTO `channelset` VALUES ('14', 'nile5', '188.138.89.40', '/images/nile5.jpg', '/IPTV_Files/nile5/nile5.m3u8', 'sep', 'Live', '5');
+INSERT INTO `channelset` VALUES ('15', 'nile6', '188.138.89.40', '/images/nile6.jpg', '/IPTV_Files/nile6/nile6.m3u8', 'sep', 'Live', '6');
+INSERT INTO `channelset` VALUES ('16', 'nile7', '188.138.89.40', '/images/nile7.jpg', '/IPTV_Files/nile7/nile7.m3u8', 'sep', 'Live', '7');
+INSERT INTO `channelset` VALUES ('17', 'mbc1', '188.138.89.40', '/images/mbc1.jpg', '/IPTV_Files/mbc1/mbc1.m3u8', 'sep', 'Live', '1');
+INSERT INTO `channelset` VALUES ('18', 'mbc2', '188.138.89.40', '/images/mbc2.jpg', '/IPTV_Files/mbc2/mbc2.m3u8', 'sep', 'Live', '2');
+INSERT INTO `channelset` VALUES ('19', 'mbc3', '188.138.89.40', '/images/mbc3.jpg', '/IPTV_Files/mbc3/mbc3.m3u8', 'sep', 'Live', '3');
+INSERT INTO `channelset` VALUES ('20', 'baraem1', '188.138.89.40', '/images/baraem1.jpg', '/IPTV_Files/baraem1/baraem1.m3u8', 'sep', 'Live', '1');
+INSERT INTO `channelset` VALUES ('21', 'baraem2', '188.138.89.40', '/images/baraem2.jpg', '/IPTV_Files/baraem2/baraem2.m3u8', 'sep', 'Live', '2');
+INSERT INTO `channelset` VALUES ('22', 'baraem3', '188.138.89.40', '/images/baraem3.jpg', '/IPTV_Files/baraem3/baraem3.m3u8', 'sep', 'Live', '5');
+INSERT INTO `channelset` VALUES ('23', 'baraem4', '188.138.89.40', '/images/baraem4.jpg', '/IPTV_Files/baraem4/baraem4.m3u8', 'sep', 'Live', '6');
+INSERT INTO `channelset` VALUES ('24', 'dream1', '188.138.89.40', '/images/dram1.jpg', 'http://188.138.89.40/IPTV_Files/dream1/dream1.m3u8', 'entire', 'Live', '5');
+INSERT INTO `channelset` VALUES ('25', 'dream2', '188.138.89.40', '/images/dream2.jpg', 'http://188.138.89.40/IPTV_Files/dream2/deram2.m3u8', 'entire', 'Live', '3');
+INSERT INTO `channelset` VALUES ('26', 'dream3', '188.138.89.40', '/images/dream3.jpg', 'http://188.138.89.40/IPTV_Files/deram3/dream3.m3u8', 'entire', 'Live', '7');
+INSERT INTO `channelset` VALUES ('27', 'cbc1', '188.138.89.40', '/images/cbc1.jpg', 'http://188.138.89.40/IPTV_Files/cbc1/cbc1.m3u8', 'entire', 'Live', '6');
+INSERT INTO `channelset` VALUES ('28', 'cbc2', '188.138.89.40', '/images/cbc2.jpg', 'http://188.138.89.40/IPTV_Files/cbc2/cbc2.m3u8', 'entire', 'Live', '2');
+INSERT INTO `channelset` VALUES ('29', 'cbc3', '188.138.89.40', '/images/cbc3.jpg', 'http://188.138.89.40/IPTV_Files/cbc3/cbc3.m3u8', 'entire', 'Live', '3');
+INSERT INTO `channelset` VALUES ('30', 'sky1', '188.138.89.40', '/images/sky1.jpg', 'http://188.138.89.40/IPTV_Files/sky1/sky1.m3u8', 'entire', 'Live', '5');
+INSERT INTO `channelset` VALUES ('31', 'sky2', '188.138.89.40', '/images/sky2.jpg', 'http://188.138.89.40/IPTV_Files/sky2/sky2.m3u8', 'entire', 'Live', '4');
+INSERT INTO `channelset` VALUES ('32', 'sky3', '188.138.89.40', '/images/sky3.jpg', 'http://188.138.89.40/IPTV_Files/sky3/sky3.m3u8', 'entire', 'Live', '2');
+INSERT INTO `channelset` VALUES ('33', 'sky4', '188.138.89.40', '/images/sky4.jpg', 'http://188.138.89.40/IPTV_Files/sky4/sky4.m3u8', 'entire', 'Live', '3');
+INSERT INTO `channelset` VALUES ('34', 'rai1', '188.138.89.40', '/images/rai1.jpg', 'http://188.138.89.40/IPTV_Files/rai1/rai1.m3u8', 'entire', 'Live', '9');
+INSERT INTO `channelset` VALUES ('35', 'rai2', '188.138.89.40', '/images/rai2.jpg', 'http://188.138.89.40/IPTV_Files/rai2/rai2.m3u8', 'entire', 'Live', '6');
+INSERT INTO `channelset` VALUES ('36', 'rai3', '188.138.89.40', '/images/rai3.jpg', 'http://188.138.89.40/IPTV_Files/rai3/rai3.m3u8', 'entire', 'Live', '4');
+INSERT INTO `channelset` VALUES ('37', 'rai4', '188.138.89.40', '/images/rai4.jpg', 'http://188.138.89.40/IPTV_Files/rai4/rai4.m3u8', 'entire', 'Live', '3');
+INSERT INTO `channelset` VALUES ('38', 'rai5', '188.138.89.40', '/images/rai5.jpg', 'http://188.138.89.40/IPTV_Files/rai5/rai5.m3u8', 'entire', 'Live', '1');
+INSERT INTO `channelset` VALUES ('39', 'canal1', '188.138.89.40', '/images/canal1.jpg', '/IPTV_Files/canal1/canal1.m3u8', 'sep', 'Live', '7');
+INSERT INTO `channelset` VALUES ('40', 'canal2', '188.138.89.40', '/images/canal2.jpg', '/IPTV_Files/canal2/canal2.m3u8', 'sep', 'Live', '5');
+INSERT INTO `channelset` VALUES ('41', 'canal3', '188.138.89.40', '/images/canal3.jpg', '/IPTV_Files/canal3/canal3.m3u8', 'sep', 'Live', '3');
+INSERT INTO `channelset` VALUES ('42', 'dzair1', '188.138.89.40', '/images/dzair1.jpg', '/IPTV_Files/dzair1/dzair1.m3u8', 'sep', 'Live', '5');
+INSERT INTO `channelset` VALUES ('43', 'dzair2', '188.138.89.40', '/images/dzair2.jpg', '/IPTV_Files/dzair2/dzair2.m3u8', 'sep', 'Live', '6');
+INSERT INTO `channelset` VALUES ('44', 'dzair3', '188.138.89.40', '/images/dzair3.jpg', '/IPTV_Files/dzair3/dzair3.m3u8', 'sep', 'Live', '9');
+INSERT INTO `channelset` VALUES ('45', 'dzair4', '188.138.89.40', '/images/dzair4.jpg', '/IPTV_Files/dzair4/dzair4.m3u8', 'sep', 'Live', '1');
 
 -- ----------------------------
 -- Table structure for channel_directory
@@ -1033,6 +1027,66 @@ INSERT INTO `productset` VALUES ('7', 'AmericaLive');
 INSERT INTO `productset` VALUES ('8', 'BrazilLive');
 INSERT INTO `productset` VALUES ('9', 'EuropeLive');
 INSERT INTO `productset` VALUES ('10', 'CanadaLive');
+
+-- ----------------------------
+-- Table structure for product_channel
+-- ----------------------------
+DROP TABLE IF EXISTS `product_channel`;
+CREATE TABLE `product_channel` (
+  `ProductID` int(11) NOT NULL,
+  `ChannelID` int(11) NOT NULL,
+  PRIMARY KEY (`ProductID`,`ChannelID`),
+  KEY `FK_product_channel2` (`ChannelID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of product_channel
+-- ----------------------------
+INSERT INTO `product_channel` VALUES ('1', '10');
+INSERT INTO `product_channel` VALUES ('1', '11');
+INSERT INTO `product_channel` VALUES ('1', '12');
+INSERT INTO `product_channel` VALUES ('1', '13');
+INSERT INTO `product_channel` VALUES ('1', '14');
+INSERT INTO `product_channel` VALUES ('1', '15');
+INSERT INTO `product_channel` VALUES ('1', '16');
+INSERT INTO `product_channel` VALUES ('2', '17');
+INSERT INTO `product_channel` VALUES ('2', '18');
+INSERT INTO `product_channel` VALUES ('2', '19');
+INSERT INTO `product_channel` VALUES ('3', '20');
+INSERT INTO `product_channel` VALUES ('3', '21');
+INSERT INTO `product_channel` VALUES ('3', '22');
+INSERT INTO `product_channel` VALUES ('3', '23');
+INSERT INTO `product_channel` VALUES ('4', '1');
+INSERT INTO `product_channel` VALUES ('4', '2');
+INSERT INTO `product_channel` VALUES ('4', '3');
+INSERT INTO `product_channel` VALUES ('4', '4');
+INSERT INTO `product_channel` VALUES ('4', '5');
+INSERT INTO `product_channel` VALUES ('4', '6');
+INSERT INTO `product_channel` VALUES ('4', '7');
+INSERT INTO `product_channel` VALUES ('4', '8');
+INSERT INTO `product_channel` VALUES ('4', '9');
+INSERT INTO `product_channel` VALUES ('5', '24');
+INSERT INTO `product_channel` VALUES ('5', '25');
+INSERT INTO `product_channel` VALUES ('5', '26');
+INSERT INTO `product_channel` VALUES ('6', '27');
+INSERT INTO `product_channel` VALUES ('6', '28');
+INSERT INTO `product_channel` VALUES ('6', '29');
+INSERT INTO `product_channel` VALUES ('7', '30');
+INSERT INTO `product_channel` VALUES ('7', '31');
+INSERT INTO `product_channel` VALUES ('7', '32');
+INSERT INTO `product_channel` VALUES ('7', '33');
+INSERT INTO `product_channel` VALUES ('8', '34');
+INSERT INTO `product_channel` VALUES ('8', '35');
+INSERT INTO `product_channel` VALUES ('8', '36');
+INSERT INTO `product_channel` VALUES ('8', '37');
+INSERT INTO `product_channel` VALUES ('8', '38');
+INSERT INTO `product_channel` VALUES ('9', '39');
+INSERT INTO `product_channel` VALUES ('9', '40');
+INSERT INTO `product_channel` VALUES ('9', '41');
+INSERT INTO `product_channel` VALUES ('10', '42');
+INSERT INTO `product_channel` VALUES ('10', '43');
+INSERT INTO `product_channel` VALUES ('10', '44');
+INSERT INTO `product_channel` VALUES ('10', '45');
 
 -- ----------------------------
 -- Table structure for serviec_type

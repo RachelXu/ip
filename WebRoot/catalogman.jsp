@@ -21,7 +21,7 @@ return true;
 <body>
 	<div id="wrapper">
     	<!-- h1 tag stays for the logo, you can use the a tag for linking the index page -->
-    	<h1><a href="#"><span>����ϵͳ</span></a></h1>
+    	<h1><a href="#"><span>Management System</span></a></h1>
     	<!-- // #start mainNav -->
 		<%@include file="headbar_media.jsp" %>
         <!-- // #end mainNav -->
@@ -35,10 +35,10 @@ return true;
                     	<li><a href="premediainsert.action">New Media</a></li>
                     	<li><a href="premediabatchupload.action">Import Medias</a></li>
                     	<s2:if test='#session.admin.level.equals("1") || #session.admin.level.equals("2")'>
-                    	<li><a href="premediaapprove.action">确认节目审核通过</a></li>
+                    	<li><a href="premediaapprove.action">Confirm Media Audit</a></li>
                     	</s2:if>
                     	<s2:if test='#session.admin.level.equals("1") '>
-                    	<li><a href="premediadisapprove.action" >确认节目发布</a></li>
+                    	<li><a href="premediadisapprove.action" >Confirm Media Release</a></li>
                     	</s2:if>
                     </ul>
                 </div>    
